@@ -44,18 +44,18 @@ namespace SchiffeVersenken
             this.spieler1farbe = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.schiff1 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.schiff1 = new System.Windows.Forms.ComboBox();
             this.schiff2 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.schiff3 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.schiff4 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.schiff5 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -94,6 +94,7 @@ namespace SchiffeVersenken
             this.tableLayoutPanel1.Controls.Add(this.groupBox8, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox9, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 2, 2);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
@@ -244,6 +245,21 @@ namespace SchiffeVersenken
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Schiff 1";
             // 
+            // schiff1
+            // 
+            this.schiff1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.schiff1.FormattingEnabled = true;
+            this.schiff1.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.schiff1.Location = new System.Drawing.Point(6, 37);
+            this.schiff1.Name = "schiff1";
+            this.schiff1.Size = new System.Drawing.Size(121, 21);
+            this.schiff1.TabIndex = 1;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -264,57 +280,6 @@ namespace SchiffeVersenken
             this.groupBox6.TabIndex = 6;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Schiff 2";
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.schiff3);
-            this.groupBox7.Controls.Add(this.label7);
-            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox7.Location = new System.Drawing.Point(322, 153);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(153, 144);
-            this.groupBox7.TabIndex = 7;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Schiff 3";
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.schiff4);
-            this.groupBox8.Controls.Add(this.label8);
-            this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox8.Location = new System.Drawing.Point(481, 153);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(153, 144);
-            this.groupBox8.TabIndex = 8;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Schiff 4";
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.schiff5);
-            this.groupBox9.Controls.Add(this.label9);
-            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox9.Location = new System.Drawing.Point(640, 153);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(157, 144);
-            this.groupBox9.TabIndex = 9;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Schiff 5";
-            // 
-            // schiff1
-            // 
-            this.schiff1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.schiff1.FormattingEnabled = true;
-            this.schiff1.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.schiff1.Location = new System.Drawing.Point(6, 37);
-            this.schiff1.Name = "schiff1";
-            this.schiff1.Size = new System.Drawing.Size(121, 21);
-            this.schiff1.TabIndex = 1;
             // 
             // schiff2
             // 
@@ -340,6 +305,18 @@ namespace SchiffeVersenken
             this.label6.TabIndex = 2;
             this.label6.Text = "Schiffslänge";
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.schiff3);
+            this.groupBox7.Controls.Add(this.label7);
+            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox7.Location = new System.Drawing.Point(322, 153);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(153, 144);
+            this.groupBox7.TabIndex = 7;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Schiff 3";
+            // 
             // schiff3
             // 
             this.schiff3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -364,6 +341,18 @@ namespace SchiffeVersenken
             this.label7.TabIndex = 2;
             this.label7.Text = "Schiffslänge";
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.schiff4);
+            this.groupBox8.Controls.Add(this.label8);
+            this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox8.Location = new System.Drawing.Point(481, 153);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(153, 144);
+            this.groupBox8.TabIndex = 8;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Schiff 4";
+            // 
             // schiff4
             // 
             this.schiff4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -387,6 +376,18 @@ namespace SchiffeVersenken
             this.label8.Size = new System.Drawing.Size(65, 13);
             this.label8.TabIndex = 2;
             this.label8.Text = "Schiffslänge";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.schiff5);
+            this.groupBox9.Controls.Add(this.label9);
+            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox9.Location = new System.Drawing.Point(640, 153);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(157, 144);
+            this.groupBox9.TabIndex = 9;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Schiff 5";
             // 
             // schiff5
             // 
@@ -436,6 +437,7 @@ namespace SchiffeVersenken
             this.button1.TabIndex = 0;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -452,7 +454,6 @@ namespace SchiffeVersenken
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SchiffeVersenken.Properties.Resources.sea_1547609_1280;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);

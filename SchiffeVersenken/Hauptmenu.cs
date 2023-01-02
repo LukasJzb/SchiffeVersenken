@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SchiffeVersenken
 {
-    public partial class Form1 : Form
+    public partial class Hauptmenu : Form
     {
-        public Form1()
+        public Hauptmenu()
         {
             InitializeComponent();
             feldgroesseHoehe.SelectedIndex = 5;

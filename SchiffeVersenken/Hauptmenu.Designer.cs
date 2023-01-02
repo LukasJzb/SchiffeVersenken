@@ -1,7 +1,7 @@
 ﻿
 namespace SchiffeVersenken
 {
-    partial class Form1
+    partial class Hauptmenu
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -29,7 +29,7 @@ namespace SchiffeVersenken
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Hauptmenu));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -306,7 +306,7 @@ namespace SchiffeVersenken
             this.label2.TabIndex = 2;
             this.label2.Text = "Höhe";
             // 
-            // Form1
+            // Hauptmenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -317,7 +317,7 @@ namespace SchiffeVersenken
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(960, 540);
-            this.Name = "Form1";
+            this.Name = "Hauptmenu";
             this.Text = "Schiffe Versenken";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -350,8 +350,8 @@ namespace SchiffeVersenken
         private System.Windows.Forms.RadioButton schiffAnzahl1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox feldgroesseTiefe;
-        private System.Windows.Forms.ComboBox feldgroesseHoehe;
+        public System.Windows.Forms.ComboBox feldgroesseTiefe;
+        public System.Windows.Forms.ComboBox feldgroesseHoehe;
     }
 }
 
