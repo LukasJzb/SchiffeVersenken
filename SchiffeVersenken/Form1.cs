@@ -15,6 +15,21 @@ namespace SchiffeVersenken
         public Form1()
         {
             InitializeComponent();
+            feldgroesseHoehe.SelectedIndex = 5;
+            feldgroesseTiefe.SelectedIndex = 5;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Spielerauswahl spielerauswahl = new Spielerauswahl();
+            this.Hide();
+            spielerauswahl.Show();
+            
         }
     }
 }
