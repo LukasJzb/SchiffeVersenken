@@ -74,6 +74,34 @@ namespace SchiffeVersenken
                     spielfeld.Controls.Add(btn1, i+1, j+1);
                 }
             }
+            //Switchcasr um hintergrund des spieleravatars und scores zu setzen
+            switch (spielerAnzahl)
+            {
+                case 4:
+                    groupBoxspieler4.BackColor = farbArray[3];
+                    groupBoxspieler4.Enabled = true;
+                    groupBoxScore4.BackColor = farbArray[3];
+                    groupBoxScore4.Enabled = true;
+                    goto case 3;
+                case 3:
+                    groupBoxspieler3.BackColor = farbArray[2];
+                    groupBoxspieler3.Enabled = true;
+                    groupBoxScore3.BackColor = farbArray[2];
+                    groupBoxScore3.Enabled = true;
+                    goto case 2;
+                case 2:
+                    groupBoxspieler1.BackColor = farbArray[0];
+                    groupBoxspieler2.BackColor = farbArray[1];
+                    groupBoxScore1.BackColor = farbArray[0];
+                    groupBoxScore2.BackColor = farbArray[1];
+                    break;
+                default:
+                    MessageBox.Show("Bei dem erstellen des Spielfeldinterfac gab es ein fehler!", "Fehler Spielfeldinterface");
+                    break;
+            }
+           
+          
+           
         }
     }
 }

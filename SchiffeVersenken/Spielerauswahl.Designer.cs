@@ -120,7 +120,7 @@ namespace SchiffeVersenken
             // 
             // spieler2farbe
             // 
-            this.spieler2farbe.BackColor = System.Drawing.Color.Black;
+            this.spieler2farbe.BackColor = System.Drawing.Color.Yellow;
             this.spieler2farbe.Location = new System.Drawing.Point(75, 35);
             this.spieler2farbe.Name = "spieler2farbe";
             this.spieler2farbe.Size = new System.Drawing.Size(75, 23);
@@ -152,7 +152,7 @@ namespace SchiffeVersenken
             // 
             // spieler4farbe
             // 
-            this.spieler4farbe.BackColor = System.Drawing.Color.Black;
+            this.spieler4farbe.BackColor = System.Drawing.Color.Green;
             this.spieler4farbe.Location = new System.Drawing.Point(75, 33);
             this.spieler4farbe.Name = "spieler4farbe";
             this.spieler4farbe.Size = new System.Drawing.Size(75, 23);
@@ -185,7 +185,7 @@ namespace SchiffeVersenken
             // 
             // spieler3farbe
             // 
-            this.spieler3farbe.BackColor = System.Drawing.Color.Black;
+            this.spieler3farbe.BackColor = System.Drawing.Color.Blue;
             this.spieler3farbe.Location = new System.Drawing.Point(79, 33);
             this.spieler3farbe.Name = "spieler3farbe";
             this.spieler3farbe.Size = new System.Drawing.Size(75, 23);
@@ -218,7 +218,7 @@ namespace SchiffeVersenken
             // 
             // spieler1farbe
             // 
-            this.spieler1farbe.BackColor = System.Drawing.Color.Black;
+            this.spieler1farbe.BackColor = System.Drawing.Color.Red;
             this.spieler1farbe.Location = new System.Drawing.Point(79, 35);
             this.spieler1farbe.Name = "spieler1farbe";
             this.spieler1farbe.Size = new System.Drawing.Size(75, 23);

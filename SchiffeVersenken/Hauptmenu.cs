@@ -45,6 +45,7 @@ namespace SchiffeVersenken
             int feldTiefe = Int32.Parse(feldgroesseTiefe.SelectedItem.ToString());
 
             Spielerauswahl spielerauswahl = new Spielerauswahl(spielerAnzahl, schiffAnzahl, feldHoehe, feldTiefe);
+            this.Hide();
             spielerauswahl.Show();
         }
     }
