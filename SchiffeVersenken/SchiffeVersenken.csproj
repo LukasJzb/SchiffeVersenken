@@ -37,7 +37,7 @@
     </Win32Resource>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>battleship.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\battleship.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>SchiffeVersenken.Program</StartupObject>
@@ -112,7 +112,7 @@
     <None Include="Resources\sea-1547609_1280.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="battleship.ico" />
+    <Content Include="Resources\battleship.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

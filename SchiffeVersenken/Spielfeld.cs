@@ -12,17 +12,17 @@ namespace SchiffeVersenken
 {
     public partial class Spielfeld : Form
     {
-        public Spielfeld()
+        public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldHoehe, int feldTiefe,Color[] farbArray,int[] schiffAnzahlArray)
         {
             InitializeComponent();
 
             TableLayoutPanel spielfeld = new TableLayoutPanel();
             
+            spielfeld.RowCount = feldHoehe + 1;
+            spielfeld.ColumnCount = feldTiefe + 1;
 
-            spielfeld.RowCount = 11;
-            spielfeld.ColumnCount = 11;
+
             spielfeld.Dock = DockStyle.Fill;
-
             spielfeld.RowStyles.Clear();
             spielfeld.ColumnStyles.Clear();
 
@@ -30,6 +30,9 @@ namespace SchiffeVersenken
 
             this.mainGrid.Controls.Add(spielfeld, 0, 0);
 
+
+            float horizontalProzent = feldTiefe / 100;
+            float verticalProzent = feldHoehe / 100;
 
             char letter = 'A';
             spielfeld.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20));
@@ -51,12 +54,12 @@ namespace SchiffeVersenken
                 spielfeld.Controls.Add(label, 0, i);
             }
 
-            for (int i = 1; i < spielfeld.RowCount+1; i++)
+            for (int i = 1; i < spielfeld.RowCount + 1; i++)
             {
                 spielfeld.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / spielfeld.RowCount));
             }
 
-            for (int i = 1; i < spielfeld.ColumnCount+1; i++)
+            for (int i = 1; i < spielfeld.ColumnCount + 1; i++)
             {
                 spielfeld.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / spielfeld.ColumnCount));
             }

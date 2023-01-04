@@ -17,8 +17,6 @@ namespace SchiffeVersenken
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Hauptmenu());
-
-
         }
     }
 }
