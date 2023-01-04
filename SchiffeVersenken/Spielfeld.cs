@@ -21,6 +21,7 @@ namespace SchiffeVersenken
             spielfeld.RowCount = feldHoehe + 1;
             spielfeld.ColumnCount = feldTiefe + 1;
 
+           
 
             spielfeld.Dock = DockStyle.Fill;
             spielfeld.RowStyles.Clear();
@@ -31,11 +32,11 @@ namespace SchiffeVersenken
             this.mainGrid.Controls.Add(spielfeld, 0, 0);
 
 
-            float horizontalProzent = feldTiefe / 100;
-            float verticalProzent = feldHoehe / 100;
+            float horizontalProzent = 100 / feldTiefe;
+            float verticalProzent = 100 / feldHoehe;
 
             char letter = 'A';
-            spielfeld.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20));
+            spielfeld.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30));
             for (int i = 1; i < spielfeld.ColumnCount; i++) {
                 Label label = new Label();
                 label.Text = letter++.ToString();
@@ -43,8 +44,8 @@ namespace SchiffeVersenken
                 spielfeld.Controls.Add(label, i, 0);
             }
 
-            char numb = '0';
-            spielfeld.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
+            int numb = 1;
+            spielfeld.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
             for (int i = 1; i < spielfeld.RowCount; i++)
             {
                 Label label = new Label();
@@ -54,19 +55,19 @@ namespace SchiffeVersenken
                 spielfeld.Controls.Add(label, 0, i);
             }
 
-            for (int i = 1; i < spielfeld.RowCount + 1; i++)
+            for (int i = 1; i < spielfeld.RowCount; i++)
             {
-                spielfeld.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / spielfeld.RowCount));
+                spielfeld.RowStyles.Add(new RowStyle(SizeType.Percent, verticalProzent));
             }
 
-            for (int i = 1; i < spielfeld.ColumnCount + 1; i++)
+            for (int i = 1; i < spielfeld.ColumnCount; i++)
             {
-                spielfeld.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / spielfeld.ColumnCount));
+                spielfeld.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, horizontalProzent));
             }
 
-            for (int i = 0; i < 10; ++i)
+            for (int i = 0; i < feldTiefe; ++i)
             {
-                for (int j = 0; j < 10; ++j)
+                for (int j = 0; j < feldHoehe; ++j)
                 {
                     Button btn1 = new Button();
                     btn1.Dock = DockStyle.Fill;
