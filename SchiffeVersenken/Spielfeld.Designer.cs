@@ -30,6 +30,7 @@ namespace SchiffeVersenken
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Spielfeld));
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.mainGrid = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBoxSchiff4 = new System.Windows.Forms.GroupBox();
@@ -69,6 +70,15 @@ namespace SchiffeVersenken
             this.Score2 = new System.Windows.Forms.Label();
             this.groupBoxScore3 = new System.Windows.Forms.GroupBox();
             this.Score3 = new System.Windows.Forms.Label();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.rundenzahlStripbar = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.zerstoerteSchiffeToolstrip = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
+            this.toolStripContainer1.ContentPanel.SuspendLayout();
+            this.toolStripContainer1.SuspendLayout();
             this.mainGrid.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBoxSchiff4.SuspendLayout();
@@ -86,7 +96,30 @@ namespace SchiffeVersenken
             this.groupBoxScore1.SuspendLayout();
             this.groupBoxScore2.SuspendLayout();
             this.groupBoxScore3.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.BottomToolStripPanel
+            // 
+            this.toolStripContainer1.BottomToolStripPanel.Controls.Add(this.toolStrip1);
+            this.toolStripContainer1.BottomToolStripPanel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.mainGrid);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1008, 704);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer1.LeftToolStripPanelVisible = false;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.RightToolStripPanelVisible = false;
+            this.toolStripContainer1.Size = new System.Drawing.Size(1008, 729);
+            this.toolStripContainer1.TabIndex = 0;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            this.toolStripContainer1.TopToolStripPanelVisible = false;
             // 
             // mainGrid
             // 
@@ -105,8 +138,8 @@ namespace SchiffeVersenken
             this.mainGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.mainGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.mainGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.mainGrid.Size = new System.Drawing.Size(929, 612);
-            this.mainGrid.TabIndex = 0;
+            this.mainGrid.Size = new System.Drawing.Size(1008, 704);
+            this.mainGrid.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
@@ -118,7 +151,7 @@ namespace SchiffeVersenken
             this.tableLayoutPanel1.Controls.Add(this.groupBoxSchiff2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBoxSchiff1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(745, 6);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(808, 6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -126,7 +159,7 @@ namespace SchiffeVersenken
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(178, 476);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(194, 550);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBoxSchiff4
@@ -135,9 +168,9 @@ namespace SchiffeVersenken
             this.groupBoxSchiff4.Controls.Add(this.label4);
             this.groupBoxSchiff4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxSchiff4.Enabled = false;
-            this.groupBoxSchiff4.Location = new System.Drawing.Point(3, 288);
+            this.groupBoxSchiff4.Location = new System.Drawing.Point(3, 333);
             this.groupBoxSchiff4.Name = "groupBoxSchiff4";
-            this.groupBoxSchiff4.Size = new System.Drawing.Size(172, 89);
+            this.groupBoxSchiff4.Size = new System.Drawing.Size(188, 104);
             this.groupBoxSchiff4.TabIndex = 3;
             this.groupBoxSchiff4.TabStop = false;
             // 
@@ -165,9 +198,9 @@ namespace SchiffeVersenken
             this.groupBoxSchiff3.Controls.Add(this.label3);
             this.groupBoxSchiff3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxSchiff3.Enabled = false;
-            this.groupBoxSchiff3.Location = new System.Drawing.Point(3, 193);
+            this.groupBoxSchiff3.Location = new System.Drawing.Point(3, 223);
             this.groupBoxSchiff3.Name = "groupBoxSchiff3";
-            this.groupBoxSchiff3.Size = new System.Drawing.Size(172, 89);
+            this.groupBoxSchiff3.Size = new System.Drawing.Size(188, 104);
             this.groupBoxSchiff3.TabIndex = 2;
             this.groupBoxSchiff3.TabStop = false;
             // 
@@ -195,9 +228,9 @@ namespace SchiffeVersenken
             this.groupBoxSchiff5.Controls.Add(this.label5);
             this.groupBoxSchiff5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxSchiff5.Enabled = false;
-            this.groupBoxSchiff5.Location = new System.Drawing.Point(3, 383);
+            this.groupBoxSchiff5.Location = new System.Drawing.Point(3, 443);
             this.groupBoxSchiff5.Name = "groupBoxSchiff5";
-            this.groupBoxSchiff5.Size = new System.Drawing.Size(172, 90);
+            this.groupBoxSchiff5.Size = new System.Drawing.Size(188, 104);
             this.groupBoxSchiff5.TabIndex = 2;
             this.groupBoxSchiff5.TabStop = false;
             // 
@@ -225,9 +258,9 @@ namespace SchiffeVersenken
             this.groupBoxSchiff2.Controls.Add(this.label2);
             this.groupBoxSchiff2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxSchiff2.Enabled = false;
-            this.groupBoxSchiff2.Location = new System.Drawing.Point(3, 98);
+            this.groupBoxSchiff2.Location = new System.Drawing.Point(3, 113);
             this.groupBoxSchiff2.Name = "groupBoxSchiff2";
-            this.groupBoxSchiff2.Size = new System.Drawing.Size(172, 89);
+            this.groupBoxSchiff2.Size = new System.Drawing.Size(188, 104);
             this.groupBoxSchiff2.TabIndex = 1;
             this.groupBoxSchiff2.TabStop = false;
             // 
@@ -257,7 +290,7 @@ namespace SchiffeVersenken
             this.groupBoxSchiff1.Enabled = false;
             this.groupBoxSchiff1.Location = new System.Drawing.Point(3, 3);
             this.groupBoxSchiff1.Name = "groupBoxSchiff1";
-            this.groupBoxSchiff1.Size = new System.Drawing.Size(172, 89);
+            this.groupBoxSchiff1.Size = new System.Drawing.Size(188, 104);
             this.groupBoxSchiff1.TabIndex = 0;
             this.groupBoxSchiff1.TabStop = false;
             // 
@@ -291,11 +324,11 @@ namespace SchiffeVersenken
             this.tableLayoutPanel2.Controls.Add(this.groupBoxspieler1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.groupBoxspieler2, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 491);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 565);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(730, 115);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(793, 133);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // groupBoxspieler4
@@ -304,9 +337,9 @@ namespace SchiffeVersenken
             this.groupBoxspieler4.Controls.Add(this.label9);
             this.groupBoxspieler4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxspieler4.Enabled = false;
-            this.groupBoxspieler4.Location = new System.Drawing.Point(549, 3);
+            this.groupBoxspieler4.Location = new System.Drawing.Point(597, 3);
             this.groupBoxspieler4.Name = "groupBoxspieler4";
-            this.groupBoxspieler4.Size = new System.Drawing.Size(178, 109);
+            this.groupBoxspieler4.Size = new System.Drawing.Size(193, 127);
             this.groupBoxspieler4.TabIndex = 0;
             this.groupBoxspieler4.TabStop = false;
             // 
@@ -334,9 +367,9 @@ namespace SchiffeVersenken
             this.groupBoxspieler3.Controls.Add(this.label7);
             this.groupBoxspieler3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxspieler3.Enabled = false;
-            this.groupBoxspieler3.Location = new System.Drawing.Point(367, 3);
+            this.groupBoxspieler3.Location = new System.Drawing.Point(399, 3);
             this.groupBoxspieler3.Name = "groupBoxspieler3";
-            this.groupBoxspieler3.Size = new System.Drawing.Size(176, 109);
+            this.groupBoxspieler3.Size = new System.Drawing.Size(192, 127);
             this.groupBoxspieler3.TabIndex = 4;
             this.groupBoxspieler3.TabStop = false;
             // 
@@ -365,7 +398,7 @@ namespace SchiffeVersenken
             this.groupBoxspieler1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxspieler1.Location = new System.Drawing.Point(3, 3);
             this.groupBoxspieler1.Name = "groupBoxspieler1";
-            this.groupBoxspieler1.Size = new System.Drawing.Size(176, 109);
+            this.groupBoxspieler1.Size = new System.Drawing.Size(192, 127);
             this.groupBoxspieler1.TabIndex = 3;
             this.groupBoxspieler1.TabStop = false;
             // 
@@ -392,9 +425,9 @@ namespace SchiffeVersenken
             this.groupBoxspieler2.Controls.Add(this.spielerfeld2);
             this.groupBoxspieler2.Controls.Add(this.label6);
             this.groupBoxspieler2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxspieler2.Location = new System.Drawing.Point(185, 3);
+            this.groupBoxspieler2.Location = new System.Drawing.Point(201, 3);
             this.groupBoxspieler2.Name = "groupBoxspieler2";
-            this.groupBoxspieler2.Size = new System.Drawing.Size(176, 109);
+            this.groupBoxspieler2.Size = new System.Drawing.Size(192, 127);
             this.groupBoxspieler2.TabIndex = 1;
             this.groupBoxspieler2.TabStop = false;
             // 
@@ -426,12 +459,12 @@ namespace SchiffeVersenken
             this.tableLayoutPanel3.Controls.Add(this.groupBoxScore2, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.groupBoxScore3, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(745, 491);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(808, 565);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(178, 115);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(194, 133);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // groupBoxScore4
@@ -439,9 +472,9 @@ namespace SchiffeVersenken
             this.groupBoxScore4.Controls.Add(this.Score4);
             this.groupBoxScore4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxScore4.Enabled = false;
-            this.groupBoxScore4.Location = new System.Drawing.Point(92, 60);
+            this.groupBoxScore4.Location = new System.Drawing.Point(100, 69);
             this.groupBoxScore4.Name = "groupBoxScore4";
-            this.groupBoxScore4.Size = new System.Drawing.Size(83, 52);
+            this.groupBoxScore4.Size = new System.Drawing.Size(91, 61);
             this.groupBoxScore4.TabIndex = 4;
             this.groupBoxScore4.TabStop = false;
             this.groupBoxScore4.Text = "Spieler 4";
@@ -462,7 +495,7 @@ namespace SchiffeVersenken
             this.groupBoxScore1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxScore1.Location = new System.Drawing.Point(3, 3);
             this.groupBoxScore1.Name = "groupBoxScore1";
-            this.groupBoxScore1.Size = new System.Drawing.Size(83, 51);
+            this.groupBoxScore1.Size = new System.Drawing.Size(91, 60);
             this.groupBoxScore1.TabIndex = 1;
             this.groupBoxScore1.TabStop = false;
             this.groupBoxScore1.Text = "Spieler 1";
@@ -481,9 +514,9 @@ namespace SchiffeVersenken
             // 
             this.groupBoxScore2.Controls.Add(this.Score2);
             this.groupBoxScore2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxScore2.Location = new System.Drawing.Point(92, 3);
+            this.groupBoxScore2.Location = new System.Drawing.Point(100, 3);
             this.groupBoxScore2.Name = "groupBoxScore2";
-            this.groupBoxScore2.Size = new System.Drawing.Size(83, 51);
+            this.groupBoxScore2.Size = new System.Drawing.Size(91, 60);
             this.groupBoxScore2.TabIndex = 2;
             this.groupBoxScore2.TabStop = false;
             this.groupBoxScore2.Text = "Spieler 2";
@@ -503,9 +536,9 @@ namespace SchiffeVersenken
             this.groupBoxScore3.Controls.Add(this.Score3);
             this.groupBoxScore3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxScore3.Enabled = false;
-            this.groupBoxScore3.Location = new System.Drawing.Point(3, 60);
+            this.groupBoxScore3.Location = new System.Drawing.Point(3, 69);
             this.groupBoxScore3.Name = "groupBoxScore3";
-            this.groupBoxScore3.Size = new System.Drawing.Size(83, 52);
+            this.groupBoxScore3.Size = new System.Drawing.Size(91, 61);
             this.groupBoxScore3.TabIndex = 3;
             this.groupBoxScore3.TabStop = false;
             this.groupBoxScore3.Text = "Spieler 3";
@@ -520,16 +553,65 @@ namespace SchiffeVersenken
             this.Score3.TabIndex = 1;
             this.Score3.Text = "0";
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.rundenzahlStripbar,
+            this.toolStripSeparator1,
+            this.toolStripLabel2,
+            this.zerstoerteSchiffeToolstrip});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(212, 25);
+            this.toolStrip1.TabIndex = 0;
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(72, 22);
+            this.toolStripLabel1.Text = "Rundenzahl:";
+            // 
+            // rundenzahlStripbar
+            // 
+            this.rundenzahlStripbar.Name = "rundenzahlStripbar";
+            this.rundenzahlStripbar.Size = new System.Drawing.Size(13, 22);
+            this.rundenzahlStripbar.Text = "0";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(96, 22);
+            this.toolStripLabel2.Text = "Zerstörte Schiffe:";
+            // 
+            // zerstoerteSchiffeToolstrip
+            // 
+            this.zerstoerteSchiffeToolstrip.Name = "zerstoerteSchiffeToolstrip";
+            this.zerstoerteSchiffeToolstrip.Size = new System.Drawing.Size(13, 22);
+            this.zerstoerteSchiffeToolstrip.Text = "0";
+            // 
             // Spielfeld
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(929, 612);
-            this.Controls.Add(this.mainGrid);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.toolStripContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Spielfeld";
             this.Text = "Spielfeld";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Spielfeld_FormClosing);
+            this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer1.BottomToolStripPanel.PerformLayout();
+            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
+            this.toolStripContainer1.ResumeLayout(false);
+            this.toolStripContainer1.PerformLayout();
             this.mainGrid.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBoxSchiff4.ResumeLayout(false);
@@ -560,50 +642,59 @@ namespace SchiffeVersenken
             this.groupBoxScore2.PerformLayout();
             this.groupBoxScore3.ResumeLayout(false);
             this.groupBoxScore3.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.TableLayoutPanel mainGrid;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.GroupBox groupBoxSchiff4;
+        private System.Windows.Forms.Button placeschiff4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBoxSchiff3;
+        private System.Windows.Forms.Button placeschiff3;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBoxSchiff5;
+        private System.Windows.Forms.Button placeschiff5;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBoxSchiff2;
+        private System.Windows.Forms.Button placeschiff2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBoxSchiff1;
+        private System.Windows.Forms.Button placeschiff1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.GroupBox groupBoxspieler4;
+        private System.Windows.Forms.Button spielerfeld4;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBoxspieler3;
+        private System.Windows.Forms.Button spielerfeld3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBoxspieler1;
+        private System.Windows.Forms.Button spielerfeld1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.GroupBox groupBoxSchiff5;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBoxspieler2;
+        private System.Windows.Forms.Button spielerfeld2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.GroupBox groupBoxspieler4;
-        private System.Windows.Forms.GroupBox groupBoxScore1;
-        private System.Windows.Forms.GroupBox groupBoxScore2;
-        private System.Windows.Forms.GroupBox groupBoxScore3;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBoxScore4;
-        private System.Windows.Forms.Button placeschiff4;
-        private System.Windows.Forms.Button placeschiff3;
-        private System.Windows.Forms.Button placeschiff5;
-        private System.Windows.Forms.Button placeschiff2;
-        private System.Windows.Forms.Button placeschiff1;
-        private System.Windows.Forms.Button spielerfeld4;
-        private System.Windows.Forms.Button spielerfeld3;
-        private System.Windows.Forms.Button spielerfeld1;
-        private System.Windows.Forms.Button spielerfeld2;
         private System.Windows.Forms.Label Score4;
+        private System.Windows.Forms.GroupBox groupBoxScore1;
         private System.Windows.Forms.Label Score1;
+        private System.Windows.Forms.GroupBox groupBoxScore2;
         private System.Windows.Forms.Label Score2;
+        private System.Windows.Forms.GroupBox groupBoxScore3;
         private System.Windows.Forms.Label Score3;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripLabel rundenzahlStripbar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripLabel zerstoerteSchiffeToolstrip;
     }
 }
