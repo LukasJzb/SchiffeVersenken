@@ -40,22 +40,27 @@ namespace SchiffeVersenken
             this.mainGrid = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBoxSchiff4 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.schifflaenge4 = new System.Windows.Forms.Label();
             this.placeschiff4 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBoxSchiff3 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.schifflaenge3 = new System.Windows.Forms.Label();
             this.placeschiff3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBoxSchiff5 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.schifflaenge5 = new System.Windows.Forms.Label();
             this.placeschiff5 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBoxSchiff2 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.schifflaenge2 = new System.Windows.Forms.Label();
             this.placeschiff2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBoxSchiff1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.schifflaenge1 = new System.Windows.Forms.Label();
             this.placeschiff1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -81,11 +86,6 @@ namespace SchiffeVersenken
             this.Score2 = new System.Windows.Forms.Label();
             this.groupBoxScore3 = new System.Windows.Forms.GroupBox();
             this.Score3 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -229,6 +229,15 @@ namespace SchiffeVersenken
             this.groupBoxSchiff4.TabIndex = 3;
             this.groupBoxSchiff4.TabStop = false;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(16, 59);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(37, 13);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Länge";
+            // 
             // schifflaenge4
             // 
             this.schifflaenge4.AutoSize = true;
@@ -269,6 +278,15 @@ namespace SchiffeVersenken
             this.groupBoxSchiff3.Size = new System.Drawing.Size(175, 96);
             this.groupBoxSchiff3.TabIndex = 2;
             this.groupBoxSchiff3.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(16, 57);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(37, 13);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Länge";
             // 
             // schifflaenge3
             // 
@@ -311,6 +329,15 @@ namespace SchiffeVersenken
             this.groupBoxSchiff5.TabIndex = 2;
             this.groupBoxSchiff5.TabStop = false;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(13, 55);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(37, 13);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "Länge";
+            // 
             // schifflaenge5
             // 
             this.schifflaenge5.AutoSize = true;
@@ -352,6 +379,15 @@ namespace SchiffeVersenken
             this.groupBoxSchiff2.TabIndex = 1;
             this.groupBoxSchiff2.TabStop = false;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(16, 64);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(37, 13);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "Länge";
+            // 
             // schifflaenge2
             // 
             this.schifflaenge2.AutoSize = true;
@@ -392,6 +428,15 @@ namespace SchiffeVersenken
             this.groupBoxSchiff1.Size = new System.Drawing.Size(175, 96);
             this.groupBoxSchiff1.TabIndex = 0;
             this.groupBoxSchiff1.TabStop = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 61);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(37, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "Länge";
             // 
             // schifflaenge1
             // 
@@ -661,51 +706,6 @@ namespace SchiffeVersenken
             this.Score3.Size = new System.Drawing.Size(13, 13);
             this.Score3.TabIndex = 1;
             this.Score3.Text = "0";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(16, 61);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(37, 13);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Länge";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(16, 64);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(37, 13);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "Länge";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(16, 57);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(37, 13);
-            this.label12.TabIndex = 4;
-            this.label12.Text = "Länge";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(16, 59);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(37, 13);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "Länge";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(13, 55);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(37, 13);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "Länge";
             // 
             // Spielfeld
             // 

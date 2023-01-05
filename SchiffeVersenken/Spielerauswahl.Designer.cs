@@ -126,6 +126,7 @@ namespace SchiffeVersenken
             this.spieler2farbe.Size = new System.Drawing.Size(75, 23);
             this.spieler2farbe.TabIndex = 3;
             this.spieler2farbe.UseVisualStyleBackColor = false;
+            this.spieler2farbe.Click += new System.EventHandler(this.farbeWechselnDialog);
             // 
             // label2
             // 
