@@ -29,6 +29,7 @@ namespace SchiffeVersenken
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Spielfeld));
             this.mainGrid = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBoxSchiff4 = new System.Windows.Forms.GroupBox();
@@ -133,6 +134,7 @@ namespace SchiffeVersenken
             this.groupBoxSchiff4.Controls.Add(this.placeschiff4);
             this.groupBoxSchiff4.Controls.Add(this.label4);
             this.groupBoxSchiff4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxSchiff4.Enabled = false;
             this.groupBoxSchiff4.Location = new System.Drawing.Point(3, 288);
             this.groupBoxSchiff4.Name = "groupBoxSchiff4";
             this.groupBoxSchiff4.Size = new System.Drawing.Size(172, 89);
@@ -141,7 +143,7 @@ namespace SchiffeVersenken
             // 
             // placeschiff4
             // 
-            this.placeschiff4.Location = new System.Drawing.Point(90, 38);
+            this.placeschiff4.Location = new System.Drawing.Point(81, 33);
             this.placeschiff4.Name = "placeschiff4";
             this.placeschiff4.Size = new System.Drawing.Size(75, 23);
             this.placeschiff4.TabIndex = 2;
@@ -162,6 +164,7 @@ namespace SchiffeVersenken
             this.groupBoxSchiff3.Controls.Add(this.placeschiff3);
             this.groupBoxSchiff3.Controls.Add(this.label3);
             this.groupBoxSchiff3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxSchiff3.Enabled = false;
             this.groupBoxSchiff3.Location = new System.Drawing.Point(3, 193);
             this.groupBoxSchiff3.Name = "groupBoxSchiff3";
             this.groupBoxSchiff3.Size = new System.Drawing.Size(172, 89);
@@ -170,7 +173,7 @@ namespace SchiffeVersenken
             // 
             // placeschiff3
             // 
-            this.placeschiff3.Location = new System.Drawing.Point(90, 36);
+            this.placeschiff3.Location = new System.Drawing.Point(81, 31);
             this.placeschiff3.Name = "placeschiff3";
             this.placeschiff3.Size = new System.Drawing.Size(75, 23);
             this.placeschiff3.TabIndex = 2;
@@ -191,6 +194,7 @@ namespace SchiffeVersenken
             this.groupBoxSchiff5.Controls.Add(this.placeschiff5);
             this.groupBoxSchiff5.Controls.Add(this.label5);
             this.groupBoxSchiff5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxSchiff5.Enabled = false;
             this.groupBoxSchiff5.Location = new System.Drawing.Point(3, 383);
             this.groupBoxSchiff5.Name = "groupBoxSchiff5";
             this.groupBoxSchiff5.Size = new System.Drawing.Size(172, 90);
@@ -199,7 +203,7 @@ namespace SchiffeVersenken
             // 
             // placeschiff5
             // 
-            this.placeschiff5.Location = new System.Drawing.Point(90, 29);
+            this.placeschiff5.Location = new System.Drawing.Point(81, 29);
             this.placeschiff5.Name = "placeschiff5";
             this.placeschiff5.Size = new System.Drawing.Size(75, 23);
             this.placeschiff5.TabIndex = 2;
@@ -209,7 +213,7 @@ namespace SchiffeVersenken
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 29);
+            this.label5.Location = new System.Drawing.Point(13, 34);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 0;
@@ -220,6 +224,7 @@ namespace SchiffeVersenken
             this.groupBoxSchiff2.Controls.Add(this.placeschiff2);
             this.groupBoxSchiff2.Controls.Add(this.label2);
             this.groupBoxSchiff2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxSchiff2.Enabled = false;
             this.groupBoxSchiff2.Location = new System.Drawing.Point(3, 98);
             this.groupBoxSchiff2.Name = "groupBoxSchiff2";
             this.groupBoxSchiff2.Size = new System.Drawing.Size(172, 89);
@@ -228,7 +233,7 @@ namespace SchiffeVersenken
             // 
             // placeschiff2
             // 
-            this.placeschiff2.Location = new System.Drawing.Point(81, 43);
+            this.placeschiff2.Location = new System.Drawing.Point(81, 38);
             this.placeschiff2.Name = "placeschiff2";
             this.placeschiff2.Size = new System.Drawing.Size(75, 23);
             this.placeschiff2.TabIndex = 2;
@@ -249,6 +254,7 @@ namespace SchiffeVersenken
             this.groupBoxSchiff1.Controls.Add(this.placeschiff1);
             this.groupBoxSchiff1.Controls.Add(this.label1);
             this.groupBoxSchiff1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxSchiff1.Enabled = false;
             this.groupBoxSchiff1.Location = new System.Drawing.Point(3, 3);
             this.groupBoxSchiff1.Name = "groupBoxSchiff1";
             this.groupBoxSchiff1.Size = new System.Drawing.Size(172, 89);
@@ -257,7 +263,7 @@ namespace SchiffeVersenken
             // 
             // placeschiff1
             // 
-            this.placeschiff1.Location = new System.Drawing.Point(81, 40);
+            this.placeschiff1.Location = new System.Drawing.Point(81, 35);
             this.placeschiff1.Name = "placeschiff1";
             this.placeschiff1.Size = new System.Drawing.Size(75, 23);
             this.placeschiff1.TabIndex = 1;
@@ -298,9 +304,9 @@ namespace SchiffeVersenken
             this.groupBoxspieler4.Controls.Add(this.label9);
             this.groupBoxspieler4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxspieler4.Enabled = false;
-            this.groupBoxspieler4.Location = new System.Drawing.Point(555, 3);
+            this.groupBoxspieler4.Location = new System.Drawing.Point(549, 3);
             this.groupBoxspieler4.Name = "groupBoxspieler4";
-            this.groupBoxspieler4.Size = new System.Drawing.Size(179, 111);
+            this.groupBoxspieler4.Size = new System.Drawing.Size(178, 109);
             this.groupBoxspieler4.TabIndex = 0;
             this.groupBoxspieler4.TabStop = false;
             // 
@@ -316,7 +322,7 @@ namespace SchiffeVersenken
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 33);
+            this.label9.Location = new System.Drawing.Point(6, 38);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 13);
             this.label9.TabIndex = 0;
@@ -328,9 +334,9 @@ namespace SchiffeVersenken
             this.groupBoxspieler3.Controls.Add(this.label7);
             this.groupBoxspieler3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxspieler3.Enabled = false;
-            this.groupBoxspieler3.Location = new System.Drawing.Point(371, 3);
+            this.groupBoxspieler3.Location = new System.Drawing.Point(367, 3);
             this.groupBoxspieler3.Name = "groupBoxspieler3";
-            this.groupBoxspieler3.Size = new System.Drawing.Size(174, 111);
+            this.groupBoxspieler3.Size = new System.Drawing.Size(176, 109);
             this.groupBoxspieler3.TabIndex = 4;
             this.groupBoxspieler3.TabStop = false;
             // 
@@ -346,7 +352,7 @@ namespace SchiffeVersenken
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 33);
+            this.label7.Location = new System.Drawing.Point(6, 38);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 13);
             this.label7.TabIndex = 0;
@@ -359,7 +365,7 @@ namespace SchiffeVersenken
             this.groupBoxspieler1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxspieler1.Location = new System.Drawing.Point(3, 3);
             this.groupBoxspieler1.Name = "groupBoxspieler1";
-            this.groupBoxspieler1.Size = new System.Drawing.Size(174, 111);
+            this.groupBoxspieler1.Size = new System.Drawing.Size(176, 109);
             this.groupBoxspieler1.TabIndex = 3;
             this.groupBoxspieler1.TabStop = false;
             // 
@@ -375,7 +381,7 @@ namespace SchiffeVersenken
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 33);
+            this.label8.Location = new System.Drawing.Point(6, 38);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(48, 13);
             this.label8.TabIndex = 0;
@@ -386,9 +392,9 @@ namespace SchiffeVersenken
             this.groupBoxspieler2.Controls.Add(this.spielerfeld2);
             this.groupBoxspieler2.Controls.Add(this.label6);
             this.groupBoxspieler2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxspieler2.Location = new System.Drawing.Point(187, 3);
+            this.groupBoxspieler2.Location = new System.Drawing.Point(185, 3);
             this.groupBoxspieler2.Name = "groupBoxspieler2";
-            this.groupBoxspieler2.Size = new System.Drawing.Size(174, 111);
+            this.groupBoxspieler2.Size = new System.Drawing.Size(176, 109);
             this.groupBoxspieler2.TabIndex = 1;
             this.groupBoxspieler2.TabStop = false;
             // 
@@ -404,7 +410,7 @@ namespace SchiffeVersenken
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 33);
+            this.label6.Location = new System.Drawing.Point(6, 38);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 13);
             this.label6.TabIndex = 0;
@@ -520,8 +526,10 @@ namespace SchiffeVersenken
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 612);
             this.Controls.Add(this.mainGrid);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Spielfeld";
             this.Text = "Spielfeld";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Spielfeld_FormClosing);
             this.mainGrid.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBoxSchiff4.ResumeLayout(false);

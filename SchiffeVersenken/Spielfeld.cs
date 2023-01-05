@@ -10,18 +10,33 @@ using System.Windows.Forms;
 
 namespace SchiffeVersenken
 {
+
     public partial class Spielfeld : Form
     {
-        public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldHoehe, int feldTiefe,Color[] farbArray,int[] schiffAnzahlArray)
+        // 2D Array des Boards
+        int[,] spieler1board;
+        int[,] spieler2board;
+        int[,] spieler3board;
+        int[,] spieler4board;
+
+        public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldHoehe, int feldTiefe, Color[] farbArray, int[] schiffAnzahlArray)
         {
             InitializeComponent();
+
+
+            // Init der Spielerboards mit Dimensionen des Spielfelds
+            spieler1board = new int[feldHoehe, feldTiefe];
+            spieler2board = new int[feldHoehe, feldTiefe];
+            if (spielerAnzahl >= 3)
+                spieler3board = new int[feldHoehe, feldTiefe];
+            if (spielerAnzahl == 4)
+                spieler4board = new int[feldHoehe, feldTiefe];
+
 
             TableLayoutPanel spielfeld = new TableLayoutPanel();
             
             spielfeld.RowCount = feldHoehe + 1;
             spielfeld.ColumnCount = feldTiefe + 1;
-
-           
 
             spielfeld.Dock = DockStyle.Fill;
             spielfeld.RowStyles.Clear();
@@ -99,9 +114,36 @@ namespace SchiffeVersenken
                     MessageBox.Show("Bei dem erstellen des Spielfeldinterfac gab es ein fehler!", "Fehler Spielfeldinterface");
                     break;
             }
+
+            switch (schiffAnzahl) 
+            {
+                case 5:
+                    groupBoxSchiff5.Enabled = true;
+                    goto case 4;
+                case 4:
+                    groupBoxSchiff4.Enabled = true;
+                    goto case 3;
+                case 3:
+                    groupBoxSchiff3.Enabled = true;
+                    goto case 2;
+                case 2:
+                    groupBoxSchiff2.Enabled = true;
+                    goto case 1;
+                case 1:
+                    groupBoxSchiff1.Enabled = true;
+                    break;
+                default:
+                    MessageBox.Show("Bei der Anzahl der Schiffe gab es einen Fehler!", "Fehler Schiffanzahl");
+                    break;
+            }
            
-          
-           
+        }
+
+
+
+        private void Spielfeld_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
