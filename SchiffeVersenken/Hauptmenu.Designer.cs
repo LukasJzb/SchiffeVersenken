@@ -66,11 +66,11 @@ namespace SchiffeVersenken
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button2, 4, 3);
             this.tableLayoutPanel1.Controls.Add(this.button1, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox3, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button2, 4, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -99,9 +99,10 @@ namespace SchiffeVersenken
             // 
             // button2
             // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button2.Location = new System.Drawing.Point(755, 377);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(150, 94);
+            this.button2.Size = new System.Drawing.Size(186, 121);
             this.button2.TabIndex = 2;
             this.button2.Text = "Spiel Beenden";
             this.button2.UseVisualStyleBackColor = true;

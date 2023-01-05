@@ -19,7 +19,9 @@ namespace SchiffeVersenken
         int[,] spieler3board;
         int[,] spieler4board;
 
-        public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldHoehe, int feldTiefe, Color[] farbArray, int[] schiffAnzahlArray)
+        //List<Button> positions = new List<Button> {};
+
+    public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldHoehe, int feldTiefe, Color[] farbArray, int[] schiffAnzahlArray)
         {
             InitializeComponent();
 
@@ -79,15 +81,20 @@ namespace SchiffeVersenken
             {
                 spielfeld.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, horizontalProzent));
             }
-
+            letter = 'A';
             for (int i = 0; i < feldTiefe; ++i)
             {
+
                 for (int j = 0; j < feldHoehe; ++j)
                 {
                     Button btn1 = new Button();
                     btn1.Dock = DockStyle.Fill;
-                    spielfeld.Controls.Add(btn1, i+1, j+1);
+                    spielfeld.Controls.Add(btn1, i + 1, j + 1);
+                    btn1.Text = (j+1).ToString() + letter;
+                    btn1.Name = (j + 1).ToString() + letter;
+                    //positions.Add(btn1);
                 }
+                letter++;
             }
             //Switchcasr um hintergrund des spieleravatars und scores zu setzen
             switch (spielerAnzahl)
@@ -115,27 +122,37 @@ namespace SchiffeVersenken
                     break;
             }
 
-            switch (schiffAnzahl) 
+            switch (schiffAnzahl)
             {
                 case 5:
                     groupBoxSchiff5.Enabled = true;
+                    schifflaenge5.Text = schiffAnzahlArray[4].ToString();
                     goto case 4;
                 case 4:
                     groupBoxSchiff4.Enabled = true;
+                    schifflaenge4.Text = schiffAnzahlArray[3].ToString();
                     goto case 3;
                 case 3:
                     groupBoxSchiff3.Enabled = true;
+                    schifflaenge3.Text = schiffAnzahlArray[2].ToString();
                     goto case 2;
                 case 2:
                     groupBoxSchiff2.Enabled = true;
+                    schifflaenge2.Text = schiffAnzahlArray[1].ToString();
                     goto case 1;
                 case 1:
                     groupBoxSchiff1.Enabled = true;
+                    schifflaenge1.Text = schiffAnzahlArray[0].ToString();
                     break;
                 default:
                     MessageBox.Show("Bei der Anzahl der Schiffe gab es einen Fehler!", "Fehler Schiffanzahl");
                     break;
             }
+
+            //var message = string.Join(Environment.NewLine, positions);
+            //MessageBox.Show(message);
+
+
            
         }
 
@@ -144,6 +161,32 @@ namespace SchiffeVersenken
         private void Spielfeld_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void placeschiff1_Click(object sender, EventArgs e)
+        {
+            //if(schifflaenge1.Text == "1")
+            //{
+            //    MessageBox.Show("Wähle einen platz zum platzieren aus", "Schiff1 platzieren");
+            //}
+            //else 
+            //{
+            //    MessageBox.Show("Wähle die erste Koordinate aus und dann die zweite", "Schiff1 platzieren");
+            //}
+
+            //for(int i = 0; i < positions.Count; i++)
+            //{
+
+            //}
+            
+            //if(placeschiff1.Text == "platzieren")
+            //{
+            //    placeschiff1.Text = "neu Platzieren";
+            //}
+            //else 
+            //{ 
+            //    placeschiff1.Text = "platzieren"; 
+            //}
         }
     }
 }
