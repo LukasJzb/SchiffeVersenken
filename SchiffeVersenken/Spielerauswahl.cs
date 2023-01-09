@@ -87,6 +87,7 @@ namespace SchiffeVersenken
             }
         }
 
+        //Auswahl der Farbe
         private void farbeWechselnDialog(object sender, EventArgs e)
         {
             ColorDialog MyDialog = new ColorDialog();
@@ -108,7 +109,7 @@ namespace SchiffeVersenken
                     return;
                 }
         }
-
+        //verhindert doppelte farben
         private Boolean checkiftaken(Color color) {
             return (color == spieler1farbe.BackColor || color == spieler2farbe.BackColor || color == spieler3farbe.BackColor || color == spieler4farbe.BackColor);
         }
@@ -118,6 +119,7 @@ namespace SchiffeVersenken
             this.Close();
         }
 
+        //speichert die farben und schifflängen in arrays
         private void button1_Click(object sender, EventArgs e)
         {   
             for (int i = 0; i < spielerAnzahl; i++) {

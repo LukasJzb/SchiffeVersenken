@@ -14,14 +14,15 @@ namespace SchiffeVersenken
     public partial class Spielfeld : Form
     {
         // 2D Array des Boards
+        // 0 für nichts 1 für schiff 2 für getroffen 3 für daneben
         int[,] spieler1board;
         int[,] spieler2board;
         int[,] spieler3board;
         int[,] spieler4board;
+        int y, x = 0;
+        TaskCompletionSource<bool> fertig = null;
 
-        //List<Button> positions = new List<Button> {};
-
-    public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldHoehe, int feldTiefe, Color[] farbArray, int[] schiffAnzahlArray)
+        public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldHoehe, int feldTiefe, Color[] farbArray, int[] schiffAnzahlArray)
         {
             InitializeComponent();
 
@@ -33,6 +34,22 @@ namespace SchiffeVersenken
                 spieler3board = new int[feldHoehe, feldTiefe];
             if (spielerAnzahl == 4)
                 spieler4board = new int[feldHoehe, feldTiefe];
+
+            for (int i = 0; i < feldTiefe; ++i)
+            {
+
+                for (int j = 0; j < feldHoehe; ++j)
+                {
+                    spieler1board[i, j] = 0;
+                    spieler2board[i, j] = 0;
+                    if (spielerAnzahl >= 3)
+                        spieler3board[i, j] = 0;
+                    if (spielerAnzahl == 4)
+                        spieler4board[i, j] = 0;
+                }
+             
+            }
+
 
 
             TableLayoutPanel spielfeld = new TableLayoutPanel();
@@ -51,6 +68,8 @@ namespace SchiffeVersenken
 
             float horizontalProzent = 100 / feldTiefe;
             float verticalProzent = 100 / feldHoehe;
+
+            //Beschreibung der Achsen
 
             char letter = 'A';
             spielfeld.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30));
@@ -81,6 +100,9 @@ namespace SchiffeVersenken
             {
                 spielfeld.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, horizontalProzent));
             }
+            
+            //änderung der namen und inhalt der spielfeld Buttons
+            
             letter = 'A';
             for (int i = 0; i < feldTiefe; ++i)
             {
@@ -92,10 +114,13 @@ namespace SchiffeVersenken
                     spielfeld.Controls.Add(btn1, i + 1, j + 1);
                     btn1.Text = (j+1).ToString() + letter;
                     btn1.Name = (j + 1).ToString() + letter;
+                    btn1.Click += btn_Clicked;
                     //positions.Add(btn1);
                 }
                 letter++;
             }
+
+
             //Switchcasr um hintergrund des spieleravatars und scores zu setzen
             switch (spielerAnzahl)
             {
@@ -122,6 +147,7 @@ namespace SchiffeVersenken
                     break;
             }
 
+            //deaktivieren der Schiffe anhant der anzahl ausgewählter schiffe
             switch (schiffAnzahl)
             {
                 case 5:
@@ -149,44 +175,55 @@ namespace SchiffeVersenken
                     break;
             }
 
-            //var message = string.Join(Environment.NewLine, positions);
-            //MessageBox.Show(message);
-
-
-           
         }
 
-
+        //eventhandler der generierten Buttons
+        private void btn_Clicked(Object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            //MessageBox.Show(string.Format("Dies ist die koordinate {0} ", btn.Name), "Koordinaten" );
+            string s = btn.Name;
+            char[] position = s.ToCharArray();
+            
+            y = (position[0]-'0');
+            x = (position[1]-'@');
+            //MessageBox.Show(string.Format("Dies ist die koordinate {0} {1} ", y,x), "Koordinaten");
+            fertig?.TrySetResult(true);
+        }
 
         private void Spielfeld_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
 
-        private void placeschiff1_Click(object sender, EventArgs e)
+        private async void placeschiff1_Click(object sender, EventArgs e)
         {
-            //if(schifflaenge1.Text == "1")
-            //{
-            //    MessageBox.Show("Wähle einen platz zum platzieren aus", "Schiff1 platzieren");
-            //}
-            //else 
-            //{
-            //    MessageBox.Show("Wähle die erste Koordinate aus und dann die zweite", "Schiff1 platzieren");
-            //}
+            //MessageBox.Show(string.Format("Schifflänge {0}", schifflaenge1.Text));
+            int lenght = Int32.Parse(schifflaenge1.Text);
+           
+            if(lenght == 1)
+            {
+                string msg = "";
+                
+                fertig = new TaskCompletionSource<bool>();
 
-            //for(int i = 0; i < positions.Count; i++)
-            //{
+                MessageBox.Show("Wähle eine Position aus.", "Schiff1 Platzieren");
+                await fertig.Task;
+                spieler1board[x, y] = 1;
+               
+                //for (int i = 0; i < feldTiefe; ++i)
+                //{
 
-            //}
-            
-            //if(placeschiff1.Text == "platzieren")
-            //{
-            //    placeschiff1.Text = "neu Platzieren";
-            //}
-            //else 
-            //{ 
-            //    placeschiff1.Text = "platzieren"; 
-            //}
+                //    for (int j = 0; j < feldHoehe; ++j)
+                //    {
+                //        msg += String.Format("{0}   {1}\n", spieler1board[i, j], spieler1board[i, j+1]);
+                //    }
+                   
+                //}
+                //MessageBox.Show(msg, "Table");
+            }
         }
+        
     }
+    
 }
