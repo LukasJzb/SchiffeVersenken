@@ -35,19 +35,19 @@ namespace SchiffeVersenken
             if (spielerAnzahl == 4)
                 spieler4board = new int[feldHoehe, feldTiefe];
 
-            for (int i = 0; i < feldTiefe; ++i)
+            for (int i = 0; i < feldHoehe; i++)
             {
 
-                for (int j = 0; j < feldHoehe; ++j)
+                for (int j = 0; j < feldTiefe; j++)
                 {
-                    spieler1board[i, j] = 0;
-                    spieler2board[i, j] = 0;
+                    spieler1board[i,j] = 0;
+                    spieler2board[i,j] = 0;
                     if (spielerAnzahl >= 3)
-                        spieler3board[i, j] = 0;
+                        spieler3board[i,j] = 0;
                     if (spielerAnzahl == 4)
-                        spieler4board[i, j] = 0;
+                        spieler4board[i,j] = 0;
                 }
-             
+
             }
 
 
@@ -104,18 +104,17 @@ namespace SchiffeVersenken
             //änderung der namen und inhalt der spielfeld Buttons
             
             letter = 'A';
-            for (int i = 0; i < feldTiefe; ++i)
+            for (int i = 1; i <= feldTiefe; i++)
             {
 
-                for (int j = 0; j < feldHoehe; ++j)
+                for (int j = 1; j <= feldHoehe; j++)
                 {
                     Button btn1 = new Button();
                     btn1.Dock = DockStyle.Fill;
-                    spielfeld.Controls.Add(btn1, i + 1, j + 1);
-                    btn1.Text = (j+1).ToString() + letter;
-                    btn1.Name = (j + 1).ToString() + letter;
+                    spielfeld.Controls.Add(btn1, i, j);
+                    btn1.Text = (j).ToString() + letter;
+                    btn1.Name = (j).ToString() + letter;
                     btn1.Click += btn_Clicked;
-                    //positions.Add(btn1);
                 }
                 letter++;
             }
@@ -184,10 +183,17 @@ namespace SchiffeVersenken
             //MessageBox.Show(string.Format("Dies ist die koordinate {0} ", btn.Name), "Koordinaten" );
             string s = btn.Name;
             char[] position = s.ToCharArray();
-            
-            y = (position[0]-'0');
-            x = (position[1]-'@');
-            //MessageBox.Show(string.Format("Dies ist die koordinate {0} {1} ", y,x), "Koordinaten");
+            if (position.GetLength(0) == 2)
+            {
+                x = ((position[0] - '0'));
+                y = ((position[1] - '@'));
+            }
+            else 
+            {
+                x = 10;
+                y = ((position[2] - '@'));
+            }
+            MessageBox.Show(string.Format("Dies ist die koordinate {0} {1} ", y,x), "Koordinaten");
             fertig?.TrySetResult(true);
         }
 
@@ -209,18 +215,19 @@ namespace SchiffeVersenken
 
                 MessageBox.Show("Wähle eine Position aus.", "Schiff1 Platzieren");
                 await fertig.Task;
-                spieler1board[x, y] = 1;
-               
-                //for (int i = 0; i < feldTiefe; ++i)
-                //{
+                spieler1board[x-1, y-1] = 1;
 
-                //    for (int j = 0; j < feldHoehe; ++j)
-                //    {
-                //        msg += String.Format("{0}   {1}\n", spieler1board[i, j], spieler1board[i, j+1]);
-                //    }
-                   
-                //}
-                //MessageBox.Show(msg, "Table");
+                for (int i = 0; i < spieler1board.GetLength(1); i++)
+                {
+
+                    for (int j = 0; j < spieler1board.GetLength(0); j++)
+                    {
+                        msg += String.Format("{0}\t", spieler1board[j, i]);
+                    }
+                    //msg += String.Format("\n");
+                }
+                MessageBox.Show(msg, "Table");
+               MessageBox.Show(string.Format("länge: {0} Breite: {1} ", spieler1board.GetLength(0).ToString(), spieler1board.GetLength(1).ToString(), "tabelle"));
             }
         }
         
