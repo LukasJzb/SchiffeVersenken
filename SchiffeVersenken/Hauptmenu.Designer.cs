@@ -32,7 +32,6 @@ namespace SchiffeVersenken
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Hauptmenu));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.spielerAnzahl4 = new System.Windows.Forms.RadioButton();
@@ -49,6 +48,7 @@ namespace SchiffeVersenken
             this.feldgroesseHoehe = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -96,17 +96,6 @@ namespace SchiffeVersenken
             this.label1.TabIndex = 0;
             this.label1.Text = "Schiffe Versenken";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(755, 377);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(186, 121);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Spiel Beenden";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -294,18 +283,29 @@ namespace SchiffeVersenken
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 50);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Tiefe";
+            this.label3.Text = "Spalten";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Höhe";
+            this.label2.Text = "Zeilen";
+            // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.Location = new System.Drawing.Point(755, 377);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(186, 121);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Spiel Beenden";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Hauptmenu
             // 

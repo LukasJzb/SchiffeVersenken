@@ -22,23 +22,23 @@ namespace SchiffeVersenken
         int y, x = 0;
         TaskCompletionSource<bool> fertig = null;
 
-        public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldHoehe, int feldTiefe, Color[] farbArray, int[] schiffAnzahlArray)
+        public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldzeile, int feldspalte, Color[] farbArray, int[] schiffAnzahlArray)
         {
             InitializeComponent();
 
 
             // Init der Spielerboards mit Dimensionen des Spielfelds
-            spieler1board = new int[feldHoehe, feldTiefe];
-            spieler2board = new int[feldHoehe, feldTiefe];
+            spieler1board = new int[feldzeile, feldspalte];
+            spieler2board = new int[feldzeile, feldspalte];
             if (spielerAnzahl >= 3)
-                spieler3board = new int[feldHoehe, feldTiefe];
+                spieler3board = new int[feldzeile, feldspalte];
             if (spielerAnzahl == 4)
-                spieler4board = new int[feldHoehe, feldTiefe];
+                spieler4board = new int[feldzeile, feldspalte];
 
-            for (int i = 0; i < feldHoehe; i++)
+            for (int i = 0; i < feldzeile; i++)
             {
 
-                for (int j = 0; j < feldTiefe; j++)
+                for (int j = 0; j < feldspalte; j++)
                 {
                     spieler1board[i,j] = 0;
                     spieler2board[i,j] = 0;
@@ -54,8 +54,8 @@ namespace SchiffeVersenken
 
             TableLayoutPanel spielfeld = new TableLayoutPanel();
             
-            spielfeld.RowCount = feldHoehe + 1;
-            spielfeld.ColumnCount = feldTiefe + 1;
+            spielfeld.RowCount = feldzeile + 1;
+            spielfeld.ColumnCount = feldspalte + 1;
 
             spielfeld.Dock = DockStyle.Fill;
             spielfeld.RowStyles.Clear();
@@ -66,8 +66,8 @@ namespace SchiffeVersenken
             this.mainGrid.Controls.Add(spielfeld, 0, 0);
 
 
-            float horizontalProzent = 100 / feldTiefe;
-            float verticalProzent = 100 / feldHoehe;
+            float horizontalProzent = 100 / feldspalte;
+            float verticalProzent = 100 / feldzeile;
 
             //Beschreibung der Achsen
 
@@ -104,10 +104,10 @@ namespace SchiffeVersenken
             //änderung der namen und inhalt der spielfeld Buttons
             
             letter = 'A';
-            for (int i = 1; i <= feldTiefe; i++)
+            for (int i = 1; i <= feldspalte; i++)
             {
 
-                for (int j = 1; j <= feldHoehe; j++)
+                for (int j = 1; j <= feldzeile; j++)
                 {
                     Button btn1 = new Button();
                     btn1.Dock = DockStyle.Fill;
@@ -193,8 +193,8 @@ namespace SchiffeVersenken
                 x = 10;
                 y = ((position[2] - '@'));
             }
-            MessageBox.Show(string.Format("Dies ist die koordinate {0} {1} ", y,x), "Koordinaten");
-            fertig?.TrySetResult(true);
+            //MessageBox.Show(string.Format("Dies ist die koordinate {0} {1} ", y,x), "Koordinaten");
+            fertig.TrySetResult(true);
         }
 
         private void Spielfeld_FormClosing(object sender, FormClosingEventArgs e)
@@ -206,31 +206,58 @@ namespace SchiffeVersenken
         {
             //MessageBox.Show(string.Format("Schifflänge {0}", schifflaenge1.Text));
             int lenght = Int32.Parse(schifflaenge1.Text);
-           
-            if(lenght == 1)
+            if (placeschiff1.Text == "platzieren")
             {
-                string msg = "";
-                
-                fertig = new TaskCompletionSource<bool>();
-
-                MessageBox.Show("Wähle eine Position aus.", "Schiff1 Platzieren");
-                await fertig.Task;
-                spieler1board[x-1, y-1] = 1;
-
-                for (int i = 0; i < spieler1board.GetLength(1); i++)
+                if (lenght == 1)
                 {
+ 
 
-                    for (int j = 0; j < spieler1board.GetLength(0); j++)
-                    {
-                        msg += String.Format("{0}\t", spieler1board[j, i]);
-                    }
-                    //msg += String.Format("\n");
+                    fertig = new TaskCompletionSource<bool>();
+
+                    MessageBox.Show("Wähle eine Position aus.", "Schiff1 Platzieren");
+                    await fertig.Task;
+                    spieler1board[x - 1, y - 1] = 1;
+                    placeschiff1.Text = "neu platzieren";
+
                 }
-                MessageBox.Show(msg, "Table");
-               MessageBox.Show(string.Format("länge: {0} Breite: {1} ", spieler1board.GetLength(0).ToString(), spieler1board.GetLength(1).ToString(), "tabelle"));
+                else
+                {
+                    int startx, starty = 0;
+                    fertig = new TaskCompletionSource<bool>();
+
+                    MessageBox.Show("Wähle die erste Position aus.", "Schiff1 Platzieren");
+                    await fertig.Task;
+                    spieler1board[x - 1, y - 1] = 1;
+                    startx = x;
+                    starty = y;
+                    MessageBox.Show("Wähle die zweite Position aus.", "Schiff1 Platzieren");
+                    await fertig.Task;
+                    if (x + 4 == startx) { spieler1board[x - 1, y - 1] = 1; }
+                    else if (y + 4 == startx) { spieler1board[x - 1, y - 1] = 1; }
+                    else if (x - 4 == startx) { spieler1board[x - 1, y - 1] = 1; }
+                    else if (y - 4 == startx) { spieler1board[x - 1, y - 1] = 1; }
+                    else { MessageBox.Show("das schiff ist nicht in der richtigen größe.", "Schiff1 Platzieren"); }
+                }
+            }
+            else 
+            {
+            
             }
         }
         
     }
     
 }
+
+
+//string msg = "";
+//for (int i = 0; i < spieler1board.GetLength(1); i++)
+//{
+//    for (int j = 0; j < spieler1board.GetLength(0); j++)
+//    {
+//        msg += String.Format("{0}   ", spieler1board[i, j]);
+//    }
+//    msg += String.Format("\n");
+//}
+//MessageBox.Show(msg, "Table");
+//MessageBox.Show(string.Format("länge: {0} Breite: {1} ", spieler1board.GetLength(0).ToString(), spieler1board.GetLength(1).ToString(), "tabelle"));

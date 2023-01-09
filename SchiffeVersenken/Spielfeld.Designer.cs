@@ -251,7 +251,7 @@ namespace SchiffeVersenken
             // 
             this.placeschiff4.Location = new System.Drawing.Point(81, 33);
             this.placeschiff4.Name = "placeschiff4";
-            this.placeschiff4.Size = new System.Drawing.Size(75, 23);
+            this.placeschiff4.Size = new System.Drawing.Size(88, 23);
             this.placeschiff4.TabIndex = 2;
             this.placeschiff4.Text = "platzieren";
             this.placeschiff4.UseVisualStyleBackColor = true;
@@ -301,7 +301,7 @@ namespace SchiffeVersenken
             // 
             this.placeschiff3.Location = new System.Drawing.Point(81, 31);
             this.placeschiff3.Name = "placeschiff3";
-            this.placeschiff3.Size = new System.Drawing.Size(75, 23);
+            this.placeschiff3.Size = new System.Drawing.Size(88, 23);
             this.placeschiff3.TabIndex = 2;
             this.placeschiff3.Text = "platzieren";
             this.placeschiff3.UseVisualStyleBackColor = true;
@@ -351,7 +351,7 @@ namespace SchiffeVersenken
             // 
             this.placeschiff5.Location = new System.Drawing.Point(81, 29);
             this.placeschiff5.Name = "placeschiff5";
-            this.placeschiff5.Size = new System.Drawing.Size(75, 23);
+            this.placeschiff5.Size = new System.Drawing.Size(88, 23);
             this.placeschiff5.TabIndex = 2;
             this.placeschiff5.Text = "platzieren";
             this.placeschiff5.UseVisualStyleBackColor = true;
@@ -401,7 +401,7 @@ namespace SchiffeVersenken
             // 
             this.placeschiff2.Location = new System.Drawing.Point(81, 38);
             this.placeschiff2.Name = "placeschiff2";
-            this.placeschiff2.Size = new System.Drawing.Size(75, 23);
+            this.placeschiff2.Size = new System.Drawing.Size(88, 23);
             this.placeschiff2.TabIndex = 2;
             this.placeschiff2.Text = "platzieren";
             this.placeschiff2.UseVisualStyleBackColor = true;
@@ -451,7 +451,7 @@ namespace SchiffeVersenken
             // 
             this.placeschiff1.Location = new System.Drawing.Point(81, 35);
             this.placeschiff1.Name = "placeschiff1";
-            this.placeschiff1.Size = new System.Drawing.Size(75, 23);
+            this.placeschiff1.Size = new System.Drawing.Size(88, 23);
             this.placeschiff1.TabIndex = 1;
             this.placeschiff1.Text = "platzieren";
             this.placeschiff1.UseVisualStyleBackColor = true;
