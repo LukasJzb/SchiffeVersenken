@@ -8,24 +8,41 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace SchiffeVersenken
 {
 
     public partial class Spielfeld : Form
     {
         // 2D Array des Boards
-        // 0 für nichts 1 für schiff 2 für getroffen 3 für daneben
+        /* 0 für nichts (blau)
+         * 1 für schiff (grau)
+         * 2 für getroffen (grün)
+         * 3 für daneben (rot)
+         */
         int[,] spieler1board;
         int[,] spieler2board;
         int[,] spieler3board;
         int[,] spieler4board;
         int y, x = 0;
+        int spielerAnzahl;
+        int activePlayer = 1;
+        int schiffAnzahl;
+        int activeSchiffanzahl = 0;
+        Color[] playerFarbArray;
+        TableLayoutPanel spielfeld;
+
+        int[,] activeBoard;
+        Button[,] buttonsBoard;
         TaskCompletionSource<bool> fertig = null;
 
-        public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldzeile, int feldspalte, Color[] farbArray, int[] schiffAnzahlArray)
+        public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldzeile, int feldspalte, Color[] playerFarbArray, int[] schiffAnzahlArray)
         {
             InitializeComponent();
-
+            this.schiffAnzahl = schiffAnzahl;
+            this.spielerAnzahl = spielerAnzahl;
+            this.playerFarbArray = playerFarbArray;
+            buttonsBoard = new Button[feldzeile, feldspalte];
 
             // Init der Spielerboards mit Dimensionen des Spielfelds
             spieler1board = new int[feldzeile, feldspalte];
@@ -52,7 +69,7 @@ namespace SchiffeVersenken
 
 
 
-            TableLayoutPanel spielfeld = new TableLayoutPanel();
+            spielfeld = new TableLayoutPanel();
             
             spielfeld.RowCount = feldzeile + 1;
             spielfeld.ColumnCount = feldspalte + 1;
@@ -114,7 +131,12 @@ namespace SchiffeVersenken
                     spielfeld.Controls.Add(btn1, i, j);
                     btn1.Text = (j).ToString() + letter;
                     btn1.Name = (j).ToString() + letter;
+                    buttonsBoard[j - 1, i - 1] = btn1;
+                    btn1.Enabled = false;
                     btn1.Click += btn_Clicked;
+                    btn1.BackColor = Color.LightBlue;
+
+                    
                 }
                 letter++;
             }
@@ -124,22 +146,22 @@ namespace SchiffeVersenken
             switch (spielerAnzahl)
             {
                 case 4:
-                    groupBoxspieler4.BackColor = farbArray[3];
+                    groupBoxspieler4.BackColor = playerFarbArray[3];
                     groupBoxspieler4.Enabled = true;
-                    groupBoxScore4.BackColor = farbArray[3];
+                    groupBoxScore4.BackColor = playerFarbArray[3];
                     groupBoxScore4.Enabled = true;
                     goto case 3;
                 case 3:
-                    groupBoxspieler3.BackColor = farbArray[2];
+                    groupBoxspieler3.BackColor = playerFarbArray[2];
                     groupBoxspieler3.Enabled = true;
-                    groupBoxScore3.BackColor = farbArray[2];
+                    groupBoxScore3.BackColor = playerFarbArray[2];
                     groupBoxScore3.Enabled = true;
                     goto case 2;
                 case 2:
-                    groupBoxspieler1.BackColor = farbArray[0];
-                    groupBoxspieler2.BackColor = farbArray[1];
-                    groupBoxScore1.BackColor = farbArray[0];
-                    groupBoxScore2.BackColor = farbArray[1];
+                    groupBoxspieler1.BackColor = playerFarbArray[0];
+                    groupBoxspieler2.BackColor = playerFarbArray[1];
+                    groupBoxScore1.BackColor = playerFarbArray[0];
+                    groupBoxScore2.BackColor = playerFarbArray[1];
                     break;
                 default:
                     MessageBox.Show("Bei dem erstellen des Spielfeldinterfac gab es ein fehler!", "Fehler Spielfeldinterface");
@@ -174,6 +196,7 @@ namespace SchiffeVersenken
                     break;
             }
 
+            activePlayerChanged(activePlayer);
         }
 
         //eventhandler der generierten Buttons
@@ -202,49 +225,304 @@ namespace SchiffeVersenken
             Application.Exit();
         }
 
-        private async void placeschiff1_Click(object sender, EventArgs e)
+        private async void placeschiff_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(string.Format("Schifflänge {0}", schifflaenge1.Text));
-            int lenght = Int32.Parse(schifflaenge1.Text);
-            if (placeschiff1.Text == "platzieren")
+            foreach (Button button in buttonsBoard) {
+                button.Enabled = true;
+            }
+
+
+            Button btn = (Button)sender;
+            string s = btn.Name;
+            
+            
+            int length = 0;
+            int schiffNr = 0;
+            if (s == "placeschiff1") {
+                length = Int32.Parse(schifflaenge1.Text);
+                schiffNr = 1;
+            }
+            else if (s == "placeschiff2") {
+                length = Int32.Parse(schifflaenge2.Text);
+                schiffNr = 2;
+            }
+            else if (s == "placeschiff3") {
+                length = Int32.Parse(schifflaenge3.Text);
+                schiffNr = 3;
+            }
+            else if (s == "placeschiff4") {
+                length = Int32.Parse(schifflaenge4.Text);
+                schiffNr = 4;
+            }
+            else if (s == "placeschiff5") {
+                length = Int32.Parse(schifflaenge5.Text);
+                schiffNr = 5;
+            }
+
+
+
+            
+
+
+            if (btn.Text == "neu platzieren")
             {
-                if (lenght == 1)
+                for (int i = 0; i < activeBoard.GetLength(0); i++)
                 {
- 
+                    for (int j = 0; j < activeBoard.GetLength(1); j++)
+                    {
+                        if (activeBoard[i, j] == schiffNr) activeBoard[i,j] = 0;
+                    }
+                }
+                activeSchiffanzahl--;
+                boardChanged();
+            }
+            
+            //Schifflänge ist 1, daher gesonderter Fall
+            if (length == 1)
+            {
+                fertig = new TaskCompletionSource<bool>();
 
-                    fertig = new TaskCompletionSource<bool>();
-
-                    MessageBox.Show("Wähle eine Position aus.", "Schiff1 Platzieren");
-                    await fertig.Task;
-                    spieler1board[x - 1, y - 1] = 1;
-                    placeschiff1.Text = "neu platzieren";
-
+                MessageBox.Show("Wähle eine Position aus.", "Schiff Platzieren");
+                await fertig.Task;
+                if (activeBoard[x - 1, y - 1] == 0) { 
+                    activeBoard[x - 1, y - 1] = schiffNr;
+                    btn.Text = "neu platzieren";
+                    activeSchiffanzahl++;
                 }
                 else
                 {
-                    int startx, starty = 0;
-                    fertig = new TaskCompletionSource<bool>();
-
-                    MessageBox.Show("Wähle die erste Position aus.", "Schiff1 Platzieren");
-                    await fertig.Task;
-                    spieler1board[x - 1, y - 1] = 1;
-                    startx = x;
-                    starty = y;
-                    MessageBox.Show("Wähle die zweite Position aus.", "Schiff1 Platzieren");
-                    await fertig.Task;
-                    if (x + 4 == startx) { spieler1board[x - 1, y - 1] = 1; }
-                    else if (y + 4 == startx) { spieler1board[x - 1, y - 1] = 1; }
-                    else if (x - 4 == startx) { spieler1board[x - 1, y - 1] = 1; }
-                    else if (y - 4 == startx) { spieler1board[x - 1, y - 1] = 1; }
-                    else { MessageBox.Show("das schiff ist nicht in der richtigen größe.", "Schiff1 Platzieren"); }
+                    MessageBox.Show("Hier ist schon ein Schiff!\nEs kann hier nicht platziert werden!", "Schiff vorhanden");
                 }
             }
-            else 
+            //Schifflänge ist größer als 1
+            else
             {
-            
+                int startx, starty = 0;
+                fertig = new TaskCompletionSource<bool>();
+
+                MessageBox.Show("Wähle die erste Position aus.", "Schiff Platzieren");
+                await fertig.Task;
+
+                startx = x;
+                starty = y;
+                fertig = new TaskCompletionSource<bool>();
+                MessageBox.Show("Wähle die zweite Position aus.", "Schiff Platzieren");
+                await fertig.Task;
+
+                bool clear = true;
+
+                //Fall: Schiff nach oben setzen
+                if ((x + (length - 1) == startx) && (starty == y))
+                {
+                    for (int i = startx; i >= x; i--)
+                    {
+                        if (activeBoard[i - 1, y - 1] > 0) clear = false;
+                    }
+
+                    if (clear)
+                    {
+                        for (int i = startx; i >= x; i--)
+                        {
+                            activeBoard[i - 1, y - 1] = schiffNr;
+                        }
+                    } 
+                    else
+                    {
+                        MessageBox.Show("Hier ist schon ein Schiff!\nEs kann hier nicht platziert werden!", "Schiff vorhanden");
+                    }
+                }
+
+                //Fall: Schiff nach links setzen
+                else if ((y + (length - 1) == starty) && (startx == x))
+                {
+                    for (int i = starty; i >= y; i--)
+                    {
+                        if (activeBoard[x - 1, i - 1] > 0) clear = false;
+                    }
+
+                    if (clear)
+                    {
+                        for (int i = starty; i >= y; i--)
+                        {
+                            activeBoard[x - 1, i - 1] = schiffNr;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hier ist schon ein Schiff!\nEs kann hier nicht platziert werden!", "Schiff vorhanden");
+                    }
+                }
+
+                //Fall: Schiff nach unten setzen
+                else if ((x - (length - 1) == startx) && (starty == y))
+                {
+                    for (int i = startx; i <= x; i++)
+                    {
+                        if (activeBoard[i - 1, y - 1] > 0) clear = false;
+                    }
+
+                    if (clear)
+                    {
+                        for (int i = startx; i <= x; i++)
+                        {
+                            activeBoard[i - 1, y - 1] = schiffNr;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hier ist schon ein Schiff!\nEs kann hier nicht platziert werden!!", "Schiff vorhanden");
+                    }
+                }
+
+                //Fall: Schiff nach rechts setzen
+                else if ((y - (length - 1) == starty) && (startx == x))
+                {
+                    for (int i = starty; i <= y; i++)
+                    {
+                        if (activeBoard[x - 1, i - 1] > 0) clear = false;
+                    }
+
+                    if (clear)
+                    {
+                        for (int i = starty; i <= y; i++)
+                        {
+                            activeBoard[x - 1, i - 1] = schiffNr;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hier ist schon ein Schiff!\nEs kann hier nicht platziert werden!", "Schiff vorhanden");
+                    }
+                }
+                else {
+                    //activeBoard[x - 1, y - 1] = 0;
+                    MessageBox.Show("Das Schiff wurde falsch platziert!", "Schiff Platzieren");
+                    return;
+                }
+
+                if (clear)
+                {
+                    btn.Text = "neu platzieren";
+                    activeSchiffanzahl++;
+                }
             }
+
+            boardChanged();
+
+            if (activeSchiffanzahl == schiffAnzahl)
+            {
+                if (activePlayer == spielerAnzahl)
+                {
+                    DialogResult result = MessageBox.Show("Spiel starten?", "Fertig!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if (result == DialogResult.OK)
+                    {
+                        gameLoop();
+                    }
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Nächster Spieler?", "Fertig?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if (result == DialogResult.OK)
+                    {
+                        activePlayerChanged(activePlayer++);
+                        activeSchiffanzahl = 0;
+                    }
+                }
+            }
+            foreach (Button button in buttonsBoard)
+            {
+                button.Enabled = false;
+            }
+
+            boardChanged();
         }
-        
+
+        void boardChanged() {
+
+            // Im ganzen Board werden die Farben neu gesetzt
+            for (int i = 0; i < activeBoard.GetLength(0); i++)
+            {
+                for (int j = 0; j < activeBoard.GetLength(1); j++)
+                {
+                    /* 0 für nichts (blau)
+                     * 1 = Schiff 1 (braun)
+                     * 2 = Schiff 2 (braun)
+                     * 3 = Schiff 3 (braun)
+                     * 4 = Schiff 4 (braun)
+                     * 5 = Schiff 5 (braun)
+                     * 6 für getroffen (grün)
+                     * 7 für daneben (rot)
+                     */
+
+                    switch (activeBoard[i, j])
+                    {
+                        case 0:
+                            buttonsBoard[i, j].BackColor = Color.LightBlue;
+                            break;
+                        case 1:
+                            buttonsBoard[i, j].BackColor = Color.SaddleBrown;
+                            break;
+                        case 2:
+                            buttonsBoard[i, j].BackColor = Color.MediumTurquoise;
+                            break;
+                        case 3:
+                            buttonsBoard[i, j].BackColor = Color.Thistle;
+                            break;
+                        case 4:
+                            buttonsBoard[i, j].BackColor = Color.Salmon;
+                            break;
+                        case 5:
+                            buttonsBoard[i, j].BackColor = Color.NavajoWhite;
+                            break;
+                        case 6:
+                            buttonsBoard[i, j].BackColor = Color.Green;
+                            break;
+                        case 7:
+                            buttonsBoard[i, j].BackColor = Color.Red;
+                            break;
+                    }
+                }
+            }
+
+        }
+
+        void activePlayerChanged(int playerNr) {
+            switch (activePlayer)
+            {
+                case 1:
+                    activeBoard = spieler1board;
+                    break;
+                case 2:
+                    activeBoard = spieler2board;
+                    break;
+                case 3:
+                    activeBoard = spieler3board;
+                    break;
+                case 4:
+                    activeBoard = spieler4board;
+                    break;
+                default:
+                    MessageBox.Show("Fehler beim Auswählen des aktiven Boards!", "Fehler Board");
+                    break;
+
+                    
+                
+            }
+
+            placeschiff1.Text = "platzieren";
+            placeschiff2.Text = "platzieren";
+            placeschiff3.Text = "platzieren";
+            placeschiff4.Text = "platzieren";
+            placeschiff5.Text = "platzieren";
+
+            this.Text = "Spielfeld - Spieler: " + activePlayer.ToString();
+            spielfeld.BackColor = playerFarbArray[activePlayer-1];
+        }
+
+        void gameLoop()
+        {
+            MessageBox.Show("Spiel gestartet");
+        }
     }
     
 }

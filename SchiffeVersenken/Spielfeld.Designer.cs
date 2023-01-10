@@ -217,6 +217,7 @@ namespace SchiffeVersenken
             // 
             // groupBoxSchiff4
             // 
+            this.groupBoxSchiff4.BackColor = System.Drawing.Color.Salmon;
             this.groupBoxSchiff4.Controls.Add(this.label13);
             this.groupBoxSchiff4.Controls.Add(this.schifflaenge4);
             this.groupBoxSchiff4.Controls.Add(this.placeschiff4);
@@ -255,6 +256,7 @@ namespace SchiffeVersenken
             this.placeschiff4.TabIndex = 2;
             this.placeschiff4.Text = "platzieren";
             this.placeschiff4.UseVisualStyleBackColor = true;
+            this.placeschiff4.Click += new System.EventHandler(this.placeschiff_Click);
             // 
             // label4
             // 
@@ -267,6 +269,7 @@ namespace SchiffeVersenken
             // 
             // groupBoxSchiff3
             // 
+            this.groupBoxSchiff3.BackColor = System.Drawing.Color.Thistle;
             this.groupBoxSchiff3.Controls.Add(this.label12);
             this.groupBoxSchiff3.Controls.Add(this.schifflaenge3);
             this.groupBoxSchiff3.Controls.Add(this.placeschiff3);
@@ -305,6 +308,7 @@ namespace SchiffeVersenken
             this.placeschiff3.TabIndex = 2;
             this.placeschiff3.Text = "platzieren";
             this.placeschiff3.UseVisualStyleBackColor = true;
+            this.placeschiff3.Click += new System.EventHandler(this.placeschiff_Click);
             // 
             // label3
             // 
@@ -317,6 +321,7 @@ namespace SchiffeVersenken
             // 
             // groupBoxSchiff5
             // 
+            this.groupBoxSchiff5.BackColor = System.Drawing.Color.NavajoWhite;
             this.groupBoxSchiff5.Controls.Add(this.label14);
             this.groupBoxSchiff5.Controls.Add(this.schifflaenge5);
             this.groupBoxSchiff5.Controls.Add(this.placeschiff5);
@@ -355,6 +360,7 @@ namespace SchiffeVersenken
             this.placeschiff5.TabIndex = 2;
             this.placeschiff5.Text = "platzieren";
             this.placeschiff5.UseVisualStyleBackColor = true;
+            this.placeschiff5.Click += new System.EventHandler(this.placeschiff_Click);
             // 
             // label5
             // 
@@ -367,6 +373,7 @@ namespace SchiffeVersenken
             // 
             // groupBoxSchiff2
             // 
+            this.groupBoxSchiff2.BackColor = System.Drawing.Color.MediumTurquoise;
             this.groupBoxSchiff2.Controls.Add(this.label11);
             this.groupBoxSchiff2.Controls.Add(this.schifflaenge2);
             this.groupBoxSchiff2.Controls.Add(this.placeschiff2);
@@ -405,6 +412,7 @@ namespace SchiffeVersenken
             this.placeschiff2.TabIndex = 2;
             this.placeschiff2.Text = "platzieren";
             this.placeschiff2.UseVisualStyleBackColor = true;
+            this.placeschiff2.Click += new System.EventHandler(this.placeschiff_Click);
             // 
             // label2
             // 
@@ -417,6 +425,7 @@ namespace SchiffeVersenken
             // 
             // groupBoxSchiff1
             // 
+            this.groupBoxSchiff1.BackColor = System.Drawing.Color.SaddleBrown;
             this.groupBoxSchiff1.Controls.Add(this.label10);
             this.groupBoxSchiff1.Controls.Add(this.schifflaenge1);
             this.groupBoxSchiff1.Controls.Add(this.placeschiff1);
@@ -455,7 +464,7 @@ namespace SchiffeVersenken
             this.placeschiff1.TabIndex = 1;
             this.placeschiff1.Text = "platzieren";
             this.placeschiff1.UseVisualStyleBackColor = true;
-            this.placeschiff1.Click += new System.EventHandler(this.placeschiff1_Click);
+            this.placeschiff1.Click += new System.EventHandler(this.placeschiff_Click);
             // 
             // label1
             // 

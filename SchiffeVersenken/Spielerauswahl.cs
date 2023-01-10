@@ -100,14 +100,22 @@ namespace SchiffeVersenken
 
             // Update the text box color if the user clicks OK 
             while (MyDialog.ShowDialog() == DialogResult.OK)
+            {
                 if (checkiftaken(MyDialog.Color))
                 {
                     MessageBox.Show("Farbe vergeben! Bitte wähle eine andere Farbe", "Farbe vergeben");
-                    
-                } else { 
+
+                }
+                else if (MyDialog.Color == Color.Black)
+                {
+                    MessageBox.Show("Du darfst die Farbe schwarz nicht wählen!", "Falsche Farbe");
+                }
+                else
+                {
                     (sender as Button).BackColor = MyDialog.Color;
                     return;
                 }
+            }
         }
         //verhindert doppelte farben
         private Boolean checkiftaken(Color color) {
