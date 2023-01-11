@@ -20,29 +20,20 @@ namespace SchiffeVersenken
          * 2 für getroffen (grün)
          * 3 für daneben (rot)
          */
-        int[,] spieler1board;
-        int[,] spieler2board;
-        int[,] spieler3board;
-        int[,] spieler4board;
+       
         int y, x = 0;
         int spielerAnzahl;
-        int activePlayer = 1;
+        int activePlayer = 0;
         int schiffAnzahl;
         int aktuelleRunde = 0;
         int activeSchiffanzahl = 0;
         Color[] playerFarbArray;
         TableLayoutPanel spielfeld;
+        Spieler[] spielerArray;
 
         int[,] activeBoard;
         Button[,] buttonsBoard;
         TaskCompletionSource<bool> fertig = null;
-
-        //public class Spieler 
-        //{
-        //    bool hatschiffe;
-        //    int spielerid;
-        //    Color farbe;
-        //}
 
         public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldzeile, int feldspalte, Color[] playerFarbArray, int[] schiffAnzahlArray)
         {
@@ -50,29 +41,24 @@ namespace SchiffeVersenken
             this.schiffAnzahl = schiffAnzahl;
             this.spielerAnzahl = spielerAnzahl;
             this.playerFarbArray = playerFarbArray;
+            this.spielerArray = new Spieler[spielerAnzahl];
+
+
             buttonsBoard = new Button[feldzeile, feldspalte];
 
             // Init der Spielerboards mit Dimensionen des Spielfelds
-            spieler1board = new int[feldzeile, feldspalte];
-            spieler2board = new int[feldzeile, feldspalte];
-            if (spielerAnzahl >= 3)
-                spieler3board = new int[feldzeile, feldspalte];
-            if (spielerAnzahl == 4)
-                spieler4board = new int[feldzeile, feldspalte];
+            //spieler1board = new int[feldzeile, feldspalte];
+            //spieler2board = new int[feldzeile, feldspalte];
+            //if (spielerAnzahl >= 3)
+            //    spieler3board = new int[feldzeile, feldspalte];
+            //if (spielerAnzahl == 4)
+            //    spieler4board = new int[feldzeile, feldspalte];
 
-            for (int i = 0; i < feldzeile; i++)
+
+
+            for (int i = 0; i < spielerAnzahl; i++)
             {
-
-                for (int j = 0; j < feldspalte; j++)
-                {
-                    spieler1board[i,j] = 0;
-                    spieler2board[i,j] = 0;
-                    if (spielerAnzahl >= 3)
-                        spieler3board[i,j] = 0;
-                    if (spielerAnzahl == 4)
-                        spieler4board[i,j] = 0;
-                }
-
+                spielerArray[i] = new Spieler(i, playerFarbArray[i], new int[feldzeile, feldspalte]);
             }
 
 
@@ -81,12 +67,9 @@ namespace SchiffeVersenken
             
             spielfeld.RowCount = feldzeile + 1;
             spielfeld.ColumnCount = feldspalte + 1;
-
             spielfeld.Dock = DockStyle.Fill;
             spielfeld.RowStyles.Clear();
             spielfeld.ColumnStyles.Clear();
-
-
 
             this.mainGrid.Controls.Add(spielfeld, 0, 0);
 
@@ -142,9 +125,7 @@ namespace SchiffeVersenken
                     buttonsBoard[j - 1, i - 1] = btn1;
                     btn1.Enabled = false;
                     btn1.Click += btn_Clicked;
-                    btn1.BackColor = Color.LightBlue;
-
-                    
+                    btn1.BackColor = Color.LightBlue;   
                 }
                 letter++;
             }
@@ -154,22 +135,22 @@ namespace SchiffeVersenken
             switch (spielerAnzahl)
             {
                 case 4:
-                    groupBoxspieler4.BackColor = playerFarbArray[3];
+                    groupBoxspieler4.BackColor = spielerArray[3].getFarbe();
                     groupBoxspieler4.Enabled = true;
-                    groupBoxScore4.BackColor = playerFarbArray[3];
+                    groupBoxScore4.BackColor = spielerArray[3].getFarbe();
                     groupBoxScore4.Enabled = true;
                     goto case 3;
                 case 3:
-                    groupBoxspieler3.BackColor = playerFarbArray[2];
+                    groupBoxspieler3.BackColor = spielerArray[2].getFarbe();
                     groupBoxspieler3.Enabled = true;
-                    groupBoxScore3.BackColor = playerFarbArray[2];
+                    groupBoxScore3.BackColor = spielerArray[2].getFarbe();
                     groupBoxScore3.Enabled = true;
                     goto case 2;
                 case 2:
-                    groupBoxspieler1.BackColor = playerFarbArray[0];
-                    groupBoxspieler2.BackColor = playerFarbArray[1];
-                    groupBoxScore1.BackColor = playerFarbArray[0];
-                    groupBoxScore2.BackColor = playerFarbArray[1];
+                    groupBoxspieler1.BackColor = spielerArray[0].getFarbe();
+                    groupBoxspieler2.BackColor = spielerArray[1].getFarbe();
+                    groupBoxScore1.BackColor = spielerArray[0].getFarbe();
+                    groupBoxScore2.BackColor = spielerArray[1].getFarbe();
                     break;
                 default:
                     MessageBox.Show("Bei dem erstellen des Spielfeldinterfac gab es ein fehler!", "Fehler Spielfeldinterface");
@@ -204,6 +185,7 @@ namespace SchiffeVersenken
                     break;
             }
 
+            activeBoard = spielerArray[activePlayer].getSpielerBoard();
             activePlayerChanged(activePlayer);
         }
 
@@ -239,7 +221,6 @@ namespace SchiffeVersenken
                 button.Enabled = true;
             }
 
-
             Button btn = (Button)sender;
             string s = btn.Name;
             
@@ -268,21 +249,17 @@ namespace SchiffeVersenken
             }
 
 
-
-            
-
-
             if (btn.Text == "neu platzieren")
             {
-                for (int i = 0; i < activeBoard.GetLength(0); i++)
+                for (int i = 0; i < spielerArray[activePlayer].getSpielerBoard().GetLength(0); i++)
                 {
-                    for (int j = 0; j < activeBoard.GetLength(1); j++)
+                    for (int j = 0; j < spielerArray[activePlayer].getSpielerBoard().GetLength(1); j++)
                     {
-                        if (activeBoard[i, j] == schiffNr) activeBoard[i,j] = 0;
+                        if (spielerArray[activePlayer].getSpielerBoardValue(i,j) == schiffNr) spielerArray[activePlayer].setSpielerBoardValue(i,j,0);
                     }
                 }
                 activeSchiffanzahl--;
-                boardChanged(true);
+                printBoard(true);
             }
             
             //Schifflänge ist 1, daher gesonderter Fall
@@ -292,8 +269,8 @@ namespace SchiffeVersenken
 
                 MessageBox.Show("Wähle eine Position aus.", "Schiff Platzieren");
                 await fertig.Task;
-                if (activeBoard[x - 1, y - 1] == 0) { 
-                    activeBoard[x - 1, y - 1] = schiffNr;
+                if (spielerArray[activePlayer].getSpielerBoardValue(x - 1, y - 1) == 0) {
+                    spielerArray[activePlayer].setSpielerBoardValue(x - 1, y - 1, schiffNr);
                     btn.Text = "neu platzieren";
                     activeSchiffanzahl++;
                 }
@@ -324,14 +301,14 @@ namespace SchiffeVersenken
                 {
                     for (int i = startx; i >= x; i--)
                     {
-                        if (activeBoard[i - 1, y - 1] > 0) clear = false;
+                        if (spielerArray[activePlayer].getSpielerBoardValue(i - 1, y - 1) > 0) clear = false;
                     }
 
                     if (clear)
                     {
                         for (int i = startx; i >= x; i--)
                         {
-                            activeBoard[i - 1, y - 1] = schiffNr;
+                            spielerArray[activePlayer].setSpielerBoardValue(i - 1, y - 1, schiffNr);
                         }
                     } 
                     else
@@ -345,14 +322,14 @@ namespace SchiffeVersenken
                 {
                     for (int i = starty; i >= y; i--)
                     {
-                        if (activeBoard[x - 1, i - 1] > 0) clear = false;
+                        if (spielerArray[activePlayer].getSpielerBoardValue(x - 1, i - 1) > 0) clear = false;
                     }
 
                     if (clear)
                     {
                         for (int i = starty; i >= y; i--)
                         {
-                            activeBoard[x - 1, i - 1] = schiffNr;
+                            spielerArray[activePlayer].setSpielerBoardValue(x - 1, i - 1, schiffNr);
                         }
                     }
                     else
@@ -366,14 +343,14 @@ namespace SchiffeVersenken
                 {
                     for (int i = startx; i <= x; i++)
                     {
-                        if (activeBoard[i - 1, y - 1] > 0) clear = false;
+                        if (spielerArray[activePlayer].getSpielerBoardValue(i - 1, y - 1) > 0) clear = false;
                     }
 
                     if (clear)
                     {
                         for (int i = startx; i <= x; i++)
                         {
-                            activeBoard[i - 1, y - 1] = schiffNr;
+                            spielerArray[activePlayer].setSpielerBoardValue(i - 1, y - 1, schiffNr);
                         }
                     }
                     else
@@ -387,14 +364,14 @@ namespace SchiffeVersenken
                 {
                     for (int i = starty; i <= y; i++)
                     {
-                        if (activeBoard[x - 1, i - 1] > 0) clear = false;
+                        if (spielerArray[activePlayer].getSpielerBoardValue(x - 1, i - 1) > 0) clear = false;
                     }
 
                     if (clear)
                     {
                         for (int i = starty; i <= y; i++)
                         {
-                            activeBoard[x - 1, i - 1] = schiffNr;
+                            spielerArray[activePlayer].setSpielerBoardValue(x - 1, i - 1, schiffNr);
                         }
                     }
                     else
@@ -415,11 +392,11 @@ namespace SchiffeVersenken
                 }
             }
 
-            boardChanged(true);
+            printBoard(true);
 
             if (activeSchiffanzahl == schiffAnzahl)
             {
-                if (activePlayer == spielerAnzahl)
+                if (activePlayer == spielerAnzahl-1)
                 {
                     DialogResult result = MessageBox.Show("Spiel starten?", "Fertig!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     if (result == DialogResult.OK)
@@ -442,15 +419,15 @@ namespace SchiffeVersenken
                 button.Enabled = false;
             }
 
-            boardChanged(true);
+            printBoard(true);
         }
 
-        void boardChanged(bool schiffeSichtbar) {
+        void printBoard(bool schiffeSichtbar) {
 
             // Im ganzen Board werden die Farben neu gesetzt
-            for (int i = 0; i < activeBoard.GetLength(0); i++)
+            for (int i = 0; i < spielerArray[activePlayer].getSpielerBoard().GetLength(0); i++)
             {
-                for (int j = 0; j < activeBoard.GetLength(1); j++)
+                for (int j = 0; j < spielerArray[activePlayer].getSpielerBoard().GetLength(1); j++)
                 {
                     /* 0 für nichts (blau)
                      * 1 = Schiff 1 (braun)
@@ -462,7 +439,7 @@ namespace SchiffeVersenken
                      * 7 für daneben (rot)
                      */
 
-                    switch (activeBoard[i, j])
+                    switch (spielerArray[activePlayer].getSpielerBoardValue(i, j))
                     {
                         case 0:
                             buttonsBoard[i, j].BackColor = Color.LightBlue;
@@ -500,52 +477,39 @@ namespace SchiffeVersenken
         }
 
         void activePlayerChanged(int playerNr) {
-            switch (activePlayer)
-            {
-                case 1:
-                    activeBoard = spieler1board;
-                    break;
-                case 2:
-                    activeBoard = spieler2board;
-                    break;
-                case 3:
-                    activeBoard = spieler3board;
-                    break;
-                case 4:
-                    activeBoard = spieler4board;
-                    break;
-                default:
-                    MessageBox.Show("Fehler beim Auswählen des aktiven Boards!", "Fehler Board");
-                    break;
-
-                    
-                
-            }
-
             placeschiff1.Text = "platzieren";
             placeschiff2.Text = "platzieren";
             placeschiff3.Text = "platzieren";
             placeschiff4.Text = "platzieren";
             placeschiff5.Text = "platzieren";
 
+            // Textlabel des Hauptfensters ändern
             this.Text = "Spielfeld - Spieler: " + activePlayer.ToString();
-            spielfeld.BackColor = playerFarbArray[activePlayer-1];
+            // Hintergrundfarbe des aktvien Spielers einstellen
+            spielfeld.BackColor = spielerArray[activePlayer].getFarbe();
         }
 
         void gameLoop()
         {
             MessageBox.Show("Spiel startet!");
             bool finished = false;
+
+            placeschiff1.Visible = false;
+            placeschiff2.Visible = false;
+            placeschiff3.Visible = false;
+            placeschiff4.Visible = false;
+            placeschiff5.Visible = false;
+
             int spieler = spielerAnzahl;
-            activePlayer = 1;
+            activePlayer = 0;
             activePlayerChanged(activePlayer);
-            boardChanged(true);
+            printBoard(true);
             spielerfeld1.Enabled = false;
             
-            while(spieler > 1) 
-            {
+            //while(spieler > 1) 
+            //{
                 
-            }
+            //}
         }
 
         async void angreifenClick(object sender, EventArgs e) {
@@ -556,24 +520,24 @@ namespace SchiffeVersenken
             switch (btn.Name)
             {
                 case "spielerfeld1":
-                    activePlayer = 1;
+                    activePlayer = 0;
                     break;
                 case "spielerfeld2":
-                    activePlayer = 2;
+                    activePlayer = 1;
                     break;
                 case "spielerfeld3":
-                    activePlayer = 3;
+                    activePlayer = 2;
                     break;
                 case "spielerfeld4":
-                    activePlayer = 4;
+                    activePlayer = 3;
                     break;
                 default:
                     MessageBox.Show("Fehler beim Aufrufen des angegrieffen Spielfeld!", "Fehler Auswahl Spielfeld");
                     break;
             }
 
-            boardChanged(false);
             activePlayerChanged(activePlayer);
+            printBoard(false);
 
             foreach (Button btn1 in buttonsBoard) {
                 btn1.Enabled = true;
@@ -583,74 +547,34 @@ namespace SchiffeVersenken
 
             await fertig.Task;
 
-            int feld = activeBoard[x - 1, y - 1];
+            int feld = spielerArray[activePlayer].getSpielerBoardValue(x - 1, y - 1);
 
-            if ((activeBoard[x - 1, y - 1] >= 1) && (activeBoard[x - 1, y - 1] <= 5))
+            if ((feld >= 1) && (feld <= 5))
             {
                 // HIT!!!
-                activeBoard[x - 1, y - 1] = 6;
+                spielerArray[activePlayer].setSpielerBoardValue(x - 1, y - 1, 6);
 
                 //TODO: Treffer Sound
 
-                bool zerstört = true;
-                foreach (int platz in activeBoard) {
-                    
-                    if (platz == feld) {
-                        //Schiff nicht komplett zerstört
-                        zerstört = false;
-                    } 
-                }
 
-                if (zerstört)
+                if (!spielerArray[activePlayer].hatSchiffNr(feld))
                 {
                     MessageBox.Show("Schiff ist komplett zerstört");
                 }
-                else
-                {
-                    MessageBox.Show("Schiff ist nicht komplett zerstört");
-                }
 
+                if (!spielerArray[activePlayer].hatSchiffe())
+                {
+                    MessageBox.Show("Alle Schiffe wurden zerstört!","Spieler: " + (activePlayer+1) + " ausgeschieden!");
+                }
             }
             else {
                 // WASSERTREFFER!!!
-                activeBoard[x - 1, y - 1] = 7;
+                spielerArray[activePlayer].setSpielerBoardValue(x - 1, y - 1, 7);
 
                 //TODO: Wassertreffer Sound
             }
 
-            boardChanged(false);
-
-        }
-
-        private bool hatschiff() 
-        {
-            for (int i = 0; i < activeBoard.GetLength(1); i++)
-                {
-                    for (int j = 0; j < activeBoard.GetLength(0); j++)
-                    {
-                    switch (activeBoard[x,y])
-                    {
-                        case 1:
-                            return true;
-                        case 2:
-                            return true;
-                        case 3:
-                            return true;
-                        case 4:
-                            return true;
-                        case 5:
-                            return true;
-                        case 0:
-                        case 6:
-                        case 7:
-                            break;
-                        default:
-                            MessageBox.Show("Fehler beim schiffe zählen", "schiff fehler");
-                            break;
-                    }
-                    }
-                }
-            return false;
+            printBoard(false);
         }
     }
 }
