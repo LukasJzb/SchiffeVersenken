@@ -13,8 +13,9 @@ namespace SchiffeVersenken
         Color farbe;
         int[,] spielerBoard;
         bool eliminiert = false;
+        int score;
 
-        public Spieler(int spielerid, Color farbe, int[,] spielerBoard )
+        public Spieler(int spielerid, Color farbe, int[,] spielerBoard, int score )
         {
             this.spielerid = spielerid;
             this.farbe = farbe;
@@ -31,6 +32,15 @@ namespace SchiffeVersenken
             }
         }
 
+        public int getScore()
+        {
+            return score;
+        }
+
+        public void addScore(int länge)
+        {
+            score = score + länge;
+        }
         public Color getFarbe()
         {
             return farbe;

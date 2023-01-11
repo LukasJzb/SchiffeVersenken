@@ -62,9 +62,11 @@ namespace SchiffeVersenken
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.modi3 = new System.Windows.Forms.RadioButton();
+            this.modi2 = new System.Windows.Forms.RadioButton();
+            this.modi1 = new System.Windows.Forms.RadioButton();
+            this.rundenanzahl = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupSpieler2.SuspendLayout();
             this.groupSpieler4.SuspendLayout();
@@ -466,9 +468,11 @@ namespace SchiffeVersenken
             // 
             // groupBox
             // 
-            this.groupBox.Controls.Add(this.radioButton3);
-            this.groupBox.Controls.Add(this.radioButton2);
-            this.groupBox.Controls.Add(this.radioButton1);
+            this.groupBox.Controls.Add(this.label10);
+            this.groupBox.Controls.Add(this.rundenanzahl);
+            this.groupBox.Controls.Add(this.modi3);
+            this.groupBox.Controls.Add(this.modi2);
+            this.groupBox.Controls.Add(this.modi1);
             this.groupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox.Location = new System.Drawing.Point(379, 3);
             this.groupBox.Name = "groupBox";
@@ -477,38 +481,55 @@ namespace SchiffeVersenken
             this.groupBox.TabStop = false;
             this.groupBox.Text = "Spielmodus";
             // 
-            // radioButton1
+            // modi3
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(7, 20);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(58, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Normal";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.modi3.AutoSize = true;
+            this.modi3.Location = new System.Drawing.Point(7, 66);
+            this.modi3.Name = "modi3";
+            this.modi3.Size = new System.Drawing.Size(127, 17);
+            this.modi3.TabIndex = 2;
+            this.modi3.Text = "Nach Anzahl Runden";
+            this.modi3.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // modi2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(7, 43);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.modi2.AutoSize = true;
+            this.modi2.Location = new System.Drawing.Point(7, 43);
+            this.modi2.Name = "modi2";
+            this.modi2.Size = new System.Drawing.Size(90, 17);
+            this.modi2.TabIndex = 1;
+            this.modi2.Text = "Einer ist Raus";
+            this.modi2.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // modi1
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(7, 66);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(85, 17);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "radioButton3";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.modi1.AutoSize = true;
+            this.modi1.Checked = true;
+            this.modi1.Location = new System.Drawing.Point(7, 20);
+            this.modi1.Name = "modi1";
+            this.modi1.Size = new System.Drawing.Size(58, 17);
+            this.modi1.TabIndex = 0;
+            this.modi1.TabStop = true;
+            this.modi1.Text = "Normal";
+            this.modi1.UseVisualStyleBackColor = true;
+            // 
+            // rundenanzahl
+            // 
+            this.rundenanzahl.Location = new System.Drawing.Point(78, 86);
+            this.rundenanzahl.Name = "rundenanzahl";
+            this.rundenanzahl.Size = new System.Drawing.Size(49, 20);
+            this.rundenanzahl.TabIndex = 3;
+            this.rundenanzahl.Text = "1";
+            this.rundenanzahl.TextChanged += new System.EventHandler(this.rundenzahl_TextChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 86);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(66, 13);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "RundenZahl";
             // 
             // Spielerauswahl
             // 
@@ -580,8 +601,10 @@ namespace SchiffeVersenken
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton modi3;
+        private System.Windows.Forms.RadioButton modi2;
+        private System.Windows.Forms.RadioButton modi1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox rundenanzahl;
     }
 }

@@ -127,6 +127,27 @@ namespace SchiffeVersenken
             this.Close();
         }
 
+        private void rundenzahl_TextChanged(object sender, EventArgs e)
+        {
+            string actualdata = string.Empty;
+            char[] entereddata = rundenanzahl.Text.ToCharArray();
+            foreach (char aChar in entereddata.AsEnumerable())
+            {
+                if (Char.IsDigit(aChar))
+                {
+                    actualdata = actualdata + aChar;
+                    // MessageBox.Show(aChar.ToString());
+                }
+                else
+                {
+                    MessageBox.Show(aChar + " is not numeric");
+                    actualdata.Replace(aChar, ' ');
+                    actualdata.Trim();
+                }
+            }
+            rundenanzahl.Text = actualdata;
+        }
+
         //speichert die farben und schifflängen in arrays
         private void button1_Click(object sender, EventArgs e)
         {   
@@ -139,8 +160,14 @@ namespace SchiffeVersenken
                 schiffAnzahlArray[i] = Int32.Parse(schiffComboArray[i].SelectedItem.ToString());
             }
 
+            int modus = 0;
+            if (modi1.Checked) modus = 1;
+            else if (modi2.Checked) modus = 2;
+            else if (modi3.Checked) modus = 3;
+            int runden = Int32.Parse(rundenanzahl.Text);
 
-            Spielfeld spielfeldForm = new Spielfeld(spielerAnzahl, schiffAnzahl, feldHoehe, feldTiefe, farbArray, schiffAnzahlArray);
+
+            Spielfeld spielfeldForm = new Spielfeld(spielerAnzahl, schiffAnzahl, feldHoehe, feldTiefe, farbArray, schiffAnzahlArray, modus, runden);
             this.Hide();
             spielfeldForm.Show();
         }
