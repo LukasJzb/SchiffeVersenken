@@ -637,6 +637,7 @@ namespace SchiffeVersenken
             int letzterSpieler;
             int gewinnerscore = spielerArray[0].getScore();
             int gewinnerspieler = 0;
+            List<int> gewinner = new List<int>();
 
             spielerfeld1.Enabled = false;
             switch (modus) 
@@ -679,8 +680,8 @@ namespace SchiffeVersenken
 
                 if (letzterSpieler == activePlayer) break;
             }
-
             MessageBox.Show("Spieler " + (activePlayer + 1) + " hat gewonnen!", "Spiel beendet!");
+            Application.Exit();
 
         Einerraus:
             while (spielerImSpiel == spielerAnzahl)
@@ -715,10 +716,24 @@ namespace SchiffeVersenken
                 if(gewinnerscore < spielerArray[i].getScore()) 
                 {
                     gewinnerspieler = i;
+                    gewinnerscore = spielerArray[i].getScore();
+                }
+            }
+            for (int i = 0; i < spielerAnzahl; i++)
+            {
+                if (gewinnerscore == spielerArray[i].getScore())
+                {
+                    gewinner.Add(i + 1);
                 }
             }
             activePlayer = gewinnerspieler;
-            MessageBox.Show("Spieler " + (activePlayer + 1) + " hat gewonnen!", "Spiel beendet!");
+           
+            if (gewinner.Count > 1) 
+            {
+                string ergebnis = string.Join(" , ", gewinner);
+                MessageBox.Show("Spieler " + ergebnis + " haben gewonnen!", "Spiel beendet!");
+            }
+            else { MessageBox.Show("Spieler " + (activePlayer + 1) + " hat gewonnen!", "Spiel beendet!"); }
             Application.Exit();
 
         Rundenaus:
@@ -757,14 +772,27 @@ namespace SchiffeVersenken
                 if (gewinnerscore < spielerArray[i].getScore())
                 {
                     gewinnerspieler = i;
+                    gewinnerscore = spielerArray[i].getScore();
+                }
+            }
+            for (int i = 0; i < spielerAnzahl; i++)
+            {
+                if (gewinnerscore == spielerArray[i].getScore())
+                {
+                    gewinner.Add(i + 1);
                 }
             }
             activePlayer = gewinnerspieler;
-            MessageBox.Show("Spieler " + (activePlayer + 1) + " hat gewonnen!", "Spiel beendet!");
+            if (gewinner.Count > 1)
+            {
+                string ergebnis = string.Join(" , ", gewinner);
+                MessageBox.Show("Spieler " + ergebnis + " haben gewonnen!", "Spiel beendet!");
+            }
+            else { MessageBox.Show("Spieler " + (activePlayer + 1) + " hat gewonnen!", "Spiel beendet!"); }
             Application.Exit();
 
 
-            Application.Exit();
+         
         }
     }
 }
