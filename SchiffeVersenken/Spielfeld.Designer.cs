@@ -631,9 +631,10 @@ namespace SchiffeVersenken
             // 
             this.Score4.AutoSize = true;
             this.Score4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Score4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Score4.Location = new System.Drawing.Point(3, 16);
             this.Score4.Name = "Score4";
-            this.Score4.Size = new System.Drawing.Size(13, 13);
+            this.Score4.Size = new System.Drawing.Size(29, 31);
             this.Score4.TabIndex = 1;
             this.Score4.Text = "0";
             // 
@@ -652,9 +653,10 @@ namespace SchiffeVersenken
             // 
             this.Score1.AutoSize = true;
             this.Score1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Score1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Score1.Location = new System.Drawing.Point(3, 16);
             this.Score1.Name = "Score1";
-            this.Score1.Size = new System.Drawing.Size(13, 13);
+            this.Score1.Size = new System.Drawing.Size(29, 31);
             this.Score1.TabIndex = 0;
             this.Score1.Text = "0";
             // 
@@ -673,9 +675,10 @@ namespace SchiffeVersenken
             // 
             this.Score2.AutoSize = true;
             this.Score2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Score2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Score2.Location = new System.Drawing.Point(3, 16);
             this.Score2.Name = "Score2";
-            this.Score2.Size = new System.Drawing.Size(13, 13);
+            this.Score2.Size = new System.Drawing.Size(29, 31);
             this.Score2.TabIndex = 0;
             this.Score2.Text = "0";
             // 
@@ -695,9 +698,10 @@ namespace SchiffeVersenken
             // 
             this.Score3.AutoSize = true;
             this.Score3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Score3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Score3.Location = new System.Drawing.Point(3, 16);
             this.Score3.Name = "Score3";
-            this.Score3.Size = new System.Drawing.Size(13, 13);
+            this.Score3.Size = new System.Drawing.Size(29, 31);
             this.Score3.TabIndex = 1;
             this.Score3.Text = "0";
             // 
