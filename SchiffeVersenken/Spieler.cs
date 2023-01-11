@@ -12,9 +12,9 @@ namespace SchiffeVersenken
         int spielerid;
         Color farbe;
         int[,] spielerBoard;
-        bool eliminated = false;
+        bool eliminiert = false;
 
-        public Spieler(int spielerid, Color farbe, int[,] spielerBoard)
+        public Spieler(int spielerid, Color farbe, int[,] spielerBoard )
         {
             this.spielerid = spielerid;
             this.farbe = farbe;
@@ -22,11 +22,11 @@ namespace SchiffeVersenken
 
 
 
-            for (int i = 0; i < spielerBoard.GetLength(1); i++)
+            for (int i = 0; i < spielerBoard.GetLength(0); i++)
             {
-                for (int j = 0; j < spielerBoard.GetLength(0); j++)
+                for (int j = 0; j < spielerBoard.GetLength(1); j++)
                 {
-                    spielerBoard[j, i] = 0;
+                    spielerBoard[i, j] = 0;
                 }
             }
         }
@@ -76,13 +76,13 @@ namespace SchiffeVersenken
             foreach (int feld in spielerBoard) {
                 if ((feld >= 1) && (feld <= 5)) return true;
             }
-            eliminated = true;
+            eliminiert = true;
             return false;
         }
 
-        public bool getStatus()
+        public bool istEliminiert()
         {
-            return eliminated;
+            return eliminiert;
         }
     }
 }

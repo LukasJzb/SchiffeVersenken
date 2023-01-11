@@ -34,9 +34,6 @@ namespace SchiffeVersenken
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.rundenzahlStripbar = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.zerstoerteSchiffeToolstrip = new System.Windows.Forms.ToolStripLabel();
             this.mainGrid = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBoxSchiff4 = new System.Windows.Forms.GroupBox();
@@ -136,13 +133,10 @@ namespace SchiffeVersenken
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
-            this.rundenzahlStripbar,
-            this.toolStripSeparator1,
-            this.toolStripLabel2,
-            this.zerstoerteSchiffeToolstrip});
+            this.rundenzahlStripbar});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(212, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(97, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // toolStripLabel1
@@ -155,24 +149,7 @@ namespace SchiffeVersenken
             // 
             this.rundenzahlStripbar.Name = "rundenzahlStripbar";
             this.rundenzahlStripbar.Size = new System.Drawing.Size(13, 22);
-            this.rundenzahlStripbar.Text = "0";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(96, 22);
-            this.toolStripLabel2.Text = "Zerstörte Schiffe:";
-            // 
-            // zerstoerteSchiffeToolstrip
-            // 
-            this.zerstoerteSchiffeToolstrip.Name = "zerstoerteSchiffeToolstrip";
-            this.zerstoerteSchiffeToolstrip.Size = new System.Drawing.Size(13, 22);
-            this.zerstoerteSchiffeToolstrip.Text = "0";
+            this.rundenzahlStripbar.Text = "1";
             // 
             // mainGrid
             // 
@@ -508,6 +485,7 @@ namespace SchiffeVersenken
             // 
             // spielerfeld4
             // 
+            this.spielerfeld4.Enabled = false;
             this.spielerfeld4.Location = new System.Drawing.Point(60, 33);
             this.spielerfeld4.Name = "spielerfeld4";
             this.spielerfeld4.Size = new System.Drawing.Size(75, 23);
@@ -539,6 +517,7 @@ namespace SchiffeVersenken
             // 
             // spielerfeld3
             // 
+            this.spielerfeld3.Enabled = false;
             this.spielerfeld3.Location = new System.Drawing.Point(60, 33);
             this.spielerfeld3.Name = "spielerfeld3";
             this.spielerfeld3.Size = new System.Drawing.Size(75, 23);
@@ -569,6 +548,7 @@ namespace SchiffeVersenken
             // 
             // spielerfeld1
             // 
+            this.spielerfeld1.Enabled = false;
             this.spielerfeld1.Location = new System.Drawing.Point(60, 33);
             this.spielerfeld1.Name = "spielerfeld1";
             this.spielerfeld1.Size = new System.Drawing.Size(75, 23);
@@ -599,6 +579,7 @@ namespace SchiffeVersenken
             // 
             // spielerfeld2
             // 
+            this.spielerfeld2.Enabled = false;
             this.spielerfeld2.Location = new System.Drawing.Point(60, 33);
             this.spielerfeld2.Name = "spielerfeld2";
             this.spielerfeld2.Size = new System.Drawing.Size(75, 23);
@@ -817,9 +798,6 @@ namespace SchiffeVersenken
         private System.Windows.Forms.Label Score3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripLabel rundenzahlStripbar;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.ToolStripLabel zerstoerteSchiffeToolstrip;
         private System.Windows.Forms.Label schifflaenge4;
         private System.Windows.Forms.Label schifflaenge3;
         private System.Windows.Forms.Label schifflaenge5;
