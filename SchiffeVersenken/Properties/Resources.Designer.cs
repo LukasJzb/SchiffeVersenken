@@ -61,12 +61,57 @@ namespace SchiffeVersenken.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream gewinnerFenster {
+            get {
+                return ResourceManager.GetStream("gewinnerFenster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Schiffversenkt {
+            get {
+                return ResourceManager.GetStream("Schiffversenkt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap sea_1547609_1280 {
             get {
                 object obj = ResourceManager.GetObject("sea-1547609_1280", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream startRakete {
+            get {
+                return ResourceManager.GetStream("startRakete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream trefferSchiff {
+            get {
+                return ResourceManager.GetStream("trefferSchiff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream trefferWasser {
+            get {
+                return ResourceManager.GetStream("trefferWasser", resourceCulture);
             }
         }
     }

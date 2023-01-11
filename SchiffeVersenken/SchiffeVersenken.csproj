@@ -56,6 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Spieler.cs" />
     <Compile Include="Hauptmenu.cs">
       <SubType>Form</SubType>
@@ -82,14 +87,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Spielerauswahl.resx">
       <DependentUpon>Spielerauswahl.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,25 +110,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sea-1547609_1280.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Resources\battleship.ico" />
-    <Content Include="Resources\gewinnerFenster.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schiffversenkt.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\startRakete.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\trefferSchiff.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\trefferWasser.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="Resources\trefferSchiff.wav" />
+    <None Include="Resources\trefferWasser.wav" />
+    <None Include="Resources\startRakete.wav" />
+    <None Include="Resources\gewinnerFenster.wav" />
+    <None Include="Resources\Schiffversenkt.wav" />
+    <Content Include="Resources\sea-1547609_1280.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

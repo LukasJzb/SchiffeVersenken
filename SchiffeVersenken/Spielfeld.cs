@@ -35,7 +35,11 @@ namespace SchiffeVersenken
         Spieler[] spielerArray;
         int spielerImSpiel = 0;
         int[] score;
-        SoundPlayer sounds = new System.Media.SoundPlayer();
+        SoundPlayer attack = new System.Media.SoundPlayer(SchiffeVersenken.Properties.Resources.startRakete);
+        SoundPlayer treffer = new System.Media.SoundPlayer(SchiffeVersenken.Properties.Resources.trefferSchiff);
+        SoundPlayer miss = new System.Media.SoundPlayer(SchiffeVersenken.Properties.Resources.trefferWasser);
+        SoundPlayer destroyed = new System.Media.SoundPlayer(SchiffeVersenken.Properties.Resources.Schiffversenkt);
+        SoundPlayer sieg = new System.Media.SoundPlayer(SchiffeVersenken.Properties.Resources.gewinnerFenster);
         int[,] activeBoard;
         Button[,] buttonsBoard;
         TaskCompletionSource<bool> fertigTask = null;
@@ -521,7 +525,7 @@ namespace SchiffeVersenken
             activePlayerChanged(activePlayer);
             printBoard(false);
             refreshButtons(false);
-            sounds.SoundLocation = Environment.CurrentDirectory + "startRakete.mp3"; sounds.Play();
+            attack.Play();
             fertigTask = new TaskCompletionSource<bool>();
 
             await fertigTask.Task;
@@ -531,15 +535,15 @@ namespace SchiffeVersenken
             if ((feld >= 1) && (feld <= 5))
             {
                 // HIT!!!
+                treffer.Play();
                 spielerArray[activePlayer].setSpielerBoardValue(x - 1, y - 1, 6);
                 spielerArray[lastPlayer].addScore(6-feld);
                 refreshscore();
-                sounds.SoundLocation = Environment.CurrentDirectory + "trefferSchiff.mp3"; sounds.Play();
                 printBoard(false);
 
                 if (!spielerArray[activePlayer].hatSchiffNr(feld))
                 {
-                    sounds.SoundLocation = Environment.CurrentDirectory + "Schiffversenkt.mp3"; sounds.Play();
+                    destroyed.Play();
                     MessageBox.Show("Schiff ist komplett zerstört");
                 }
 
@@ -554,7 +558,7 @@ namespace SchiffeVersenken
                 spielerArray[activePlayer].setSpielerBoardValue(x - 1, y - 1, 7);
                 spielerArray[lastPlayer].addScore(0);
                 printBoard(false);
-                sounds.SoundLocation = Environment.CurrentDirectory + "trefferWasser.mp3"; sounds.Play();
+                miss.Play();
             }
             
             deaktivereAlleButtons();
@@ -682,7 +686,7 @@ namespace SchiffeVersenken
 
                 if (letzterSpieler == activePlayer) break;
             }
-            sounds.SoundLocation = Environment.CurrentDirectory + "gewinnerFenster.mp3"; sounds.Play();
+            sieg.Play();
             MessageBox.Show("Spieler " + (activePlayer + 1) + " hat gewonnen!", "Spiel beendet!");
             Application.Exit();
 
@@ -734,11 +738,11 @@ namespace SchiffeVersenken
             if (gewinner.Count > 1) 
             {
                 string ergebnis = string.Join(" , ", gewinner);
-                sounds.SoundLocation = Environment.CurrentDirectory + "gewinnerFenster.mp3"; sounds.Play();
+                sieg.Play();
                 MessageBox.Show("Spieler " + ergebnis + " haben gewonnen!", "Spiel beendet!");
             }
             else {
-                sounds.SoundLocation = Environment.CurrentDirectory + "gewinnerFenster.mp3"; sounds.Play();
+                sieg.Play();
                 MessageBox.Show("Spieler " + (activePlayer + 1) + " hat gewonnen!", "Spiel beendet!"); }
             Application.Exit();
 
@@ -792,11 +796,11 @@ namespace SchiffeVersenken
             if (gewinner.Count > 1)
             {
                 string ergebnis = string.Join(" , ", gewinner);
-                sounds.SoundLocation = Environment.CurrentDirectory + "gewinnerFenster.mp3"; sounds.Play();
+                sieg.Play();
                 MessageBox.Show("Spieler " + ergebnis + " haben gewonnen!", "Spiel beendet!");
             }
             else {
-                sounds.SoundLocation = Environment.CurrentDirectory + "gewinnerFenster.mp3"; sounds.Play();
+                sieg.Play();
                 MessageBox.Show("Spieler " + (activePlayer + 1) + " hat gewonnen!", "Spiel beendet!"); }
             Application.Exit();
 
