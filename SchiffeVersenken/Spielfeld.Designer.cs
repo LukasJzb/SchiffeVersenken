@@ -512,8 +512,9 @@ namespace SchiffeVersenken
             this.spielerfeld4.Name = "spielerfeld4";
             this.spielerfeld4.Size = new System.Drawing.Size(75, 23);
             this.spielerfeld4.TabIndex = 2;
-            this.spielerfeld4.Text = "anschauen";
+            this.spielerfeld4.Text = "Angreifen";
             this.spielerfeld4.UseVisualStyleBackColor = true;
+            this.spielerfeld4.Click += new System.EventHandler(this.angreifenClick);
             // 
             // label9
             // 
@@ -542,8 +543,9 @@ namespace SchiffeVersenken
             this.spielerfeld3.Name = "spielerfeld3";
             this.spielerfeld3.Size = new System.Drawing.Size(75, 23);
             this.spielerfeld3.TabIndex = 2;
-            this.spielerfeld3.Text = "anschauen";
+            this.spielerfeld3.Text = "Angreifen";
             this.spielerfeld3.UseVisualStyleBackColor = true;
+            this.spielerfeld3.Click += new System.EventHandler(this.angreifenClick);
             // 
             // label7
             // 
@@ -571,8 +573,9 @@ namespace SchiffeVersenken
             this.spielerfeld1.Name = "spielerfeld1";
             this.spielerfeld1.Size = new System.Drawing.Size(75, 23);
             this.spielerfeld1.TabIndex = 2;
-            this.spielerfeld1.Text = "anschauen";
+            this.spielerfeld1.Text = "Angreifen";
             this.spielerfeld1.UseVisualStyleBackColor = true;
+            this.spielerfeld1.Click += new System.EventHandler(this.angreifenClick);
             // 
             // label8
             // 
@@ -600,8 +603,9 @@ namespace SchiffeVersenken
             this.spielerfeld2.Name = "spielerfeld2";
             this.spielerfeld2.Size = new System.Drawing.Size(75, 23);
             this.spielerfeld2.TabIndex = 2;
-            this.spielerfeld2.Text = "anschauen";
+            this.spielerfeld2.Text = "Angreifen";
             this.spielerfeld2.UseVisualStyleBackColor = true;
+            this.spielerfeld2.Click += new System.EventHandler(this.angreifenClick);
             // 
             // label6
             // 

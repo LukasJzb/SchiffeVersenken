@@ -28,6 +28,7 @@ namespace SchiffeVersenken
         int spielerAnzahl;
         int activePlayer = 1;
         int schiffAnzahl;
+        int aktuelleRunde = 0;
         int activeSchiffanzahl = 0;
         Color[] playerFarbArray;
         TableLayoutPanel spielfeld;
@@ -274,7 +275,7 @@ namespace SchiffeVersenken
                     }
                 }
                 activeSchiffanzahl--;
-                boardChanged();
+                boardChanged(true);
             }
             
             //Schifflänge ist 1, daher gesonderter Fall
@@ -395,7 +396,7 @@ namespace SchiffeVersenken
                     }
                 }
                 else {
-                    //activeBoard[x - 1, y - 1] = 0;
+                    
                     MessageBox.Show("Das Schiff wurde falsch platziert!", "Schiff Platzieren");
                     return;
                 }
@@ -407,7 +408,7 @@ namespace SchiffeVersenken
                 }
             }
 
-            boardChanged();
+            boardChanged(true);
 
             if (activeSchiffanzahl == schiffAnzahl)
             {
@@ -434,10 +435,10 @@ namespace SchiffeVersenken
                 button.Enabled = false;
             }
 
-            boardChanged();
+            boardChanged(true);
         }
 
-        void boardChanged() {
+        void boardChanged(bool schiffeSichtbar) {
 
             // Im ganzen Board werden die Farben neu gesetzt
             for (int i = 0; i < activeBoard.GetLength(0); i++)
@@ -460,19 +461,24 @@ namespace SchiffeVersenken
                             buttonsBoard[i, j].BackColor = Color.LightBlue;
                             break;
                         case 1:
-                            buttonsBoard[i, j].BackColor = Color.SaddleBrown;
+                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = Color.SaddleBrown;
+                            else buttonsBoard[i, j].BackColor = Color.LightBlue;
                             break;
                         case 2:
-                            buttonsBoard[i, j].BackColor = Color.MediumTurquoise;
+                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = Color.MediumTurquoise;
+                            else buttonsBoard[i, j].BackColor = Color.LightBlue;
                             break;
                         case 3:
-                            buttonsBoard[i, j].BackColor = Color.Thistle;
+                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = Color.Thistle;
+                            else buttonsBoard[i, j].BackColor = Color.LightBlue;
                             break;
                         case 4:
-                            buttonsBoard[i, j].BackColor = Color.Salmon;
+                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = Color.Salmon;
+                            else buttonsBoard[i, j].BackColor = Color.LightBlue;
                             break;
                         case 5:
-                            buttonsBoard[i, j].BackColor = Color.NavajoWhite;
+                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = Color.NavajoWhite;
+                            else buttonsBoard[i, j].BackColor = Color.LightBlue;
                             break;
                         case 6:
                             buttonsBoard[i, j].BackColor = Color.Green;
@@ -521,10 +527,102 @@ namespace SchiffeVersenken
 
         void gameLoop()
         {
-            MessageBox.Show("Spiel gestartet");
+            MessageBox.Show("Spiel startet!");
+            bool finished = false;
+
+            activePlayer = 1;
+            activePlayerChanged(activePlayer);
+            boardChanged(true);
+            spielerfeld1.Enabled = false;
+            
+
+            //while (!finished) {
+            //    rundenzahlStripbar.Text = aktuelleRunde++.ToString();
+                
+
+
+            //}
+        }
+
+        async void angreifenClick(object sender, EventArgs e) {
+
+            Button btn = (Button)sender;
+            activePlayer = 0;
+
+
+
+            switch (btn.Name)
+            {
+                case "spielerfeld1":
+                    activePlayer = 1;
+                    break;
+                case "spielerfeld2":
+                    activePlayer = 2;
+                    break;
+                case "spielerfeld3":
+                    activePlayer = 3;
+                    break;
+                case "spielerfeld4":
+                    activePlayer = 4;
+                    break;
+                default:
+                    MessageBox.Show("Fehler beim Aufrufen des angegrieffen Spielfeld!", "Fehler Auswahl Spielfeld");
+                    break;
+            }
+
+            boardChanged(false);
+            activePlayerChanged(activePlayer);
+
+            foreach (Button btn1 in buttonsBoard) {
+                btn1.Enabled = true;
+            }
+
+            fertig = new TaskCompletionSource<bool>();
+
+            await fertig.Task;
+
+            int feld = activeBoard[x - 1, y - 1];
+
+            if ((activeBoard[x - 1, y - 1] >= 1) && (activeBoard[x - 1, y - 1] <= 5))
+            {
+                // HIT!!!
+                activeBoard[x - 1, y - 1] = 6;
+
+                //TODO: Treffer Sound
+
+                bool zerstört = true;
+                foreach (int platz in activeBoard) {
+                    
+                    if (platz == feld) {
+                        //Schiff nicht komplett zerstört
+                        zerstört = false;
+                    } 
+                }
+
+                if (zerstört)
+                {
+                    MessageBox.Show("Schiff ist komplett zerstört");
+                }
+                else
+                {
+                    MessageBox.Show("Schiff ist nicht komplett zerstört");
+                }
+
+            }
+            else {
+                // WASSERTREFFER!!!
+                activeBoard[x - 1, y - 1] = 7;
+
+                //TODO: Wassertreffer Sound
+            }
+
+            
+
+            boardChanged(false);
+
+
         }
     }
-    
 }
 
 
