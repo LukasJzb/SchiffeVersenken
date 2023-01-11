@@ -26,7 +26,7 @@ namespace SchiffeVersenken
             {
                 for (int j = 0; j < spielerBoard.GetLength(0); j++)
                 {
-                    spielerBoard[i, j] = 0;
+                    spielerBoard[j, i] = 0;
                 }
             }
         }
