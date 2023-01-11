@@ -37,6 +37,13 @@ namespace SchiffeVersenken
         Button[,] buttonsBoard;
         TaskCompletionSource<bool> fertig = null;
 
+        //public class Spieler 
+        //{
+        //    bool hatschiffe;
+        //    int spielerid;
+        //    Color farbe;
+        //}
+
         public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldzeile, int feldspalte, Color[] playerFarbArray, int[] schiffAnzahlArray)
         {
             InitializeComponent();
@@ -529,27 +536,22 @@ namespace SchiffeVersenken
         {
             MessageBox.Show("Spiel startet!");
             bool finished = false;
-
+            int spieler = spielerAnzahl;
             activePlayer = 1;
             activePlayerChanged(activePlayer);
             boardChanged(true);
             spielerfeld1.Enabled = false;
             
-
-            //while (!finished) {
-            //    rundenzahlStripbar.Text = aktuelleRunde++.ToString();
+            while(spieler > 1) 
+            {
                 
-
-
-            //}
+            }
         }
 
         async void angreifenClick(object sender, EventArgs e) {
 
             Button btn = (Button)sender;
             activePlayer = 0;
-
-
 
             switch (btn.Name)
             {
@@ -616,24 +618,39 @@ namespace SchiffeVersenken
                 //TODO: Wassertreffer Sound
             }
 
-            
-
             boardChanged(false);
 
+        }
 
+        private bool hatschiff() 
+        {
+            for (int i = 0; i < activeBoard.GetLength(1); i++)
+                {
+                    for (int j = 0; j < activeBoard.GetLength(0); j++)
+                    {
+                    switch (activeBoard[x,y])
+                    {
+                        case 1:
+                            return true;
+                        case 2:
+                            return true;
+                        case 3:
+                            return true;
+                        case 4:
+                            return true;
+                        case 5:
+                            return true;
+                        case 0:
+                        case 6:
+                        case 7:
+                            break;
+                        default:
+                            MessageBox.Show("Fehler beim schiffe zählen", "schiff fehler");
+                            break;
+                    }
+                    }
+                }
+            return false;
         }
     }
 }
-
-
-//string msg = "";
-//for (int i = 0; i < spieler1board.GetLength(1); i++)
-//{
-//    for (int j = 0; j < spieler1board.GetLength(0); j++)
-//    {
-//        msg += String.Format("{0}   ", spieler1board[i, j]);
-//    }
-//    msg += String.Format("\n");
-//}
-//MessageBox.Show(msg, "Table");
-//MessageBox.Show(string.Format("länge: {0} Breite: {1} ", spieler1board.GetLength(0).ToString(), spieler1board.GetLength(1).ToString(), "tabelle"));
