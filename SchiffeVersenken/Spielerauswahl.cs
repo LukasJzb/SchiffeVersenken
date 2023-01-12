@@ -177,6 +177,8 @@ namespace SchiffeVersenken
             // Startet das neue Fenster und gibt alle nötigen Einstellungen weiter
             Spielfeld spielfeldForm = new Spielfeld(spielerAnzahl, schiffAnzahl, feldHoehe, feldTiefe, farbArray, schiffAnzahlArray, modus, runden);
             this.Hide();
+            spielfeldForm.StartPosition = FormStartPosition.Manual;
+            spielfeldForm.Location = this.Location;
             spielfeldForm.Show();
         }
 

@@ -45,10 +45,9 @@ namespace SchiffeVersenken
             Spielerauswahl spielerauswahl = new Spielerauswahl(spielerAnzahl, schiffAnzahl, feldHoehe, feldTiefe);
             this.Hide();
             spielerauswahl.Closed += (s, args) => this.Show();
-
+            spielerauswahl.StartPosition = FormStartPosition.Manual;
+            spielerauswahl.Location = this.Location;
             spielerauswahl.Show();
         }
-
-
     }
 }
