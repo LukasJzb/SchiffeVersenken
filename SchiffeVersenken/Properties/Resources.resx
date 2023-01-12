@@ -5452,6 +5452,13 @@
         LjI0KQBpZDMgLAAAAElEMwMAAAAAACFUWFhYAAAAFwAAAFNvZnR3YXJlAExhdmY1OS4yNy4xMDAACw==
 </value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Ocean_Background_1_RF_RMPL_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ocean Background_1_RF_RMPL-01.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ocean_Background_1_RF_RMPL_011" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ocean Background_1_RF_RMPL-01.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Schiffversenkt" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAEAQAAABZTeXN0ZW0uSU8uTWVtb3J5U3RyZWFtCgAAAAdfYnVmZmVyB19v

@@ -136,6 +136,8 @@
     <None Include="Resources\trefferWasser.wav" />
     <None Include="Resources\gewinnerFenster.wav" />
     <None Include="Resources\Schiffversenkt.wav" />
+    <None Include="Resources\Ocean Background_1_RF_RMPL-01.svg" />
+    <None Include="Resources\Ocean Background_1_RF_RMPL-01.jpg" />
     <Content Include="Resources\sea-1547609_1280.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

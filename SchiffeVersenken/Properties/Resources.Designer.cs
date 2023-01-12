@@ -70,6 +70,26 @@ namespace SchiffeVersenken.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
+        /// </summary>
+        internal static byte[] Ocean_Background_1_RF_RMPL_01 {
+            get {
+                object obj = ResourceManager.GetObject("Ocean_Background_1_RF_RMPL_01", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ocean_Background_1_RF_RMPL_011 {
+            get {
+                object obj = ResourceManager.GetObject("Ocean_Background_1_RF_RMPL_011", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream Schiffversenkt {
