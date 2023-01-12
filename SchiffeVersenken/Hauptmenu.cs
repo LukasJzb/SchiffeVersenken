@@ -16,9 +16,7 @@ namespace SchiffeVersenken
         {
             InitializeComponent();
             feldgroesseHoehe.SelectedIndex = 5;
-            feldgroesseTiefe.SelectedIndex = 5;
-
-            
+            feldgroesseTiefe.SelectedIndex = 5;  
         }
 
         private void button2_Click(object sender, EventArgs e)

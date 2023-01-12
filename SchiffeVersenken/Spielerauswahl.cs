@@ -127,28 +127,36 @@ namespace SchiffeVersenken
             this.Close();
         }
 
+        /// <summary>
+        /// Prüft den eingegebenen Text ob Zahl ist, wenn nicht MessageBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rundenzahl_TextChanged(object sender, EventArgs e)
         {
-            string actualdata = string.Empty;
-            char[] entereddata = rundenanzahl.Text.ToCharArray();
-            foreach (char aChar in entereddata.AsEnumerable())
+            string aktuellerText = string.Empty;
+            char[] eingegebenerText = rundenanzahl.Text.ToCharArray();
+            foreach (char c in eingegebenerText.AsEnumerable())
             {
-                if (Char.IsDigit(aChar))
+                if (Char.IsDigit(c))
                 {
-                    actualdata = actualdata + aChar;
-                    // MessageBox.Show(aChar.ToString());
+                    aktuellerText = aktuellerText + c;
                 }
                 else
                 {
-                    MessageBox.Show(aChar + " is not numeric");
-                    actualdata.Replace(aChar, ' ');
-                    actualdata.Trim();
+                    MessageBox.Show(c + " ist keine Zahl!");
+                    aktuellerText.Replace(c, ' ');
+                    aktuellerText.Trim();
                 }
             }
-            rundenanzahl.Text = actualdata;
+            rundenanzahl.Text = aktuellerText;
         }
 
-        //speichert die farben und schifflängen in arrays
+        /// <summary>
+        /// Speichert die Farben und Schifflängen in Arrays
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {   
             for (int i = 0; i < spielerAnzahl; i++) {
@@ -166,14 +174,18 @@ namespace SchiffeVersenken
             else if (modi3.Checked) modus = 3;
             int runden = Int32.Parse(rundenanzahl.Text);
 
-
+            // Startet das neue Fenster und gibt alle nötigen Einstellungen weiter
             Spielfeld spielfeldForm = new Spielfeld(spielerAnzahl, schiffAnzahl, feldHoehe, feldTiefe, farbArray, schiffAnzahlArray, modus, runden);
             this.Hide();
             spielfeldForm.Show();
         }
 
       
-
+        /// <summary>
+        /// Wenn Modi Rundenanzahl ausgewählt, aktivere Label und Eingabe
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void modi3_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton rBtn = (RadioButton)sender;
