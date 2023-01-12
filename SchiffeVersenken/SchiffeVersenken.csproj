@@ -111,9 +111,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\battleship.ico" />
+    <None Include="Resources\startRakete.wav" />
     <None Include="Resources\trefferSchiff.wav" />
     <None Include="Resources\trefferWasser.wav" />
-    <None Include="Resources\startRakete.wav" />
     <None Include="Resources\gewinnerFenster.wav" />
     <None Include="Resources\Schiffversenkt.wav" />
     <Content Include="Resources\sea-1547609_1280.jpg" />
