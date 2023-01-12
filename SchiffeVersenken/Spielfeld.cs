@@ -883,10 +883,5 @@ namespace SchiffeVersenken
         {
             infoLabel.Text = "Spieler " + spielerListe + " - " + neuerText;
         }
-
-        void angreifButtonAktualisieren()
-        {
-
-        }
     }
 }
