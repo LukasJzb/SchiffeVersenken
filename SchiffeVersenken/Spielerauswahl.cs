@@ -172,6 +172,21 @@ namespace SchiffeVersenken
             spielfeldForm.Show();
         }
 
+      
 
+        private void modi3_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rBtn = (RadioButton)sender;
+            if (rBtn.Checked)
+            {
+                rundenZahlLabel.Enabled = true;
+                rundenanzahl.Enabled = true;
+            }
+            else
+            {
+                rundenZahlLabel.Enabled = false;
+                rundenanzahl.Enabled = false;
+            }
+        }
     }
 }

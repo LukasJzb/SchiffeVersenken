@@ -62,11 +62,11 @@ namespace SchiffeVersenken
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox = new System.Windows.Forms.GroupBox();
+            this.rundenZahlLabel = new System.Windows.Forms.Label();
+            this.rundenanzahl = new System.Windows.Forms.TextBox();
             this.modi3 = new System.Windows.Forms.RadioButton();
             this.modi2 = new System.Windows.Forms.RadioButton();
             this.modi1 = new System.Windows.Forms.RadioButton();
-            this.rundenanzahl = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupSpieler2.SuspendLayout();
             this.groupSpieler4.SuspendLayout();
@@ -468,7 +468,7 @@ namespace SchiffeVersenken
             // 
             // groupBox
             // 
-            this.groupBox.Controls.Add(this.label10);
+            this.groupBox.Controls.Add(this.rundenZahlLabel);
             this.groupBox.Controls.Add(this.rundenanzahl);
             this.groupBox.Controls.Add(this.modi3);
             this.groupBox.Controls.Add(this.modi2);
@@ -481,6 +481,26 @@ namespace SchiffeVersenken
             this.groupBox.TabStop = false;
             this.groupBox.Text = "Spielmodus";
             // 
+            // rundenZahlLabel
+            // 
+            this.rundenZahlLabel.AutoSize = true;
+            this.rundenZahlLabel.Enabled = false;
+            this.rundenZahlLabel.Location = new System.Drawing.Point(25, 89);
+            this.rundenZahlLabel.Name = "rundenZahlLabel";
+            this.rundenZahlLabel.Size = new System.Drawing.Size(66, 13);
+            this.rundenZahlLabel.TabIndex = 4;
+            this.rundenZahlLabel.Text = "RundenZahl";
+            // 
+            // rundenanzahl
+            // 
+            this.rundenanzahl.Enabled = false;
+            this.rundenanzahl.Location = new System.Drawing.Point(97, 86);
+            this.rundenanzahl.Name = "rundenanzahl";
+            this.rundenanzahl.Size = new System.Drawing.Size(49, 20);
+            this.rundenanzahl.TabIndex = 3;
+            this.rundenanzahl.Text = "1";
+            this.rundenanzahl.TextChanged += new System.EventHandler(this.rundenzahl_TextChanged);
+            // 
             // modi3
             // 
             this.modi3.AutoSize = true;
@@ -490,6 +510,7 @@ namespace SchiffeVersenken
             this.modi3.TabIndex = 2;
             this.modi3.Text = "Nach Anzahl Runden";
             this.modi3.UseVisualStyleBackColor = true;
+            this.modi3.CheckedChanged += new System.EventHandler(this.modi3_CheckedChanged);
             // 
             // modi2
             // 
@@ -512,24 +533,6 @@ namespace SchiffeVersenken
             this.modi1.TabStop = true;
             this.modi1.Text = "Normal";
             this.modi1.UseVisualStyleBackColor = true;
-            // 
-            // rundenanzahl
-            // 
-            this.rundenanzahl.Location = new System.Drawing.Point(78, 86);
-            this.rundenanzahl.Name = "rundenanzahl";
-            this.rundenanzahl.Size = new System.Drawing.Size(49, 20);
-            this.rundenanzahl.TabIndex = 3;
-            this.rundenanzahl.Text = "1";
-            this.rundenanzahl.TextChanged += new System.EventHandler(this.rundenzahl_TextChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 86);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(66, 13);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "RundenZahl";
             // 
             // Spielerauswahl
             // 
@@ -604,7 +607,7 @@ namespace SchiffeVersenken
         private System.Windows.Forms.RadioButton modi3;
         private System.Windows.Forms.RadioButton modi2;
         private System.Windows.Forms.RadioButton modi1;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label rundenZahlLabel;
         private System.Windows.Forms.TextBox rundenanzahl;
     }
 }
