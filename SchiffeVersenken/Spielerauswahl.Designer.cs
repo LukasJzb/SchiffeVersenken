@@ -67,6 +67,11 @@ namespace SchiffeVersenken
             this.modi3 = new System.Windows.Forms.RadioButton();
             this.modi2 = new System.Windows.Forms.RadioButton();
             this.modi1 = new System.Windows.Forms.RadioButton();
+            this.schifffarbe1 = new System.Windows.Forms.Button();
+            this.schifffarbe2 = new System.Windows.Forms.Button();
+            this.schifffarbe3 = new System.Windows.Forms.Button();
+            this.schifffarbe4 = new System.Windows.Forms.Button();
+            this.schifffarbe5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupSpieler2.SuspendLayout();
             this.groupSpieler4.SuspendLayout();
@@ -246,6 +251,7 @@ namespace SchiffeVersenken
             // 
             // groupSchiff1
             // 
+            this.groupSchiff1.Controls.Add(this.schifffarbe1);
             this.groupSchiff1.Controls.Add(this.schiff1);
             this.groupSchiff1.Controls.Add(this.label5);
             this.groupSchiff1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -283,6 +289,7 @@ namespace SchiffeVersenken
             // 
             // groupSchiff2
             // 
+            this.groupSchiff2.Controls.Add(this.schifffarbe2);
             this.groupSchiff2.Controls.Add(this.schiff2);
             this.groupSchiff2.Controls.Add(this.label6);
             this.groupSchiff2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -320,6 +327,7 @@ namespace SchiffeVersenken
             // 
             // groupSchiff3
             // 
+            this.groupSchiff3.Controls.Add(this.schifffarbe3);
             this.groupSchiff3.Controls.Add(this.schiff3);
             this.groupSchiff3.Controls.Add(this.label7);
             this.groupSchiff3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -357,6 +365,7 @@ namespace SchiffeVersenken
             // 
             // groupSchiff4
             // 
+            this.groupSchiff4.Controls.Add(this.schifffarbe4);
             this.groupSchiff4.Controls.Add(this.schiff4);
             this.groupSchiff4.Controls.Add(this.label8);
             this.groupSchiff4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -394,6 +403,7 @@ namespace SchiffeVersenken
             // 
             // groupSchiff5
             // 
+            this.groupSchiff5.Controls.Add(this.schifffarbe5);
             this.groupSchiff5.Controls.Add(this.schiff5);
             this.groupSchiff5.Controls.Add(this.label9);
             this.groupSchiff5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -534,6 +544,61 @@ namespace SchiffeVersenken
             this.modi1.Text = "Normal";
             this.modi1.UseVisualStyleBackColor = true;
             // 
+            // schifffarbe1
+            // 
+            this.schifffarbe1.BackColor = System.Drawing.Color.SaddleBrown;
+            this.schifffarbe1.Enabled = false;
+            this.schifffarbe1.Location = new System.Drawing.Point(6, 64);
+            this.schifffarbe1.Name = "schifffarbe1";
+            this.schifffarbe1.Size = new System.Drawing.Size(75, 23);
+            this.schifffarbe1.TabIndex = 2;
+            this.schifffarbe1.UseVisualStyleBackColor = false;
+            this.schifffarbe1.Click += new System.EventHandler(this.farbeWechselnDialog);
+            // 
+            // schifffarbe2
+            // 
+            this.schifffarbe2.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.schifffarbe2.Enabled = false;
+            this.schifffarbe2.Location = new System.Drawing.Point(6, 64);
+            this.schifffarbe2.Name = "schifffarbe2";
+            this.schifffarbe2.Size = new System.Drawing.Size(75, 23);
+            this.schifffarbe2.TabIndex = 4;
+            this.schifffarbe2.UseVisualStyleBackColor = false;
+            this.schifffarbe2.Click += new System.EventHandler(this.farbeWechselnDialog);
+            // 
+            // schifffarbe3
+            // 
+            this.schifffarbe3.BackColor = System.Drawing.Color.Thistle;
+            this.schifffarbe3.Enabled = false;
+            this.schifffarbe3.Location = new System.Drawing.Point(6, 64);
+            this.schifffarbe3.Name = "schifffarbe3";
+            this.schifffarbe3.Size = new System.Drawing.Size(75, 23);
+            this.schifffarbe3.TabIndex = 4;
+            this.schifffarbe3.UseVisualStyleBackColor = false;
+            this.schifffarbe3.Click += new System.EventHandler(this.farbeWechselnDialog);
+            // 
+            // schifffarbe4
+            // 
+            this.schifffarbe4.BackColor = System.Drawing.Color.Salmon;
+            this.schifffarbe4.Enabled = false;
+            this.schifffarbe4.Location = new System.Drawing.Point(6, 64);
+            this.schifffarbe4.Name = "schifffarbe4";
+            this.schifffarbe4.Size = new System.Drawing.Size(75, 23);
+            this.schifffarbe4.TabIndex = 4;
+            this.schifffarbe4.UseVisualStyleBackColor = false;
+            this.schifffarbe4.Click += new System.EventHandler(this.farbeWechselnDialog);
+            // 
+            // schifffarbe5
+            // 
+            this.schifffarbe5.BackColor = System.Drawing.Color.NavajoWhite;
+            this.schifffarbe5.Enabled = false;
+            this.schifffarbe5.Location = new System.Drawing.Point(6, 64);
+            this.schifffarbe5.Name = "schifffarbe5";
+            this.schifffarbe5.Size = new System.Drawing.Size(75, 23);
+            this.schifffarbe5.TabIndex = 4;
+            this.schifffarbe5.UseVisualStyleBackColor = false;
+            this.schifffarbe5.Click += new System.EventHandler(this.farbeWechselnDialog);
+            // 
             // Spielerauswahl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -610,5 +675,10 @@ namespace SchiffeVersenken
         private System.Windows.Forms.RadioButton modi1;
         private System.Windows.Forms.Label rundenZahlLabel;
         private System.Windows.Forms.TextBox rundenanzahl;
+        private System.Windows.Forms.Button schifffarbe1;
+        private System.Windows.Forms.Button schifffarbe2;
+        private System.Windows.Forms.Button schifffarbe3;
+        private System.Windows.Forms.Button schifffarbe4;
+        private System.Windows.Forms.Button schifffarbe5;
     }
 }

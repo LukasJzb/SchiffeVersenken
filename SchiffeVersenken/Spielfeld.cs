@@ -36,7 +36,7 @@ namespace SchiffeVersenken
         TaskCompletionSource<bool> fertigTask = null;
         TaskCompletionSource<bool> angriffTask = null;
 
-        public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldzeile, int feldspalte, Color[] playerFarbArray, int[] schiffAnzahlArray, int modus, int runden)
+        public Spielfeld(int spielerAnzahl, int schiffAnzahl, int feldzeile, int feldspalte, Color[] playerFarbArray, int[] schiffAnzahlArray, int modus, int runden, Color[] schifffarbarray)
         {
             InitializeComponent();
             this.schiffAnzahl = schiffAnzahl;
@@ -172,28 +172,32 @@ namespace SchiffeVersenken
                 case 5:
                     groupBoxSchiff5.Enabled = true;
                     schifflaenge5.Text = schiffAnzahlArray[4].ToString();
+                    groupBoxSchiff5.BackColor = schifffarbarray[4];
                     goto case 4;
                 case 4:
                     groupBoxSchiff4.Enabled = true;
                     schifflaenge4.Text = schiffAnzahlArray[3].ToString();
+                    groupBoxSchiff4.BackColor = schifffarbarray[3];
                     goto case 3;
                 case 3:
                     groupBoxSchiff3.Enabled = true;
                     schifflaenge3.Text = schiffAnzahlArray[2].ToString();
+                    groupBoxSchiff3.BackColor = schifffarbarray[2];
                     goto case 2;
                 case 2:
                     groupBoxSchiff2.Enabled = true;
                     schifflaenge2.Text = schiffAnzahlArray[1].ToString();
+                    groupBoxSchiff2.BackColor = schifffarbarray[1];
                     goto case 1;
                 case 1:
                     groupBoxSchiff1.Enabled = true;
                     schifflaenge1.Text = schiffAnzahlArray[0].ToString();
+                    groupBoxSchiff1.BackColor = schifffarbarray[0];
                     break;
                 default:
                     MessageBox.Show("Bei der Anzahl der Schiffe gab es einen Fehler!", "Fehler Schiffanzahl");
                     break;
             }
-
             //activeBoard = spielerArray[aktiverSpieler].getSpielerBoard();
             activePlayerChanged(aktiverSpieler);
         }

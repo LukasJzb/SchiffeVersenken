@@ -14,6 +14,8 @@ namespace SchiffeVersenken
         int feldTiefe;
         Button[] farbButtons = new Button[4];
         Color[] farbArray = new Color[4];
+        Button[] schifffarbbuttons = new Button[5];
+        Color[] schifffarbarray = new Color[5];
         ComboBox[] schiffComboArray = new ComboBox[5];
         int[] schiffAnzahlArray = new int[5];
 
@@ -57,23 +59,33 @@ namespace SchiffeVersenken
             {
                 case 5:
                     groupSchiff5.Enabled = true;
+                    schifffarbe5.Enabled = true;
                     schiffComboArray[4] = schiff5;
+                    schifffarbbuttons[4] = schifffarbe5;
                     goto case 4;
                 case 4:
                     groupSchiff4.Enabled = true;
+                    schifffarbe4.Enabled = true;
                     schiffComboArray[3] = schiff4;
+                    schifffarbbuttons[3] = schifffarbe4;
                     goto case 3;
                 case 3:
                     groupSchiff3.Enabled = true;
+                    schifffarbe3.Enabled = true;
                     schiffComboArray[2] = schiff3;
+                    schifffarbbuttons[2] = schifffarbe3;
                     goto case 2;
                 case 2:
                     groupSchiff2.Enabled = true;
+                    schifffarbe2.Enabled = true;
                     schiffComboArray[1] = schiff2;
+                    schifffarbbuttons[1] = schifffarbe2;
                     goto case 1;
                 case 1:
                     groupSchiff1.Enabled = true;
+                    schifffarbe1.Enabled = true;
                     schiffComboArray[0] = schiff1;
+                    schifffarbbuttons[0] = schifffarbe1;
                     break;
                 default:
                     MessageBox.Show("Bei der Anzahl der Schiffe ist ein Fehler aufgetretten!", "Fehler Schiffanzahl");
@@ -114,7 +126,7 @@ namespace SchiffeVersenken
         //verhindert doppelte farben
         private Boolean checkiftaken(Color color)
         {
-            return (color == spieler1farbe.BackColor || color == spieler2farbe.BackColor || color == spieler3farbe.BackColor || color == spieler4farbe.BackColor);
+            return (color == spieler1farbe.BackColor || color == spieler2farbe.BackColor || color == spieler3farbe.BackColor || color == spieler4farbe.BackColor || color == schifffarbe1.BackColor || color == schifffarbe2.BackColor || color == schifffarbe3.BackColor || color == schifffarbe4.BackColor || color == schifffarbe5.BackColor);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -162,6 +174,7 @@ namespace SchiffeVersenken
             for (int i = 0; i < schiffAnzahl; i++)
             {
                 schiffAnzahlArray[i] = Int32.Parse(schiffComboArray[i].SelectedItem.ToString());
+                schifffarbarray[i] = schifffarbbuttons[i].BackColor;
             }
 
             int modus = 0;
@@ -171,7 +184,7 @@ namespace SchiffeVersenken
             int runden = Int32.Parse(rundenanzahl.Text);
 
             // Startet das neue Fenster und gibt alle nötigen Einstellungen weiter
-            Spielfeld spielfeldForm = new Spielfeld(spielerAnzahl, schiffAnzahl, feldHoehe, feldTiefe, farbArray, schiffAnzahlArray, modus, runden);
+            Spielfeld spielfeldForm = new Spielfeld(spielerAnzahl, schiffAnzahl, feldHoehe, feldTiefe, farbArray, schiffAnzahlArray, modus, runden, schifffarbarray);
             this.Hide();
             spielfeldForm.StartPosition = FormStartPosition.Manual;
             spielfeldForm.Location = this.Location;
