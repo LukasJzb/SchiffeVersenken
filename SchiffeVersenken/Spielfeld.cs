@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Media;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Media;
 
 
 namespace SchiffeVersenken
@@ -20,9 +16,8 @@ namespace SchiffeVersenken
         int schiffAnzahl;
         int aktuelleRunde = 0;
         int aktiveSchiffanzahl = 0;
-        int runden= 0;
+        int runden = 0;
         int modus = 0;
-        Color[] spielerFarbArray;
         TableLayoutPanel spielfeld;
         Spieler[] spielerArray;
         int spielerImSpiel = 0;
@@ -30,12 +25,12 @@ namespace SchiffeVersenken
         Button[] angriffButtons;
 
         //Sound-Import
-        SoundPlayer attacke = new System.Media.SoundPlayer(SchiffeVersenken.Properties.Resources.startRakete);
-        SoundPlayer treffer = new System.Media.SoundPlayer(SchiffeVersenken.Properties.Resources.trefferSchiff);
-        SoundPlayer daneben = new System.Media.SoundPlayer(SchiffeVersenken.Properties.Resources.trefferWasser);
-        SoundPlayer zerstört = new System.Media.SoundPlayer(SchiffeVersenken.Properties.Resources.Schiffversenkt);
-        SoundPlayer sieg = new System.Media.SoundPlayer(SchiffeVersenken.Properties.Resources.gewinnerFenster);
-   
+        SoundPlayer attacke = new SoundPlayer(Properties.Resources.startRakete);
+        SoundPlayer treffer = new SoundPlayer(Properties.Resources.trefferSchiff);
+        SoundPlayer daneben = new SoundPlayer(Properties.Resources.trefferWasser);
+        SoundPlayer zerstört = new SoundPlayer(Properties.Resources.Schiffversenkt);
+        SoundPlayer sieg = new SoundPlayer(Properties.Resources.gewinnerFenster);
+
         Button[,] buttonsBoard;
         TaskCompletionSource<bool> fertigTask = null;
         TaskCompletionSource<bool> angriffTask = null;
@@ -45,7 +40,6 @@ namespace SchiffeVersenken
             InitializeComponent();
             this.schiffAnzahl = schiffAnzahl;
             this.spielerAnzahl = spielerAnzahl;
-            this.spielerFarbArray = playerFarbArray;
             this.spielerArray = new Spieler[spielerAnzahl];
             this.modus = modus;
             this.runden = runden;
@@ -84,7 +78,8 @@ namespace SchiffeVersenken
             //Beschreibung der Achsen
             char letter = 'A';
             spielfeld.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30));
-            for (int i = 1; i < spielfeld.ColumnCount; i++) {
+            for (int i = 1; i < spielfeld.ColumnCount; i++)
+            {
                 Label label = new Label();
                 label.Text = letter++.ToString();
                 label.TextAlign = ContentAlignment.MiddleCenter;
@@ -112,7 +107,7 @@ namespace SchiffeVersenken
             {
                 spielfeld.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, horizontalProzent));
             }
-            
+
 
             //Buttons werden initalisiert und benannt
             //Änderung der namen und inhalt der spielfeld Buttons
@@ -130,7 +125,7 @@ namespace SchiffeVersenken
                     buttonsBoard[j - 1, i - 1] = btn1;
                     btn1.Enabled = false;
                     btn1.Click += btn_Clicked;
-                    btn1.BackColor = Color.LightBlue;   
+                    btn1.BackColor = Color.LightBlue;
                 }
                 letter++;
             }
@@ -194,7 +189,7 @@ namespace SchiffeVersenken
             //activeBoard = spielerArray[aktiverSpieler].getSpielerBoard();
             activePlayerChanged(aktiverSpieler);
         }
-       
+
         /// <summary>
         /// Eventhandler der generierten Buttons
         /// </summary>
@@ -208,7 +203,7 @@ namespace SchiffeVersenken
                 x = ((position[0] - '0'));
                 y = ((position[1] - '@'));
             }
-            else 
+            else
             {
                 x = 10;
                 y = ((position[2] - '@'));
@@ -236,27 +231,32 @@ namespace SchiffeVersenken
 
             Button btn = (Button)sender;
             string s = btn.Name;
-            
-            
+
+
             int length = 0;
             int schiffNr = 0;
-            if (s == "placeschiff1") {
+            if (s == "placeschiff1")
+            {
                 length = Int32.Parse(schifflaenge1.Text);
                 schiffNr = 1;
             }
-            else if (s == "placeschiff2") {
+            else if (s == "placeschiff2")
+            {
                 length = Int32.Parse(schifflaenge2.Text);
                 schiffNr = 2;
             }
-            else if (s == "placeschiff3") {
+            else if (s == "placeschiff3")
+            {
                 length = Int32.Parse(schifflaenge3.Text);
                 schiffNr = 3;
             }
-            else if (s == "placeschiff4") {
+            else if (s == "placeschiff4")
+            {
                 length = Int32.Parse(schifflaenge4.Text);
                 schiffNr = 4;
             }
-            else if (s == "placeschiff5") {
+            else if (s == "placeschiff5")
+            {
                 length = Int32.Parse(schifflaenge5.Text);
                 schiffNr = 5;
             }
@@ -268,14 +268,14 @@ namespace SchiffeVersenken
                 {
                     for (int j = 0; j < spielerArray[aktiverSpieler].getSpielerBoard().GetLength(1); j++)
                     {
-                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(i,j) == schiffNr) spielerArray[aktiverSpieler].setSpielerBoardValue(i,j,0);
+                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(i, j) == schiffNr) spielerArray[aktiverSpieler].setSpielerBoardValue(i, j, 0);
                     }
                 }
                 aktiveSchiffanzahl--;
                 refreshButtons(true);
                 printBoard(true);
             }
-            
+
             //Schifflänge ist 1, daher gesonderter Fall
             if (length == 1)
             {
@@ -284,7 +284,8 @@ namespace SchiffeVersenken
                 infoLabeländern("Wähle eine Position für Schiff " + schiffNr + " aus!");
 
                 await fertigTask.Task;
-                if (spielerArray[aktiverSpieler].getSpielerBoardValue(x - 1, y - 1) == 0) {
+                if (spielerArray[aktiverSpieler].getSpielerBoardValue(x - 1, y - 1) == 0)
+                {
                     spielerArray[aktiverSpieler].setSpielerBoardValue(x - 1, y - 1, schiffNr);
                     infoLabeländern("Schiff erfolgreich platziert");
                     btn.Text = "neu platzieren";
@@ -304,7 +305,7 @@ namespace SchiffeVersenken
                 fertigTask = new TaskCompletionSource<bool>();
 
                 infoLabeländern("Wähle die erste Position für Schiff " + schiffNr + " aus!");
-                
+
                 await fertigTask.Task;
 
                 startx = x;
@@ -329,7 +330,7 @@ namespace SchiffeVersenken
                         {
                             spielerArray[aktiverSpieler].setSpielerBoardValue(i - 1, y - 1, schiffNr);
                         }
-                    } 
+                    }
                     else
                     {
                         MessageBox.Show("Hier ist schon ein Schiff!\nEs kann hier nicht platziert werden!", "Schiff vorhanden");
@@ -406,8 +407,9 @@ namespace SchiffeVersenken
                         infoLabeländern("Wähle eine Schiff zum Platzieren");
                     }
                 }
-                else {
-                    
+                else
+                {
+
                     MessageBox.Show("Das Schiff wurde falsch platziert!", "Schiff Platzieren");
                     btn.Text = "platzieren";
                     infoLabeländern("Wähle eine Schiff zum Platzieren");
@@ -426,7 +428,7 @@ namespace SchiffeVersenken
 
             if (aktiveSchiffanzahl == schiffAnzahl)
             {
-                if (aktiverSpieler == spielerAnzahl-1)
+                if (aktiverSpieler == spielerAnzahl - 1)
                 {
                     DialogResult result = MessageBox.Show("Spiel starten?", "Fertig!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     if (result == DialogResult.OK)
@@ -450,7 +452,8 @@ namespace SchiffeVersenken
             printBoard(true);
         }
 
-        void printBoard(bool schiffeSichtbar) {
+        void printBoard(bool schiffeSichtbar)
+        {
 
             // Im ganzen Board werden die Farben neu gesetzt
             for (int i = 0; i < spielerArray[aktiverSpieler].getSpielerBoard().GetLength(0); i++)
@@ -504,7 +507,8 @@ namespace SchiffeVersenken
 
         }
 
-        void activePlayerChanged(int playerNr) {
+        void activePlayerChanged(int playerNr)
+        {
             placeschiff1.Text = "platzieren";
             placeschiff2.Text = "platzieren";
             placeschiff3.Text = "platzieren";
@@ -517,7 +521,8 @@ namespace SchiffeVersenken
             spielfeld.BackColor = spielerArray[aktiverSpieler].getFarbe();
         }
 
-        async void angreifenClick(object sender, EventArgs e) {
+        async void angreifenClick(object sender, EventArgs e)
+        {
 
             Button btn = (Button)sender;
             int lastPlayer = aktiverSpieler;
@@ -561,7 +566,7 @@ namespace SchiffeVersenken
                 // HIT!!!
                 treffer.Play();
                 spielerArray[aktiverSpieler].setSpielerBoardValue(x - 1, y - 1, 6);
-                spielerArray[lastPlayer].addScore(6-feld);
+                spielerArray[lastPlayer].addScore(6 - feld);
                 refreshscore();
                 printBoard(false);
 
@@ -575,11 +580,12 @@ namespace SchiffeVersenken
 
                 if (!spielerArray[aktiverSpieler].hatSchiffe())
                 {
-                    MessageBox.Show("Alle Schiffe wurden zerstört!","Spieler: " + (aktiverSpieler+1) + " ausgeschieden!");
+                    MessageBox.Show("Alle Schiffe wurden zerstört!", "Spieler: " + (aktiverSpieler + 1) + " ausgeschieden!");
                     spielerImSpiel--;
                 }
             }
-            else {
+            else
+            {
                 // WASSERTREFFER!!!
                 spielerArray[aktiverSpieler].setSpielerBoardValue(x - 1, y - 1, 7);
                 spielerArray[lastPlayer].addScore(0);
@@ -589,7 +595,7 @@ namespace SchiffeVersenken
 
                 daneben.Play();
             }
-            
+
             deaktivereAlleButtons();
             refreshscore();
             aktiverSpieler = lastPlayer;
@@ -607,7 +613,7 @@ namespace SchiffeVersenken
                     {
                         if (spielerBoard[i, j] == 0) buttonsBoard[i, j].Enabled = true;
                         else buttonsBoard[i, j].Enabled = false;
-                    } 
+                    }
                     else
                     {
                         if (spielerBoard[i, j] > 5) buttonsBoard[i, j].Enabled = false;
@@ -621,7 +627,7 @@ namespace SchiffeVersenken
         {
             foreach (Button btn in buttonsBoard) btn.Enabled = false;
         }
-        
+
 
         void auswahlButtonsSetzen(int x)
         {
@@ -637,7 +643,7 @@ namespace SchiffeVersenken
                     angriffButtons[i].Enabled = true;
                 }
             }
-            
+
 
             //switch (i)
             //{
@@ -657,14 +663,14 @@ namespace SchiffeVersenken
         }
         void refreshscore()
         {
-            
+
             Score1.Text = spielerArray[0].getScore().ToString();
             Score2.Text = spielerArray[1].getScore().ToString();
             if (spielerAnzahl >= 3)
             { Score3.Text = spielerArray[2].getScore().ToString(); }
             if (spielerAnzahl == 4)
             { Score4.Text = spielerArray[3].getScore().ToString(); }
-            
+
         }
         async void gameLoop()
         {
@@ -683,7 +689,7 @@ namespace SchiffeVersenken
             List<int> gewinner = new List<int>();
 
             spielerfeld1.Enabled = false;
-            switch (modus) 
+            switch (modus)
             {
                 case 1:
                     goto Normal;
@@ -695,8 +701,8 @@ namespace SchiffeVersenken
                     MessageBox.Show("Es gab Probleme beim auswählen des modus", "Fehler modus");
                     break;
             }
-            //normal mode
-            Normal:
+        //normal mode
+        Normal:
             while (true)
             {
                 MessageBox.Show("Spieler " + (aktiverSpieler + 1) + " ist an der Reihe!", "Nächster Spieler");
@@ -711,17 +717,19 @@ namespace SchiffeVersenken
 
                 letzterSpieler = aktiverSpieler;
 
-                
 
-                do {
+
+                do
+                {
                     aktiverSpieler++;
-                    if (aktiverSpieler > spielerAnzahl - 1) {
+                    if (aktiverSpieler > spielerAnzahl - 1)
+                    {
                         aktiverSpieler = 0;
-                        rundenzahlStripbar.Text = (Int32.Parse(rundenzahlStripbar.Text)+1).ToString();
+                        rundenzahlStripbar.Text = (Int32.Parse(rundenzahlStripbar.Text) + 1).ToString();
                     }
                 } while (spielerArray[aktiverSpieler].istEliminiert());
 
-                
+
 
                 if (letzterSpieler == aktiverSpieler) break;
             }
@@ -747,7 +755,7 @@ namespace SchiffeVersenken
 
 
 
-                
+
 
                 do
                 {
@@ -759,16 +767,16 @@ namespace SchiffeVersenken
                     }
                 } while (spielerArray[aktiverSpieler].istEliminiert());
 
-                
+
 
             }
             refreshscore();
             gewinnerscore = spielerArray[0].getScore();
             gewinnerspieler = 0;
 
-            for(int i = 0; i < spielerAnzahl;i++)
+            for (int i = 0; i < spielerAnzahl; i++)
             {
-                if(gewinnerscore < spielerArray[i].getScore()) 
+                if (gewinnerscore < spielerArray[i].getScore())
                 {
                     gewinnerspieler = i;
                     gewinnerscore = spielerArray[i].getScore();
@@ -782,18 +790,20 @@ namespace SchiffeVersenken
                 }
             }
             aktiverSpieler = gewinnerspieler;
-           
-            if (gewinner.Count > 1) 
+
+            if (gewinner.Count > 1)
             {
                 string ergebnis = string.Join(" , ", gewinner);
                 sieg.Play();
                 infoLabeländern("Ihr habt gewonnen!", ergebnis);
                 MessageBox.Show("Spieler " + ergebnis + " haben gewonnen!", "Spiel beendet!");
             }
-            else {
+            else
+            {
                 sieg.Play();
                 infoLabeländern("Du hast gewonnen!");
-                MessageBox.Show("Spieler " + (aktiverSpieler + 1) + " hat gewonnen!", "Spiel beendet!"); }
+                MessageBox.Show("Spieler " + (aktiverSpieler + 1) + " hat gewonnen!", "Spiel beendet!");
+            }
             Environment.Exit(0);
 
         Rundenaus:
@@ -850,7 +860,8 @@ namespace SchiffeVersenken
                 infoLabeländern("Ihr habt gewonnen!", ergebnis);
                 MessageBox.Show("Spieler " + ergebnis + " haben gewonnen!", "Spiel beendet!");
             }
-            else {
+            else
+            {
                 sieg.Play();
                 infoLabeländern("Du hast gewonnen!");
                 MessageBox.Show("Spieler " + (aktiverSpieler + 1) + " hat gewonnen!", "Spiel beendet!");
@@ -858,12 +869,14 @@ namespace SchiffeVersenken
             Environment.Exit(0);
         }
 
-        void infoLabeländern(string neuerText) {
+        void infoLabeländern(string neuerText)
+        {
             infoLabel.Text = "Spieler " + (aktiverSpieler + 1) + " - " + neuerText;
         }
 
-        void infoLabeländern(string neuerText, int aktuellerSpieler) {
-            infoLabel.Text = "Spieler " + (aktuellerSpieler+1) + " - " + neuerText;
+        void infoLabeländern(string neuerText, int aktuellerSpieler)
+        {
+            infoLabel.Text = "Spieler " + (aktuellerSpieler + 1) + " - " + neuerText;
         }
 
         void infoLabeländern(string neuerText, string spielerListe)
@@ -871,8 +884,9 @@ namespace SchiffeVersenken
             infoLabel.Text = "Spieler " + spielerListe + " - " + neuerText;
         }
 
-        void angreifButtonAktualisieren() { 
-            
+        void angreifButtonAktualisieren()
+        {
+
         }
     }
 }

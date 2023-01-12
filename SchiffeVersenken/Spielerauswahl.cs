@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SchiffeVersenken
@@ -21,7 +17,6 @@ namespace SchiffeVersenken
         ComboBox[] schiffComboArray = new ComboBox[5];
         int[] schiffAnzahlArray = new int[5];
 
-
         public Spielerauswahl(int spielerAnzahl, int schiffAnzahl, int feldHoehe, int feldTiefe)
         {
             InitializeComponent();
@@ -36,10 +31,9 @@ namespace SchiffeVersenken
             this.feldHoehe = feldHoehe;
             this.feldTiefe = feldTiefe;
 
-
-
             // Spieler Auswahl Boxen ausgrauen
-            switch (spielerAnzahl) {
+            switch (spielerAnzahl)
+            {
                 case 4:
                     groupSpieler4.Enabled = true;
                     farbButtons[3] = spieler4farbe;
@@ -53,7 +47,7 @@ namespace SchiffeVersenken
                     farbButtons[0] = spieler1farbe;
                     break;
                 default:
-                    MessageBox.Show("Bei der Anzahl der Spieler gab es einen Fehler!","Fehler Spieleranzahl");
+                    MessageBox.Show("Bei der Anzahl der Spieler gab es einen Fehler!", "Fehler Spieleranzahl");
                     break;
             }
 
@@ -118,13 +112,14 @@ namespace SchiffeVersenken
             }
         }
         //verhindert doppelte farben
-        private Boolean checkiftaken(Color color) {
+        private Boolean checkiftaken(Color color)
+        {
             return (color == spieler1farbe.BackColor || color == spieler2farbe.BackColor || color == spieler3farbe.BackColor || color == spieler4farbe.BackColor);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         /// <summary>
@@ -158,8 +153,9 @@ namespace SchiffeVersenken
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
-        {   
-            for (int i = 0; i < spielerAnzahl; i++) {
+        {
+            for (int i = 0; i < spielerAnzahl; i++)
+            {
                 farbArray[i] = farbButtons[i].BackColor;
             }
 
@@ -182,7 +178,7 @@ namespace SchiffeVersenken
             spielfeldForm.Show();
         }
 
-      
+
         /// <summary>
         /// Wenn Modi Rundenanzahl ausgewählt, aktivere Label und Eingabe
         /// </summary>

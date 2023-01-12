@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace SchiffeVersenken
 {
@@ -98,7 +93,8 @@ namespace SchiffeVersenken
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="value"></param>
-        public void setSpielerBoardValue(int x, int y, int value) {
+        public void setSpielerBoardValue(int x, int y, int value)
+        {
             spielerBoard[x, y] = value;
         }
 
@@ -107,7 +103,8 @@ namespace SchiffeVersenken
         /// </summary>
         /// <param name="schiffNr"></param>
         /// <returns>bool schiffVorhanden</returns>
-        public bool hatSchiffNr(int schiffNr) {
+        public bool hatSchiffNr(int schiffNr)
+        {
             foreach (int feld in spielerBoard)
             {
                 if (feld == schiffNr) return true;
@@ -119,8 +116,10 @@ namespace SchiffeVersenken
         /// Funktion um zu testen ob Schiffe vorhanden sind.
         /// </summary>
         /// <returns>bool minEinSchiffVorhanden</returns>
-        public bool hatSchiffe() {
-            foreach (int feld in spielerBoard) {
+        public bool hatSchiffe()
+        {
+            foreach (int feld in spielerBoard)
+            {
                 if ((feld >= 1) && (feld <= 5)) return true;
             }
             eliminiert = true;
