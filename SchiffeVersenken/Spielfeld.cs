@@ -72,8 +72,10 @@ namespace SchiffeVersenken
             spielfeld.RowCount = feldzeile + 1;
             spielfeld.ColumnCount = feldspalte + 1;
             spielfeld.Dock = DockStyle.Fill;
+            spielfeld.Font = new Font(this.Font, FontStyle.Bold);
             spielfeld.RowStyles.Clear();
             spielfeld.ColumnStyles.Clear();
+            
             this.mainGrid.Controls.Add(spielfeld, 0, 0);
 
             float horizontalProzent = 100 / feldspalte;
@@ -85,6 +87,7 @@ namespace SchiffeVersenken
             for (int i = 1; i < spielfeld.ColumnCount; i++)
             {
                 Label label = new Label();
+                
                 label.Text = letter++.ToString();
                 label.Dock = DockStyle.Fill;
                 label.TextAlign = ContentAlignment.MiddleCenter;
@@ -278,6 +281,7 @@ namespace SchiffeVersenken
                     }
                 }
                 aktiveSchiffanzahl--;
+                btn.Text = "platzieren";
                 refreshButtons(true);
                 printBoard(true);
             }
@@ -314,126 +318,110 @@ namespace SchiffeVersenken
 
                 await fertigTask.Task;
 
-                if ((x + (length - 1) < feldzeile) ? (buttonsBoard[x + (length - 1), y].Enabled) : false) buttonsBoard[x + (length - 1), y].BackColor = Color.Black;
-                if ((x - (length - 1) >= 0)         ? (buttonsBoard[x - (length - 1), y].Enabled) : false) buttonsBoard[x - (length - 1), y].BackColor = Color.Black;
+                deaktivereAlleButtons();
 
-                if ((y + (length - 1) < feldspalte) ? (buttonsBoard[x, y + (length - 1)].Enabled) : false) buttonsBoard[x, y + (length - 1)].BackColor = Color.Black;
-                if ((y - (length - 1) >= 0)          ? (buttonsBoard[x, y - (length - 1)].Enabled) : false) buttonsBoard[x, y - (length - 1)].BackColor = Color.Black;
-                 
+                //Fall nach unten
+                if (x + (length - 1) < feldzeile)
+                {
+                    bool süden = true;
+                    for (int i = x; i <= x + (length - 1); i++)
+                    {
+                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(i, y) > 0) süden = false;
+                    }
+                    if (süden)
+                    {
+                        buttonsBoard[x + (length - 1), y].Enabled = true;
+                        buttonsBoard[x + (length - 1), y].BackColor = Color.Black;
+                    }
+                }
+
+                //Fall nach oben 
+                if (x - (length - 1) >= 0) {
+
+                    bool norden = true;
+                    for (int i = x; i >= x - (length - 1); i--)
+                    {
+                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(i, y) > 0) norden = false;
+                    }
+                    if (norden)
+                    {
+                        buttonsBoard[x - (length - 1), y].BackColor = Color.Black;
+                        buttonsBoard[x - (length - 1), y].Enabled = true;
+                    }
+                }
+
+                //Fall nach  
+                if (y + (length - 1) < feldspalte)
+                {
+                    bool osten = true;
+                    for (int i = y; i <= y + (length-1); i++)
+                    {
+                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(x, i) > 0) osten = false;
+                    }
+                    if (osten)
+                    {
+                        buttonsBoard[x, y + (length - 1)].BackColor = Color.Black;
+                        buttonsBoard[x, y + (length - 1)].Enabled = true;
+                    }
+                }
+
+                //Fall nach 
+                if (y - (length - 1) >= 0)
+                {
+                    bool westen = true;
+                    for (int i = y; i >= y - (length-1) ; i--)
+                    {
+                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(x, i) > 0) westen = false;
+                    }
+                    if (westen)
+                    {
+                        buttonsBoard[x, y - (length - 1)].BackColor = Color.Black;
+                        buttonsBoard[x, y - (length - 1)].Enabled = true;
+                    }
+                }
+                    
                 startx = x;
                 starty = y;
                 fertigTask = new TaskCompletionSource<bool>();
                 infoLabeländern("Wähle die End-Position für Schiff " + schiffNr + " aus!");
                 await fertigTask.Task;
 
-                bool clear = true;
-
-                //Fall: Schiff nach oben setzen
-                if ((x + (length - 1) == startx) && (starty == y))
+                if (startx > x)
                 {
                     for (int i = startx; i >= x; i--)
                     {
-                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(i, y) > 0) clear = false;
-                    }
-
-                    if (clear)
-                    {
-                        for (int i = startx; i >= x; i--)
-                        {
-                            spielerArray[aktiverSpieler].setSpielerBoardValue(i, y, schiffNr);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Hier ist schon ein Schiff!\nEs kann hier nicht platziert werden!", "Schiff vorhanden");
-                        btn.Text = "platzieren";
-                        infoLabeländern("Wähle eine Schiff zum Platzieren");
+                        spielerArray[aktiverSpieler].setSpielerBoardValue(i, y, schiffNr);
                     }
                 }
-
-                //Fall: Schiff nach links setzen
-                else if ((y + (length - 1) == starty) && (startx == x))
-                {
-                    for (int i = starty; i >= y; i--)
-                    {
-                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(x, i) > 0) clear = false;
-                    }
-
-                    if (clear)
-                    {
-                        for (int i = starty; i >= y; i--)
-                        {
-                            spielerArray[aktiverSpieler].setSpielerBoardValue(x, i, schiffNr);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Hier ist schon ein Schiff!\nEs kann hier nicht platziert werden!", "Schiff vorhanden");
-                        btn.Text = "platzieren";
-                        infoLabeländern("Wähle eine Schiff zum Platzieren");
-                    }
-                }
-
-                //Fall: Schiff nach unten setzen
-                else if ((x - (length - 1) == startx) && (starty == y))
+                if (startx < x)
                 {
                     for (int i = startx; i <= x; i++)
                     {
-                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(i, y) > 0) clear = false;
-                    }
-
-                    if (clear)
-                    {
-                        for (int i = startx; i <= x; i++)
-                        {
-                            spielerArray[aktiverSpieler].setSpielerBoardValue(i ,y, schiffNr);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Hier ist schon ein Schiff!\nEs kann hier nicht platziert werden!!", "Schiff vorhanden");
-                        btn.Text = "platzieren";
-                        infoLabeländern("Wähle eine Schiff zum Platzieren");
+                        spielerArray[aktiverSpieler].setSpielerBoardValue(i, y, schiffNr);
                     }
                 }
-
-                //Fall: Schiff nach rechts setzen
-                else if ((y - (length - 1) == starty) && (startx == x))
+                if (starty > y)
+                {
+                    for (int i = starty; i >= y; i--)
+                    {
+                        spielerArray[aktiverSpieler].setSpielerBoardValue(x, i, schiffNr);
+                    }
+                }
+                if (starty < y)
                 {
                     for (int i = starty; i <= y; i++)
                     {
-                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(x, i) > 0) clear = false;
-                    }
-
-                    if (clear)
-                    {
-                        for (int i = starty; i <= y; i++)
-                        {
-                            spielerArray[aktiverSpieler].setSpielerBoardValue(x, i, schiffNr);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Hier ist schon ein Schiff!\nEs kann hier nicht platziert werden!", "Schiff vorhanden");
-                        btn.Text = "platzieren";
-                        infoLabeländern("Wähle eine Schiff zum Platzieren");
+                        spielerArray[aktiverSpieler].setSpielerBoardValue(x, i, schiffNr);
                     }
                 }
-                else
-                {
 
-                    MessageBox.Show("Das Schiff wurde falsch platziert!", "Schiff Platzieren");
-                    btn.Text = "platzieren";
-                    infoLabeländern("Wähle eine Schiff zum Platzieren");
-                    return;
-                }
+                infoLabeländern("Schiff erfolgreich platziert");
+                btn.Text = "neu platzieren";
+                aktiveSchiffanzahl++;
 
-                if (clear)
-                {
-                    infoLabeländern("Schiff erfolgreich platziert");
-                    btn.Text = "neu platzieren";
-                    aktiveSchiffanzahl++;
-                }
+
+
+
             }
 
             printBoard(true);
@@ -639,7 +627,6 @@ namespace SchiffeVersenken
         {
             foreach (Button btn in buttonsBoard) btn.Enabled = false;
         }
-
 
         void auswahlButtonsSetzen(int x)
         {
