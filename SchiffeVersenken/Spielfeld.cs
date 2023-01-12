@@ -18,6 +18,7 @@ namespace SchiffeVersenken
         int aktiveSchiffanzahl = 0;
         int runden = 0;
         int modus = 0;
+        int feldzeile, feldspalte;
         TableLayoutPanel spielfeld;
         Spieler[] spielerArray;
         int spielerImSpiel = 0;
@@ -43,6 +44,9 @@ namespace SchiffeVersenken
             this.spielerArray = new Spieler[spielerAnzahl];
             this.modus = modus;
             this.runden = runden;
+            this.feldzeile = feldzeile;
+            this.feldspalte = feldspalte;
+
             score = new int[spielerAnzahl];
 
             angriffButtons = new Button[4];
@@ -82,6 +86,7 @@ namespace SchiffeVersenken
             {
                 Label label = new Label();
                 label.Text = letter++.ToString();
+                label.Dock = DockStyle.Fill;
                 label.TextAlign = ContentAlignment.MiddleCenter;
                 spielfeld.Controls.Add(label, i, 0);
             }
@@ -200,13 +205,13 @@ namespace SchiffeVersenken
             char[] position = s.ToCharArray();
             if (position.GetLength(0) == 2)
             {
-                x = ((position[0] - '0'));
-                y = ((position[1] - '@'));
+                x = ((position[0] - '0')-1);
+                y = ((position[1] - '@')-1);
             }
             else
             {
-                x = 10;
-                y = ((position[2] - '@'));
+                x = 9;
+                y = ((position[2] - '@')-1);
             }
             //Button wurde 
             fertigTask.TrySetResult(true);
@@ -228,6 +233,7 @@ namespace SchiffeVersenken
         private async void placeschiff_Click(object sender, EventArgs e)
         {
             refreshButtons(true);
+            printBoard(true);
 
             Button btn = (Button)sender;
             string s = btn.Name;
@@ -284,9 +290,9 @@ namespace SchiffeVersenken
                 infoLabeländern("Wähle eine Position für Schiff " + schiffNr + " aus!");
 
                 await fertigTask.Task;
-                if (spielerArray[aktiverSpieler].getSpielerBoardValue(x - 1, y - 1) == 0)
+                if (spielerArray[aktiverSpieler].getSpielerBoardValue(x, y) == 0)
                 {
-                    spielerArray[aktiverSpieler].setSpielerBoardValue(x - 1, y - 1, schiffNr);
+                    spielerArray[aktiverSpieler].setSpielerBoardValue(x, y, schiffNr);
                     infoLabeländern("Schiff erfolgreich platziert");
                     btn.Text = "neu platzieren";
                     aktiveSchiffanzahl++;
@@ -308,6 +314,12 @@ namespace SchiffeVersenken
 
                 await fertigTask.Task;
 
+                if ((x + (length - 1) < feldzeile) ? (buttonsBoard[x + (length - 1), y].Enabled) : false) buttonsBoard[x + (length - 1), y].BackColor = Color.Black;
+                if ((x - (length - 1) >= 0)         ? (buttonsBoard[x - (length - 1), y].Enabled) : false) buttonsBoard[x - (length - 1), y].BackColor = Color.Black;
+
+                if ((y + (length - 1) < feldspalte) ? (buttonsBoard[x, y + (length - 1)].Enabled) : false) buttonsBoard[x, y + (length - 1)].BackColor = Color.Black;
+                if ((y - (length - 1) >= 0)          ? (buttonsBoard[x, y - (length - 1)].Enabled) : false) buttonsBoard[x, y - (length - 1)].BackColor = Color.Black;
+                 
                 startx = x;
                 starty = y;
                 fertigTask = new TaskCompletionSource<bool>();
@@ -321,14 +333,14 @@ namespace SchiffeVersenken
                 {
                     for (int i = startx; i >= x; i--)
                     {
-                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(i - 1, y - 1) > 0) clear = false;
+                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(i, y) > 0) clear = false;
                     }
 
                     if (clear)
                     {
                         for (int i = startx; i >= x; i--)
                         {
-                            spielerArray[aktiverSpieler].setSpielerBoardValue(i - 1, y - 1, schiffNr);
+                            spielerArray[aktiverSpieler].setSpielerBoardValue(i, y, schiffNr);
                         }
                     }
                     else
@@ -344,14 +356,14 @@ namespace SchiffeVersenken
                 {
                     for (int i = starty; i >= y; i--)
                     {
-                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(x - 1, i - 1) > 0) clear = false;
+                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(x, i) > 0) clear = false;
                     }
 
                     if (clear)
                     {
                         for (int i = starty; i >= y; i--)
                         {
-                            spielerArray[aktiverSpieler].setSpielerBoardValue(x - 1, i - 1, schiffNr);
+                            spielerArray[aktiverSpieler].setSpielerBoardValue(x, i, schiffNr);
                         }
                     }
                     else
@@ -367,14 +379,14 @@ namespace SchiffeVersenken
                 {
                     for (int i = startx; i <= x; i++)
                     {
-                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(i - 1, y - 1) > 0) clear = false;
+                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(i, y) > 0) clear = false;
                     }
 
                     if (clear)
                     {
                         for (int i = startx; i <= x; i++)
                         {
-                            spielerArray[aktiverSpieler].setSpielerBoardValue(i - 1, y - 1, schiffNr);
+                            spielerArray[aktiverSpieler].setSpielerBoardValue(i ,y, schiffNr);
                         }
                     }
                     else
@@ -390,14 +402,14 @@ namespace SchiffeVersenken
                 {
                     for (int i = starty; i <= y; i++)
                     {
-                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(x - 1, i - 1) > 0) clear = false;
+                        if (spielerArray[aktiverSpieler].getSpielerBoardValue(x, i) > 0) clear = false;
                     }
 
                     if (clear)
                     {
                         for (int i = starty; i <= y; i++)
                         {
-                            spielerArray[aktiverSpieler].setSpielerBoardValue(x - 1, i - 1, schiffNr);
+                            spielerArray[aktiverSpieler].setSpielerBoardValue(x, i, schiffNr);
                         }
                     }
                     else
@@ -559,13 +571,13 @@ namespace SchiffeVersenken
 
             await fertigTask.Task;
 
-            int feld = spielerArray[aktiverSpieler].getSpielerBoardValue(x - 1, y - 1);
+            int feld = spielerArray[aktiverSpieler].getSpielerBoardValue(x, y);
 
             if ((feld >= 1) && (feld <= 5))
             {
                 // HIT!!!
                 treffer.Play();
-                spielerArray[aktiverSpieler].setSpielerBoardValue(x - 1, y - 1, 6);
+                spielerArray[aktiverSpieler].setSpielerBoardValue(x, y, 6);
                 spielerArray[lastPlayer].addScore(6 - feld);
                 refreshscore();
                 printBoard(false);
@@ -587,7 +599,7 @@ namespace SchiffeVersenken
             else
             {
                 // WASSERTREFFER!!!
-                spielerArray[aktiverSpieler].setSpielerBoardValue(x - 1, y - 1, 7);
+                spielerArray[aktiverSpieler].setSpielerBoardValue(x, y, 7);
                 spielerArray[lastPlayer].addScore(0);
                 printBoard(false);
 
