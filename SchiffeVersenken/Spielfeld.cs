@@ -350,7 +350,7 @@ namespace SchiffeVersenken
                     }
                 }
 
-                //Fall nach  
+                //Fall nach Rechts
                 if (y + (length - 1) < feldspalte)
                 {
                     bool osten = true;
@@ -365,7 +365,7 @@ namespace SchiffeVersenken
                     }
                 }
 
-                //Fall nach 
+                //Fall nach Links
                 if (y - (length - 1) >= 0)
                 {
                     bool westen = true;
@@ -418,10 +418,6 @@ namespace SchiffeVersenken
                 infoLabeländern("Schiff erfolgreich platziert");
                 btn.Text = "neu platzieren";
                 aktiveSchiffanzahl++;
-
-
-
-
             }
 
             printBoard(true);
@@ -660,6 +656,7 @@ namespace SchiffeVersenken
             //        break;
             //}
         }
+        
         void refreshscore()
         {
 
@@ -671,6 +668,7 @@ namespace SchiffeVersenken
             { Score4.Text = spielerArray[3].getScore().ToString(); }
 
         }
+ 
         async void gameLoop()
         {
             placeschiff1.Visible = false;
