@@ -134,6 +134,7 @@ namespace SchiffeVersenken
                     btn1.Name = (j).ToString() + letter;
                     buttonsBoard[j - 1, i - 1] = btn1;
                     btn1.Enabled = false;
+                    btn1.BackColorChanged += btnBackColorChanged;
                     btn1.Click += btn_Clicked;
                     btn1.BackColor = Color.LightBlue;
                 }
@@ -226,6 +227,17 @@ namespace SchiffeVersenken
             fertigTask.TrySetResult(true);
         }
 
+        /// <summary>
+        /// Ändert die Schriftfarbe in weiß wenn der Hintergrund schwarz ist.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBackColorChanged(Object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (btn.BackColor == Color.Black) btn.ForeColor = Color.White;
+            else btn.ForeColor = Color.Black;
+        }
         private void Spielfeld_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult result = MessageBox.Show("Spiel Beenden?", "Spiel Beenden?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -644,28 +656,10 @@ namespace SchiffeVersenken
                     angriffButtons[i].Enabled = true;
                 }
             }
-
-
-            //switch (i)
-            //{
-            //    case 0:
-            //        spielerfeld1.Enabled = false;
-            //        break;
-            //    case 1:
-            //        spielerfeld2.Enabled = false;
-            //        break;
-            //    case 2:
-            //        spielerfeld3.Enabled = false;
-            //        break;
-            //    case 3:
-            //        spielerfeld4.Enabled = false;
-            //        break;
-            //}
         }
         
         void refreshscore()
         {
-
             Score1.Text = spielerArray[0].getScore().ToString();
             Score2.Text = spielerArray[1].getScore().ToString();
             if (spielerAnzahl >= 3)
@@ -720,8 +714,6 @@ namespace SchiffeVersenken
 
                 letzterSpieler = aktiverSpieler;
 
-
-
                 do
                 {
                     aktiverSpieler++;
@@ -755,10 +747,6 @@ namespace SchiffeVersenken
                 angriffTask = new TaskCompletionSource<bool>();
 
                 await angriffTask.Task;
-
-
-
-
 
                 do
                 {
@@ -869,6 +857,7 @@ namespace SchiffeVersenken
                 infoLabeländern("Du hast gewonnen!");
                 MessageBox.Show("Spieler " + (aktiverSpieler + 1) + " hat gewonnen!", "Spiel beendet!");
             }
+
             Environment.Exit(0);
         }
 
