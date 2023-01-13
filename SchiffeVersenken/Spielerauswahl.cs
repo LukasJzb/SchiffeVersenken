@@ -93,7 +93,11 @@ namespace SchiffeVersenken
             }
         }
 
-        //Auswahl der Farbe
+        /// <summary>
+        /// Dialog Auswahl der Farbe
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void farbeWechselnDialog(object sender, EventArgs e)
         {
             ColorDialog MyDialog = new ColorDialog();
@@ -123,7 +127,12 @@ namespace SchiffeVersenken
                 }
             }
         }
-        //verhindert doppelte farben
+        
+        /// <summary>
+        /// Funktion zum verhindern doppelter Farben
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
         private Boolean checkiftaken(Color color)
         {
             return (color == spieler1farbe.BackColor || color == spieler2farbe.BackColor || color == spieler3farbe.BackColor || color == spieler4farbe.BackColor || color == schifffarbe1.BackColor || color == schifffarbe2.BackColor || color == schifffarbe3.BackColor || color == schifffarbe4.BackColor || color == schifffarbe5.BackColor);

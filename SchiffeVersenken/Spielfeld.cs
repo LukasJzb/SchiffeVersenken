@@ -238,6 +238,7 @@ namespace SchiffeVersenken
             if (btn.BackColor == Color.Black) btn.ForeColor = Color.White;
             else btn.ForeColor = Color.Black;
         }
+
         private void Spielfeld_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult result = MessageBox.Show("Spiel Beenden?", "Spiel Beenden?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -251,6 +252,11 @@ namespace SchiffeVersenken
             }
         }
 
+        /// <summary>
+        /// Funktion wird aufgerufen wenn ein Schiff 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void placeschiff_Click(object sender, EventArgs e)
         {
             refreshButtons(true);
@@ -466,24 +472,17 @@ namespace SchiffeVersenken
             printBoard(true);
         }
 
+        /// <summary>
+        /// Das Hauptboard wird neu "gezeichnet" in dem die Button Hintergrund geändert werden
+        /// </summary>
+        /// <param name="schiffeSichtbar"></param>
         void printBoard(bool schiffeSichtbar)
         {
-
-            // Im ganzen Board werden die Farben neu gesetzt
+            // Im ganzen Board werden die Hintergrund-Farben der Buttons neu gesetzt
             for (int i = 0; i < spielerArray[aktiverSpieler].getSpielerBoard().GetLength(0); i++)
             {
                 for (int j = 0; j < spielerArray[aktiverSpieler].getSpielerBoard().GetLength(1); j++)
-                {
-                    /* 0 für nichts (blau)
-                     * 1 = Schiff 1 (braun)
-                     * 2 = Schiff 2 (braun)
-                     * 3 = Schiff 3 (braun)
-                     * 4 = Schiff 4 (braun)
-                     * 5 = Schiff 5 (braun)
-                     * 6 für getroffen (grün)
-                     * 7 für daneben (rot)
-                     */
-
+                {  
                     switch (spielerArray[aktiverSpieler].getSpielerBoardValue(i, j))
                     {
                         case 0:
@@ -521,8 +520,13 @@ namespace SchiffeVersenken
 
         }
 
+        /// <summary>
+        /// Neuer Spieler ist an der Reihe zum Platzieren der Schiffe
+        /// </summary>
+        /// <param name="playerNr"></param>
         void activePlayerChanged(int playerNr)
         {
+            //Alle "Platzier"-Buttons werden zurückgesetzt
             placeschiff1.Text = "platzieren";
             placeschiff2.Text = "platzieren";
             placeschiff3.Text = "platzieren";
@@ -535,12 +539,18 @@ namespace SchiffeVersenken
             spielfeld.BackColor = spielerArray[aktiverSpieler].getFarbe();
         }
 
+        /// <summary>
+        /// Funktion um den Vorgang des Angriffs zu behandeln
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         async void angreifenClick(object sender, EventArgs e)
         {
 
             Button btn = (Button)sender;
             int lastPlayer = aktiverSpieler;
 
+            // Welcher Spieler ist gerade dran
             switch (btn.Name)
             {
                 case "spielerfeld1":
@@ -575,6 +585,7 @@ namespace SchiffeVersenken
 
             int feld = spielerArray[aktiverSpieler].getSpielerBoardValue(x, y);
 
+            // Wenn das angeklickte Feld ein Schiff ist
             if ((feld >= 1) && (feld <= 5))
             {
                 // HIT!!!
@@ -616,6 +627,11 @@ namespace SchiffeVersenken
             angriffTask.TrySetResult(true);
         }
 
+        /// <summary>
+        /// Die Buttons werden beim Platzieren (case true) der Schiffe deaktivert wenn Schiffe vorhanden
+        /// Die Buttons werden beim Angreifen (case false) der Schiffe deaktivert wenn schonmal dort hingeschossen
+        /// </summary>
+        /// <param name="schiffPlatzieren"></param>
         void refreshButtons(bool schiffPlatzieren)
         {
             int[,] spielerBoard = spielerArray[aktiverSpieler].getSpielerBoard();
@@ -637,11 +653,19 @@ namespace SchiffeVersenken
             }
         }
 
+        /// <summary>
+        /// Alle Button werden auf dem Spielfeld deaktivert
+        /// </summary>
         void deaktivereAlleButtons()
         {
             foreach (Button btn in buttonsBoard) btn.Enabled = false;
         }
 
+        /// <summary>
+        /// Es wird geprüft ob ein Spieler Eliminiert ist, dann wird der dazugehörige Button deaktivert
+        /// und der eigene Button wird deaktivert da man sich nicht selbst angreifen soll
+        /// </summary>
+        /// <param name="x"></param>
         void auswahlButtonsSetzen(int x)
         {
             for (int i = 0; i < spielerAnzahl; i++)
@@ -658,6 +682,9 @@ namespace SchiffeVersenken
             }
         }
         
+        /// <summary>
+        /// Der Punktestand wird aktualierst
+        /// </summary>
         void refreshscore()
         {
             Score1.Text = spielerArray[0].getScore().ToString();
@@ -669,8 +696,13 @@ namespace SchiffeVersenken
 
         }
  
+        /// <summary>
+        /// Das Spiel wird gestartet mit dieser Funktion
+        /// darin befinden sich die verschiedenen Modi und Spielabbruchs-Bedingungen
+        /// </summary>
         async void gameLoop()
         {
+            // Der Spieler kann keine Schiffe mehr setzen, alle Button unsichtbar
             placeschiff1.Visible = false;
             placeschiff2.Visible = false;
             placeschiff3.Visible = false;
@@ -698,7 +730,7 @@ namespace SchiffeVersenken
                     MessageBox.Show("Es gab Probleme beim auswählen des modus", "Fehler modus");
                     break;
             }
-        //normal mode
+        //Normal Modus
         Normal:
             while (true)
             {
@@ -732,7 +764,7 @@ namespace SchiffeVersenken
             infoLabeländern("Du hast gewonnen!");
             MessageBox.Show("Spieler " + (aktiverSpieler + 1) + " hat gewonnen!", "Spiel beendet!");
             Environment.Exit(0);
-
+        // Einer fliegt raus Modus
         Einerraus:
             while (spielerImSpiel == spielerAnzahl)
             {
@@ -765,6 +797,7 @@ namespace SchiffeVersenken
             gewinnerscore = spielerArray[0].getScore();
             gewinnerspieler = 0;
 
+            // Prüfen wer am meisten Punkte hat
             for (int i = 0; i < spielerAnzahl; i++)
             {
                 if (gewinnerscore < spielerArray[i].getScore())
@@ -782,6 +815,7 @@ namespace SchiffeVersenken
             }
             aktiverSpieler = gewinnerspieler;
 
+            // Wenn es mehr als einen Gewinner gibt gebe die Liste der Gewinner aus
             if (gewinner.Count > 1)
             {
                 string ergebnis = string.Join(" , ", gewinner);
@@ -789,6 +823,7 @@ namespace SchiffeVersenken
                 infoLabeländern("Ihr habt gewonnen!", ergebnis);
                 MessageBox.Show("Spieler " + ergebnis + " haben gewonnen!", "Spiel beendet!");
             }
+            // Es gibt nur einen Gewinner
             else
             {
                 sieg.Play();
@@ -797,7 +832,8 @@ namespace SchiffeVersenken
             }
             Environment.Exit(0);
 
-        Rundenaus:
+            // Modus mit vorher angegebener Rundenzahl
+            Rundenaus:
             while (aktuelleRunde < runden)
             {
                 MessageBox.Show("Spieler " + (aktiverSpieler + 1) + " ist an der Reihe!", "Nächster Spieler");
@@ -825,6 +861,8 @@ namespace SchiffeVersenken
 
                 if (letzterSpieler == aktiverSpieler) break;
             }
+
+            // Spiel zu Ende und Berechnung des Gewinners
             refreshscore();
             gewinnerscore = spielerArray[0].getScore();
             gewinnerspieler = 0;
@@ -844,6 +882,7 @@ namespace SchiffeVersenken
                 }
             }
             aktiverSpieler = gewinnerspieler;
+            // Wenn es mehr als einen Gewinner gibt gebe die Liste der Gewinner aus
             if (gewinner.Count > 1)
             {
                 string ergebnis = string.Join(" , ", gewinner);
@@ -851,6 +890,7 @@ namespace SchiffeVersenken
                 infoLabeländern("Ihr habt gewonnen!", ergebnis);
                 MessageBox.Show("Spieler " + ergebnis + " haben gewonnen!", "Spiel beendet!");
             }
+            // Es gibt nur einen Gewinner
             else
             {
                 sieg.Play();
