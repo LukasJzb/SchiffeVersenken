@@ -10,7 +10,7 @@ namespace SchiffeVersenken
         int score;
 
         /// <summary>
-        /// Allgemeine Spielerklasse mit Farbe, Spielerboard und Score
+        /// Allgemeine Spielerklasse mit Farbe, Spielerboard und Score.
         /// </summary>
         /// <param name="farbe"></param>
         /// <param name="spielerBoard"></param>
@@ -32,7 +32,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Gibt den aktuellen Score des Spielers zurück
+        /// Gibt den aktuellen Score des Spielers zurück.
         /// </summary>
         /// <returns>Integer Score</returns>
         public int getScore()
@@ -41,7 +41,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Summiert den übergebenen Score dem Aktuellen dazu
+        /// Summiert den übergebenen Score dem Aktuellen Score dazu.
         /// </summary>
         /// <param name="länge"></param>
         public void addScore(int länge)
@@ -50,7 +50,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Gibt die Farbe des Spielers zurück
+        /// Gibt die Farbe des Spielers zurück.
         /// </summary>
         /// <returns>Color Farbe</returns>
         public Color getFarbe()
@@ -59,7 +59,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Gibt das Spielerboard des Spielers als 2D-Array zurück
+        /// Gibt das Spielerboard des Spielers als 2D-Array zurück.
         /// </summary>
         /// <returns>int[,] spielerboard</returns>
         public int[,] getSpielerBoard()
@@ -68,7 +68,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Setzt das komplette Board was übergeben wurde als Spielerboard
+        /// Setzt das komplette Board was übergeben wurde als Spielerboard.
         /// </summary>
         /// <param name="newSpielerBoard"></param>
         public void setSpielerBoard(int[,] newSpielerBoard)
@@ -77,7 +77,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Gibt den Wert des Boards an der Stelle x, y zurück
+        /// Gibt den Wert des Boards an der Stelle x, y zurück.
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -88,7 +88,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Setzt den Wert des Boards an der Stelle x, y fest
+        /// Setzt den Wert des Boards an der Stelle x, y fest.
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -99,7 +99,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Gibt einen Bool-Wert zurück, true wenn SchiffNr vorhanden. False wenn Schiff zerstört
+        /// Gibt einen Bool-Wert zurück, true wenn SchiffNr vorhanden. False wenn Schiff zerstört.
         /// </summary>
         /// <param name="schiffNr"></param>
         /// <returns>bool schiffVorhanden</returns>
@@ -127,7 +127,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Gibt einen Bool-Wert zurück ob, alle Schiffe zerstört sind
+        /// Gibt einen Bool-Wert zurück ob, alle Schiffe zerstört wurden.
         /// </summary>
         /// <returns>bool eliminiert</returns>
         public bool istEliminiert()

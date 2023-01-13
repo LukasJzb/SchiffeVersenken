@@ -169,7 +169,7 @@ namespace SchiffeVersenken
             }
 
             //Deaktivieren der Schiffe anhand der Anzahl ausgewählter Schiffe
-            //Und Schiffsgröße wird in Array gespeichert
+            //Und speichern der Schiffsgröße in einem Array
             switch (schiffAnzahl)
             {
                 case 5:
@@ -201,12 +201,11 @@ namespace SchiffeVersenken
                     MessageBox.Show("Bei der Anzahl der Schiffe gab es einen Fehler!", "Fehler Schiffanzahl");
                     break;
             }
-            //activeBoard = spielerArray[aktiverSpieler].getSpielerBoard();
             activePlayerChanged(aktiverSpieler);
         }
 
         /// <summary>
-        /// Eventhandler der generierten Buttons
+        /// Eventhandler für die generierten Buttons.
         /// </summary>
         private void btn_Clicked(Object sender, EventArgs e)
         {
@@ -223,12 +222,12 @@ namespace SchiffeVersenken
                 x = 9;
                 y = ((position[2] - '@')-1);
             }
-            //Button wurde 
+             
             fertigTask.TrySetResult(true);
         }
 
         /// <summary>
-        /// Ändert die Schriftfarbe in weiß wenn der Hintergrund schwarz ist.
+        /// Ändert die Schriftfarbe in weiß wenn der Hintergrund eines Buttons schwarz ist.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -253,7 +252,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Funktion wird aufgerufen wenn ein Schiff 
+        /// Funktion wird aufgerufen wenn ein Schiff platzierbar ist.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -344,7 +343,7 @@ namespace SchiffeVersenken
 
                 deaktivereAlleButtons();
 
-                //Fall nach unten
+                //Ausrichtung nach unten
                 if (x + (length - 1) < feldzeile)
                 {
                     bool süden = true;
@@ -359,7 +358,7 @@ namespace SchiffeVersenken
                     }
                 }
 
-                //Fall nach oben 
+                //Ausrichtung nach oben 
                 if (x - (length - 1) >= 0) {
 
                     bool norden = true;
@@ -374,7 +373,7 @@ namespace SchiffeVersenken
                     }
                 }
 
-                //Fall nach Rechts
+                //Ausrichtung nach Rechts
                 if (y + (length - 1) < feldspalte)
                 {
                     bool osten = true;
@@ -389,7 +388,7 @@ namespace SchiffeVersenken
                     }
                 }
 
-                //Fall nach Links
+                //Ausrichtung nach Links
                 if (y - (length - 1) >= 0)
                 {
                     bool westen = true;
@@ -473,7 +472,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Das Hauptboard wird neu "gezeichnet" in dem die Button Hintergrund geändert werden
+        /// Das Hauptboard wird neu "gezeichnet" in dem die Button Hintergrund geändert werden.
         /// </summary>
         /// <param name="schiffeSichtbar"></param>
         void printBoard(bool schiffeSichtbar)
@@ -521,12 +520,12 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Neuer Spieler ist an der Reihe zum Platzieren der Schiffe
+        /// Neuer Spieler ist an der Reihe zum Platzieren seiner Schiffe.
         /// </summary>
         /// <param name="playerNr"></param>
         void activePlayerChanged(int playerNr)
         {
-            //Alle "Platzier"-Buttons werden zurückgesetzt
+            //Alle Buttons werden auf "platzierne" zurückgesetzt
             placeschiff1.Text = "platzieren";
             placeschiff2.Text = "platzieren";
             placeschiff3.Text = "platzieren";
@@ -540,7 +539,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Funktion um den Vorgang des Angriffs zu behandeln
+        /// Funktion um den Vorgang des Angriffs zu behandeln.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -550,7 +549,7 @@ namespace SchiffeVersenken
             Button btn = (Button)sender;
             int lastPlayer = aktiverSpieler;
 
-            // Welcher Spieler ist gerade dran
+            // Ermitteln des aktuellen Spielers
             switch (btn.Name)
             {
                 case "spielerfeld1":
@@ -571,7 +570,8 @@ namespace SchiffeVersenken
             }
 
 
-            // Spieler greift an und kann keinen anderen Spieler aktuell angreifen
+            // Spieler wählt aus welchen Seiler er angreift
+            // und kann anschließend keinen anderen Spieler als den ausgewählten Spieler angreifen
             foreach (Button angriffBtn in angriffButtons) angriffBtn.Enabled = false;
 
             activePlayerChanged(aktiverSpieler);
@@ -628,8 +628,8 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Die Buttons werden beim Platzieren (case true) der Schiffe deaktivert wenn Schiffe vorhanden
-        /// Die Buttons werden beim Angreifen (case false) der Schiffe deaktivert wenn schonmal dort hingeschossen
+        /// Die Buttons werden beim Platzieren (case true) der Schiffe deaktivert wenn Schiffe vorhanden sind.
+        /// Die Buttons werden beim Angreifen (case false) der Schiffe deaktivert wenn schonmal dort hingeschossen wurde.
         /// </summary>
         /// <param name="schiffPlatzieren"></param>
         void refreshButtons(bool schiffPlatzieren)
@@ -662,8 +662,8 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Es wird geprüft ob ein Spieler Eliminiert ist, dann wird der dazugehörige Button deaktivert
-        /// und der eigene Button wird deaktivert da man sich nicht selbst angreifen soll
+        /// Es wird geprüft ob ein Spieler Eliminiert ist, anschließend werden die Buttons der eliminerten Spieler
+        /// und der eigene Button deaktivert (da man sich nicht selbst angreifen soll).
         /// </summary>
         /// <param name="x"></param>
         void auswahlButtonsSetzen(int x)
@@ -683,7 +683,7 @@ namespace SchiffeVersenken
         }
         
         /// <summary>
-        /// Der Punktestand wird aktualierst
+        /// Der Punktestand wird aktualisiert.
         /// </summary>
         void refreshscore()
         {
@@ -697,8 +697,8 @@ namespace SchiffeVersenken
         }
  
         /// <summary>
-        /// Das Spiel wird gestartet mit dieser Funktion
-        /// darin befinden sich die verschiedenen Modi und Spielabbruchs-Bedingungen
+        /// Funktion zum starten des Spiel.
+        /// Darin befinden sich die verschiedenen Modi und Spielabbruchs-Bedingungen.
         /// </summary>
         async void gameLoop()
         {

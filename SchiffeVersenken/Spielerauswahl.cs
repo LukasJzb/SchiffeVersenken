@@ -94,7 +94,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Dialog Auswahl der Farbe
+        /// Dialog Auswahl der Farbe.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -129,7 +129,7 @@ namespace SchiffeVersenken
         }
         
         /// <summary>
-        /// Funktion zum verhindern doppelter Farben
+        /// Funktion zum verhindern doppelter Farben.
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>
@@ -144,7 +144,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Prüft den eingegebenen Text ob Zahl ist, wenn nicht MessageBox
+        /// Prüft den eingegebenen Text ob Zahl ist, wenn nicht öffnen einer MessageBox.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -169,7 +169,7 @@ namespace SchiffeVersenken
         }
 
         /// <summary>
-        /// Speichert die Farben und Schifflängen in Arrays
+        /// Speichert die Farben und Schifflängen in Arrays.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -202,7 +202,7 @@ namespace SchiffeVersenken
 
 
         /// <summary>
-        /// Wenn Modi Rundenanzahl ausgewählt, aktivere Label und Eingabe
+        /// Wenn Modi Rundenanzahl ausgewählt, aktivere Label und Eingabe.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
