@@ -24,6 +24,7 @@ namespace SchiffeVersenken
         int spielerImSpiel = 0;
         int[] score;
         Button[] angriffButtons;
+        Color[] schifffarben;
 
         //Sound-Import
         SoundPlayer attacke = new SoundPlayer(Properties.Resources.startRakete);
@@ -46,6 +47,7 @@ namespace SchiffeVersenken
             this.runden = runden;
             this.feldzeile = feldzeile;
             this.feldspalte = feldspalte;
+            this.schifffarben = schifffarbarray;
 
             score = new int[spielerAnzahl];
 
@@ -476,23 +478,23 @@ namespace SchiffeVersenken
                             buttonsBoard[i, j].BackColor = Color.LightBlue;
                             break;
                         case 1:
-                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = Color.SaddleBrown;
+                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = schifffarben[0];
                             else buttonsBoard[i, j].BackColor = Color.LightBlue;
                             break;
                         case 2:
-                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = Color.MediumTurquoise;
+                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = schifffarben[1];
                             else buttonsBoard[i, j].BackColor = Color.LightBlue;
                             break;
                         case 3:
-                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = Color.Thistle;
+                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = schifffarben[2];
                             else buttonsBoard[i, j].BackColor = Color.LightBlue;
                             break;
                         case 4:
-                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = Color.Salmon;
+                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = schifffarben[3];
                             else buttonsBoard[i, j].BackColor = Color.LightBlue;
                             break;
                         case 5:
-                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = Color.NavajoWhite;
+                            if (schiffeSichtbar) buttonsBoard[i, j].BackColor = schifffarben[4];
                             else buttonsBoard[i, j].BackColor = Color.LightBlue;
                             break;
                         case 6:

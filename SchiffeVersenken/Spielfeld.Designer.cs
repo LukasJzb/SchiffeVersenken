@@ -32,8 +32,6 @@ namespace SchiffeVersenken
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Spielfeld));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.rundenzahlStripbar = new System.Windows.Forms.ToolStripLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.infoLabel = new System.Windows.Forms.Label();
             this.mainGrid = new System.Windows.Forms.TableLayoutPanel();
@@ -85,10 +83,11 @@ namespace SchiffeVersenken
             this.Score2 = new System.Windows.Forms.Label();
             this.groupBoxScore3 = new System.Windows.Forms.GroupBox();
             this.Score3 = new System.Windows.Forms.Label();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.rundenzahlStripbar = new System.Windows.Forms.ToolStripLabel();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -139,20 +138,8 @@ namespace SchiffeVersenken
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(97, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(111, 25);
             this.toolStrip1.TabIndex = 0;
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(72, 22);
-            this.toolStripLabel1.Text = "Rundenzahl:";
-            // 
-            // rundenzahlStripbar
-            // 
-            this.rundenzahlStripbar.Name = "rundenzahlStripbar";
-            this.rundenzahlStripbar.Size = new System.Drawing.Size(13, 22);
-            this.rundenzahlStripbar.Text = "1";
             // 
             // splitContainer1
             // 
@@ -227,7 +214,7 @@ namespace SchiffeVersenken
             // 
             // groupBoxSchiff4
             // 
-            this.groupBoxSchiff4.BackColor = System.Drawing.Color.Salmon;
+            this.groupBoxSchiff4.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxSchiff4.Controls.Add(this.label13);
             this.groupBoxSchiff4.Controls.Add(this.schifflaenge4);
             this.groupBoxSchiff4.Controls.Add(this.placeschiff4);
@@ -280,7 +267,7 @@ namespace SchiffeVersenken
             // 
             // groupBoxSchiff3
             // 
-            this.groupBoxSchiff3.BackColor = System.Drawing.Color.Thistle;
+            this.groupBoxSchiff3.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxSchiff3.Controls.Add(this.label12);
             this.groupBoxSchiff3.Controls.Add(this.schifflaenge3);
             this.groupBoxSchiff3.Controls.Add(this.placeschiff3);
@@ -337,7 +324,7 @@ namespace SchiffeVersenken
             // 
             // groupBoxSchiff5
             // 
-            this.groupBoxSchiff5.BackColor = System.Drawing.Color.NavajoWhite;
+            this.groupBoxSchiff5.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxSchiff5.Controls.Add(this.label14);
             this.groupBoxSchiff5.Controls.Add(this.schifflaenge5);
             this.groupBoxSchiff5.Controls.Add(this.placeschiff5);
@@ -390,7 +377,7 @@ namespace SchiffeVersenken
             // 
             // groupBoxSchiff2
             // 
-            this.groupBoxSchiff2.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.groupBoxSchiff2.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxSchiff2.Controls.Add(this.label11);
             this.groupBoxSchiff2.Controls.Add(this.schifflaenge2);
             this.groupBoxSchiff2.Controls.Add(this.placeschiff2);
@@ -447,7 +434,7 @@ namespace SchiffeVersenken
             // 
             // groupBoxSchiff1
             // 
-            this.groupBoxSchiff1.BackColor = System.Drawing.Color.SaddleBrown;
+            this.groupBoxSchiff1.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxSchiff1.Controls.Add(this.label10);
             this.groupBoxSchiff1.Controls.Add(this.schifflaenge1);
             this.groupBoxSchiff1.Controls.Add(this.placeschiff1);
@@ -764,6 +751,18 @@ namespace SchiffeVersenken
             this.Score3.TabIndex = 1;
             this.Score3.Text = "0";
             // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(72, 22);
+            this.toolStripLabel1.Text = "Rundenzahl:";
+            // 
+            // rundenzahlStripbar
+            // 
+            this.rundenzahlStripbar.Name = "rundenzahlStripbar";
+            this.rundenzahlStripbar.Size = new System.Drawing.Size(13, 22);
+            this.rundenzahlStripbar.Text = "1";
+            // 
             // Spielfeld
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -780,8 +779,6 @@ namespace SchiffeVersenken
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
